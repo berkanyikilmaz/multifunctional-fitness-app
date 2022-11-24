@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">Multifunctional Fitness App</string>
     <string name="button">Button</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="you_don_t_have_any_account_click_here_to_sign_up">You don\'t have any account? Click here to sign up.</string>
+    <string name="login">Login</string>
+    <string name="multifunctional_fitness_app">Multifunctional Fitness App</string>
+    <string name="create_your_account">Create Your Account</string>
+    <string name="user_type">User Type</string>
+    <string name="surname">Surname:</string>
+    <string name="name">Name:</string>
+    <string name="userTypePrompt">User Type:</string>
+    <string name="phone_number">Phone Number:</string>
+    <string name="e_mail">E-Mail:</string>
+    <string name="passwordPrompt">Password:</string>
+    <string name="signUpContinue">Continue</string>
 </resources>
