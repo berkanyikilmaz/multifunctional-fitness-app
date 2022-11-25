@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible">
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Welcome &quot;Name&quot;"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.109" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="184dp"
+        android:text="My Profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="120dp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Find a Fitness Buddy"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="168dp" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Make an Appointment"
+        tools:layout_editor_absoluteX="104dp"
+        tools:layout_editor_absoluteY="209dp" />
+
+    <TableLayout
+        android:layout_width="220dp"
+        android:layout_height="300dp"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="325dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableLayout>
+
+    <EditText
+        android:id="@+id/editTextTextPersonName2"
+        android:layout_width="161dp"
+        android:layout_height="51dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Your Schedule"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="269dp" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="D|W"
+        tools:layout_editor_absoluteX="260dp"
+        tools:layout_editor_absoluteY="277dp" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log out"
+        tools:layout_editor_absoluteX="297dp"
+        tools:layout_editor_absoluteY="27dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
