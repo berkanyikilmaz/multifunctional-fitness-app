@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <TextView
+        android:id="@+id/Name"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="158dp"
+        android:layout_marginEnd="52dp"
+        android:text="Name:"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTextUsername"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/EMail"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:text="E-Mail:"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTextEmailAddress"
+        app:layout_constraintHorizontal_bias="0.062"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Surname" />
+
+    <TextView
+        android:id="@+id/PhoneNumber"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="52dp"
+        android:text="Phone Number:"
+        app:layout_constraintEnd_toStartOf="@+id/editTextPhone"
+        app:layout_constraintTop_toBottomOf="@+id/EMail" />
+
+    <TextView
+        android:id="@+id/Password"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="52dp"
+        android:text="Password:"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTextPassword"
+        app:layout_constraintTop_toBottomOf="@+id/PhoneNumber" />
+
+    <TextView
+        android:id="@+id/Username"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="52dp"
+        android:text="Username:"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/Password" />
+
+    <TextView
+        android:id="@+id/Surname"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="52dp"
+        android:text="Surname:"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonSurname"
+        app:layout_constraintTop_toBottomOf="@+id/Name" />
+
+    <EditText
+        android:id="@+id/editTextTextUsername"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="148dp"
+        android:layout_marginEnd="12dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="Name"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="210dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
+        tools:text="Password" />
+
+    <EditText
+        android:id="@+id/editTextTextEmailAddress"
+        android:layout_width="210dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="12dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonSurname"
+        tools:text="E Mail" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonSurname"
+        android:layout_width="210dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="12dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Surname"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextUsername" />
+
+    <EditText
+        android:id="@+id/editTextPhone"
+        android:layout_width="210dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="12dp"
+        android:ems="10"
+        android:inputType="phone"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
+        tools:text="Your Number" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="210dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="12dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Username:"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+        tools:text="Username" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="53dp"
+        android:layout_height="725dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <CheckBox
+            android:id="@+id/checkBox7"
+            android:layout_width="51dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox5" />
+
+        <CheckBox
+            android:id="@+id/checkBox5"
+            android:layout_width="53dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
+
+        <CheckBox
+            android:id="@+id/checkBox6"
+            android:layout_width="53dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox7" />
+
+        <CheckBox
+            android:id="@+id/checkBox4"
+            android:layout_width="53dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="144dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/checkBox3"
+            android:layout_width="53dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="53dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="17dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox4" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
