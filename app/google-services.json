@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "625115304770",
+    "project_id": "multifuntional-fitness-app",
+    "storage_bucket": "multifuntional-fitness-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:625115304770:android:8995659bf5fc710ddceedb",
+        "android_client_info": {
+          "package_name": "com.example.multifunctionalfitnessapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "625115304770-gdfi4iob2pac07qknuvdg56qmfda3k6h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYcRU6Z1n7_GTsH3WlLOIwWuH1_ODK57I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "625115304770-gdfi4iob2pac07qknuvdg56qmfda3k6h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
