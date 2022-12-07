@@ -2,6 +2,7 @@ package com.example.multifunctionalfitnessapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.multifunctionalfitnessapp.R;
@@ -11,7 +12,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sign_up_screen);
+        setContentView(R.layout.log_in_screen);
+
+        Intent intent = new Intent(this, SignUpActivity.class);
+        startActivity(intent);
     }
     //A small change
     /* Some Tries For User Profile Page
