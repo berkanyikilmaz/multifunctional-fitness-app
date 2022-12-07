@@ -9,8 +9,11 @@ public class DailySchedule extends Schedule {
     TimeInterval[] fullDailySchedule;
 
     public DailySchedule() {
-
+     fullDailySchedule = new TimeInterval[24];
     }
 
-
+    @Override
+    TimeInterval getTimeInterval(TimeInterval interval) {
+        return super.getTimeInterval(interval);
+    }
 }
