@@ -24,115 +24,170 @@
         android:id="@+id/userTypePrompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="69dp"
-        android:layout_marginTop="99dp"
-        android:layout_marginEnd="284dp"
-        android:layout_marginBottom="483dp"
+        android:layout_marginStart="24dp"
         android:text="@string/userTypePrompt"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.032"
+        app:layout_constraintBottom_toBottomOf="@+id/UserTypeDropdown"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createTitle"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/namePrompt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="285dp"
-        android:text="@string/name"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/surnamePrompt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userTypePrompt" />
+        app:layout_constraintTop_toTopOf="@+id/UserTypeDropdown" />
 
     <TextView
         android:id="@+id/surnamePrompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="282dp"
-        android:layout_marginBottom="396dp"
+        android:layout_marginStart="24dp"
         android:text="@string/surname"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintBottom_toBottomOf="@+id/surnameInputField"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/namePrompt" />
+        app:layout_constraintTop_toTopOf="@+id/surnameInputField" />
 
     <TextView
         android:id="@+id/passwordPrompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="69dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="285dp"
-        android:layout_marginBottom="372dp"
+        android:layout_marginStart="24dp"
         android:text="@string/passwordPrompt"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.026"
+        app:layout_constraintBottom_toBottomOf="@+id/passwordInputField"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/surnamePrompt"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="@+id/passwordInputField" />
 
     <TextView
-        android:id="@+id/phoneNumberInput"
+        android:id="@+id/phoneNumberPrompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="69dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="284dp"
-        android:text="@string/phone_number"
+        android:layout_marginStart="24dp"
+        android:text="Phone NO:"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/emailPrompt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.011"
+        app:layout_constraintBottom_toBottomOf="@+id/phoneNoInputField"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordPrompt" />
+        app:layout_constraintTop_toTopOf="@+id/phoneNoInputField" />
 
     <TextView
         android:id="@+id/emailPrompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="69dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="284dp"
-        android:layout_marginBottom="309dp"
+        android:layout_marginStart="24dp"
         android:text="@string/e_mail"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.166"
+        app:layout_constraintBottom_toBottomOf="@+id/mailInputField"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phoneNumberInput" />
+        app:layout_constraintTop_toTopOf="@+id/mailInputField" />
 
     <Button
         android:id="@+id/signUpContButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="101dp"
-        android:layout_marginEnd="151dp"
-        android:layout_marginBottom="191dp"
-        android:text="@string/signUpContinue"
+        android:layout_marginBottom="128dp"
+        android:text="CONTINUE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/nameInputField"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="Name"
+        app:layout_constraintEnd_toEndOf="@+id/UserTypeDropdown"
+        app:layout_constraintStart_toStartOf="@+id/UserTypeDropdown"
+        app:layout_constraintTop_toBottomOf="@+id/UserTypeDropdown" />
+
+    <EditText
+        android:id="@+id/surnameInputField"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="Name"
+        app:layout_constraintEnd_toEndOf="@+id/nameInputField"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="@+id/nameInputField"
+        app:layout_constraintTop_toBottomOf="@+id/nameInputField" />
+
+    <EditText
+        android:id="@+id/passwordInputField"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="Name"
+        app:layout_constraintEnd_toEndOf="@+id/surnameInputField"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/surnameInputField"
+        app:layout_constraintTop_toBottomOf="@+id/surnameInputField" />
+
+    <EditText
+        android:id="@+id/phoneNoInputField"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="Name"
+        app:layout_constraintEnd_toEndOf="@+id/passwordInputField"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/passwordInputField"
+        app:layout_constraintTop_toBottomOf="@+id/passwordInputField" />
+
+    <TextView
+        android:id="@+id/namePrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="Name:"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/nameInputField"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phoneNumberInput" />
+        app:layout_constraintTop_toTopOf="@+id/nameInputField" />
+
+    <EditText
+        android:id="@+id/mailInputField"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintEnd_toEndOf="@+id/phoneNoInputField"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/phoneNoInputField"
+        app:layout_constraintTop_toBottomOf="@+id/phoneNoInputField" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:id="@+id/UserTypeDropdown"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createTitle">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView2"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:inputType="none"
+            android:text="Facility Owner" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
