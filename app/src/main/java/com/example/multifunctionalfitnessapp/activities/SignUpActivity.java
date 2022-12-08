@@ -1,50 +1,102 @@
 package com.example.multifunctionalfitnessapp.activities;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Toast;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
-import com.example.multifunctionalfitnessapp.R;
-import com.example.multifunctionalfitnessapp.databinding.SignUpScreenBinding;
+import com.example.multifunctionalfitnessapp.*;
 
 public class SignUpActivity extends AppCompatActivity {
 
     String[] items = {"Normal User", "Facility Owner"};
-    SignUpScreenBinding binding;
+
+    EditText name;
+    EditText surname;
+    EditText username;
+    EditText password;
+    EditText phoneNo;
+    EditText email;
+    AutoCompleteTextView autoCompleteDropdown;
+    TextView returnLogin;
+    Button signUpCont;
+
+    String userType = "Normal User";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up_screen);
 
-        AutoCompleteTextView autoCompleteDropdown = findViewById(R.id.autoCompleteTextView2);
-        String[] userType = getResources().getStringArray(R.array.userType);
+        registerUsertypeDropdown();
+        registerLoginTextButton();
+        registerContinueButton();
+    }
+
+    private void registerUsertypeDropdown() {
+        autoCompleteDropdown = findViewById(R.id.autoCompleteTextView2);
         ArrayAdapter<String> adapterItems = new ArrayAdapter<String>(this, R.layout.dropdown_item, items);
         autoCompleteDropdown.setAdapter(adapterItems);
 
-        autoCompleteDropdown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        autoCompleteDropdown.setOnItemClickListener( new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String item = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(getApplicationContext(), "Item: " + item, Toast.LENGTH_SHORT).show();
+                userType = adapterView.getItemAtPosition(i).toString();
             }
         });
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull String name, @NonNull Context context, @NonNull AttributeSet attrs) {
-        System.out.println("sign up on create view");
-        return super.onCreateView(name, context, attrs);
+    private void registerLoginTextButton() {
+        returnLogin = findViewById(R.id.returnLogInText);
+        returnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity( new Intent( SignUpActivity.this, LogInActivity.class ) );
+            }
+        });
+    }
+
+    private void registerContinueButton() {
+        name = findViewById(R.id.nameInputField);
+        surname = findViewById(R.id.surnameInputField);
+        username = findViewById(R.id.usernameInputField);
+        password = findViewById(R.id.passwordInputField);
+        phoneNo = findViewById(R.id.phoneNoInputField);
+        email = findViewById(R.id.mailInputField);
+
+        signUpCont = findViewById(R.id.signUpContButton);
+
+        signUpCont.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nameText = name.getText().toString();
+                String surnameText = surname.getText().toString();
+                String usernameText = username.getText().toString();
+                String passwordText = password.getText().toString();
+                String phoneNoText = phoneNo.getText().toString();
+                String emailText = email.getText().toString();
+
+                switch (userType) {
+                    case "Normal User":
+                        NormalUser newNormalUser = new NormalUser(nameText, surnameText, usernameText, passwordText, phoneNoText, emailText);
+                        Log.d("signup", "normal user");
+                        break;
+                    case "Facility Owner":
+                        FacilityOwner newFacilityOwner = new FacilityOwner(nameText, surnameText, usernameText, passwordText, phoneNoText, emailText);
+                        Log.d("signup", "facilityOwner");
+                        break;
+                    default:
+                        Log.d("signup", "Couldn't signed up");
+                }
+            }
+        });
     }
 }

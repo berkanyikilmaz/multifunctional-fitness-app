@@ -6,8 +6,8 @@ public class FacilityOwner extends User {
 
     ArrayList<Facility> facilities;
     
-    public FacilityOwner(String name, String surname, String password, String phoneNumber, String email) {
-        super( name, surname, password, phoneNumber, email );
+    public FacilityOwner(String name, String surname, String username, String password, String phoneNumber, String email) {
+        super( name, surname, username, password, phoneNumber, email );
         facilities = new ArrayList<>();
     }
 

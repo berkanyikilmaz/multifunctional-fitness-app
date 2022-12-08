@@ -56,10 +56,12 @@ public class FacilityTimeInterval extends TimeInterval {
     @Override
     boolean addAppointment(NormalUser user) {
         super.addAppointment(user);
+        return false;
     }
 
     @Override
     boolean removeAppointment(NormalUser user) {
         super.removeAppointment(user);
+        return false;
     }
 }
