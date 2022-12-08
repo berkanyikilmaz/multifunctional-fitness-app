@@ -1,5 +1,6 @@
 package com.example.multifunctionalfitnessapp.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,8 +16,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.multifunctionalfitnessapp.*;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 public class SignUpActivity extends AppCompatActivity {
+
+    FirebaseManager firebaseManager = FirebaseManager.getInstance();
 
     String[] items = {"Normal User", "Facility Owner"};
 
@@ -93,15 +99,38 @@ public class SignUpActivity extends AppCompatActivity {
                 switch (userType) {
                     case "Normal User":
                         NormalUser newNormalUser = new NormalUser(nameText, surnameText, usernameText, passwordText, phoneNoText, emailText);
+                        handleSignUp(newNormalUser, userType);
                         Log.d("signup", "normal user");
                         break;
                     case "Facility Owner":
                         FacilityOwner newFacilityOwner = new FacilityOwner(nameText, surnameText, usernameText, passwordText, phoneNoText, emailText);
+                        handleSignUp(newFacilityOwner, userType);
+                        firebaseManager.sendUserDataToDatabase(newFacilityOwner, userType);
                         Log.d("signup", "facilityOwner");
                         break;
                     default:
                         Log.d("signup", "Couldn't signed up");
                 }
+            }
+        });
+    }
+
+    private void handleSignUp(User user, String userType) {
+        firebaseManager.databaseRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (snapshot.hasChild(user.getUsername())) {
+                    Toast.makeText(SignUpActivity.this, "Username is already registered!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    firebaseManager.sendUserDataToDatabase(user, userType);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
