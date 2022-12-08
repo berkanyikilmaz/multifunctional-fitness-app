@@ -12,6 +12,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.multifunctionalfitnessapp.*;
 
@@ -83,6 +84,11 @@ public class SignUpActivity extends AppCompatActivity {
                 String passwordText = password.getText().toString();
                 String phoneNoText = phoneNo.getText().toString();
                 String emailText = email.getText().toString();
+
+                if (nameText.isEmpty() || surnameText.isEmpty() || usernameText.isEmpty() || passwordText.isEmpty() || phoneNoText.isEmpty() || emailText.isEmpty()) {
+                    Toast.makeText(SignUpActivity.this, "Please enter all informations", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 switch (userType) {
                     case "Normal User":

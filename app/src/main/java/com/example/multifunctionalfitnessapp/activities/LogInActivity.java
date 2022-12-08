@@ -9,11 +9,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.multifunctionalfitnessapp.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class LogInActivity extends AppCompatActivity {
+
+    TextInputEditText username;
+    TextInputEditText password;
+    Button loginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +41,22 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     private void registerLoginButton() {
-        TextInputEditText username = findViewById(R.id.userNameInput);
-        TextInputEditText password = findViewById(R.id.passwordInput);
-
-        Button loginButton = findViewById(R.id.loginButton);
+        username = findViewById(R.id.userNameInput);
+        password = findViewById(R.id.passwordInput);
+        loginButton = findViewById(R.id.loginButton);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+                String usernameText = username.getText().toString();
+                String passwordText = password.getText().toString();
+
+                if (usernameText.isEmpty() || passwordText.isEmpty()) {
+                    Toast.makeText(LogInActivity.this, "Please enter all information", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 Log.d("loginButton", " is clicked!");
                 // TODO try login
             }
