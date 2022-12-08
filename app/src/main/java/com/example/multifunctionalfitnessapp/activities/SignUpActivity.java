@@ -91,6 +91,7 @@ public class SignUpActivity extends AppCompatActivity {
                 String phoneNoText = phoneNo.getText().toString();
                 String emailText = email.getText().toString();
 
+
                 if (nameText.isEmpty() || surnameText.isEmpty() || usernameText.isEmpty() || passwordText.isEmpty() || phoneNoText.isEmpty() || emailText.isEmpty()) {
                     Toast.makeText(SignUpActivity.this, "Please enter all informations", Toast.LENGTH_SHORT).show();
                     return;
@@ -105,11 +106,11 @@ public class SignUpActivity extends AppCompatActivity {
                     case "Facility Owner":
                         FacilityOwner newFacilityOwner = new FacilityOwner(nameText, surnameText, usernameText, passwordText, phoneNoText, emailText);
                         handleSignUp(newFacilityOwner, userType);
-                        firebaseManager.sendUserDataToDatabase(newFacilityOwner, userType);
                         Log.d("signup", "facilityOwner");
                         break;
                     default:
                         Log.d("signup", "Couldn't signed up");
+                        break;
                 }
             }
         });
