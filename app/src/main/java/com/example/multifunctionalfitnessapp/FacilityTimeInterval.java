@@ -9,6 +9,10 @@ public class FacilityTimeInterval extends TimeInterval {
     int noOfAppointedUser;
     ArrayList<NormalUser> appointedUsers;
 
+    public FacilityTimeInterval(int startingHour) {
+        super(startingHour);
+    }
+
     public int getQuota() {
         return quota;
     }

@@ -21,7 +21,7 @@ public class Schedule {
         int day = interval.dailySchedule.day;
         int month = interval.dailySchedule.month;
         return fullSchedule[day].fullDailySchedule[startingHour];
-        }
+    }
 
     void removeAppointment(TimeInterval period) {
     int removingHour = period.startingHour;
