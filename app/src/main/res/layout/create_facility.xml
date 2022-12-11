@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Create a New Facility"
+        android:textAlignment="center"
+        android:textSize="26sp" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/title"
+        android:text="Facility Name: "
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/editTextFacilityName"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_below="@id/title"
+        android:layout_alignParentRight="true" />
+
+    <Button
+        android:id="@+id/buttonD"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_below="@id/editTextFacilityName"
+        android:layout_toLeftOf="@+id/buttonW"
+        android:text="D"/>
+
+    <Button
+        android:id="@+id/buttonW"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_below="@id/editTextFacilityName"
+        android:layout_alignParentRight="true"
+        android:text="W"
+        android:textColor="@color/white"/>
+
+
+    <Button
+        android:id="@+id/createButton"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_below="@id/schedule"
+        android:layout_alignParentRight="true"
+        android:text="Create Facility"
+        />
+
+    <TextView
+        android:id="@+id/textQuota"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_below="@id/schedule"
+        android:layout_alignParentLeft="true"
+        android:text="Quota: "
+        android:textSize="24sp"
+        />
+
+    <EditText
+        android:id="@+id/editQuota"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_toRightOf="@+id/textQuota"
+        android:layout_below="@id/schedule"
+        android:hint=""
+        />
+    <Button
+        android:id="@+id/confirmButton"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/editQuota"
+        android:layout_toLeftOf ="@+id/createButton"
+        android:layout_toRightOf ="@+id/textQuota"
+        android:text="Confirm"
+        />
+
+    <include
+        android:id="@+id/schedule"
+        layout="@layout/schedule_layout"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_below="@id/buttonD" />
+
+
+
+
+
+</RelativeLayout>
