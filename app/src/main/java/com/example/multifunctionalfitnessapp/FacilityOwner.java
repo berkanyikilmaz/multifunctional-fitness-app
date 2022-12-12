@@ -6,13 +6,18 @@ public class FacilityOwner extends User {
 
     ArrayList<Facility> facilities;
     
-    public FacilityOwner() {
-        super();
+    public FacilityOwner(String name, String surname, String username, String password, String phoneNumber, String email) {
+        super( name, surname, username, password, phoneNumber, email );
         facilities = new ArrayList<>();
     }
 
-    boolean deleteFacility(int index) { return false; }
+    boolean deleteFacility(int index) {
+        if (this.facilities.remove(index) != null) return true;
+        return false;
+    }
 
-    boolean addFacility(Facility facility) { return false;}
+    boolean addFacility(Facility facility) {
+        return this.facilities.add(facility);
+    }
 
 }

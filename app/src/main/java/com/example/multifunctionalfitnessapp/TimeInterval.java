@@ -6,13 +6,8 @@ public class TimeInterval {
     final int INTERVAL = 60; // in terms of minutes
     DailySchedule dailySchedule;
 
-    public TimeInterval(int startingHour, DailySchedule dailySchedule) {
+    public TimeInterval(int startingHour) {
         this.startingHour = startingHour;
-        this.dailySchedule = dailySchedule;
-    }
-
-    public TimeInterval() {
-
     }
 
     boolean addAppointment(NormalUser user) {

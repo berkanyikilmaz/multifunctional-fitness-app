@@ -7,73 +7,65 @@ public class FacilityTimeInterval extends TimeInterval {
     // these are for facility appointments
     int quota;
     int noOfAppointedUser;
-    ArrayList<NormalUser> AppointedUsers;
+    ArrayList<NormalUser> appointedUsers;
 
-    public FacilityTimeInterval(int quota, int noOfAppointedUser, ArrayList<NormalUser> appointedUsers) {
+    public FacilityTimeInterval(int startingHour) {
+        super(startingHour);
+    }
+
+    public int getQuota() {
+        return quota;
+    }
+
+    public int getNoOfAppointedUser() {
+        return noOfAppointedUser;
+    }
+
+    public ArrayList<NormalUser> getAppointedUsers() {
+        return appointedUsers;
+    }
+
+    public void setQuota(int quota) {
         this.quota = quota;
-        this.noOfAppointedUser = noOfAppointedUser;
-        AppointedUsers = appointedUsers;
     }
 
-    public FacilityTimeInterval(int noOfAppointedUser) {
+    public void setNoOfAppointedUser(int noOfAppointedUser) {
         this.noOfAppointedUser = noOfAppointedUser;
     }
 
-    public FacilityTimeInterval(){
-
+    public void setAppointedUsers(ArrayList<NormalUser> appointedUsers) {
+        this.appointedUsers = appointedUsers;
     }
 
-    boolean isFull() {
-        if (this.quota == this.noOfAppointedUser){
+    public boolean isFull() {
+        return quota == noOfAppointedUser;
+    }
+
+    boolean decreaseQuota(int newQuota) {
+        if ( newQuota >= noOfAppointedUser ){
+            this.quota = newQuota;
             return true;
         }
-        else{
-            return false;
-        }
-
-    }
-
-    boolean decreaseQuota() {
-
-
-        if(noOfAppointedUser > this.quota -1 ) {
-            return false;
-
-        }
-        else {
-            //means if((noOfAppointedUser <= this.quota -1)
-            this.quota--;
-            return false;
-        }
-
+        return false;
     }
 
     ArrayList<NormalUser> isMatching(NormalUser user) {
-        // we know that user is appointed for the same interval
-        ArrayList<NormalUser> fitnessBudyWants = new ArrayList<NormalUser>();
-
-        for (NormalUser otherUser : AppointedUsers) {
-            if (!otherUser.equals(user) && otherUser.wantsFitnessBuddy) {
-                fitnessBudyWants.add(otherUser);
-            }
-        }return fitnessBudyWants;
+        ArrayList<NormalUser> fitnessBuddies = new ArrayList();
+        for ( NormalUser matchingUser : appointedUsers ){
+            if (user.wantsFitnessBuddy) fitnessBuddies.add(matchingUser);
+        }
+        return  fitnessBuddies;
     }
 
     @Override
     boolean addAppointment(NormalUser user) {
-        if(noOfAppointedUser < quota){
-            AppointedUsers.add(user);
-            return true;
-        }
-        else{
-            return false;
-        }
+        super.addAppointment(user);
+        return false;
     }
 
     @Override
     boolean removeAppointment(NormalUser user) {
-        noOfAppointedUser--;
-        AppointedUsers.remove(user);
-        return true;
+        super.removeAppointment(user);
+        return false;
     }
 }

@@ -3,16 +3,12 @@ package com.example.multifunctionalfitnessapp;
 public class PersonTimeInterval extends TimeInterval {
 
     boolean isAvailable; // if the person is unavailable
-    boolean isAppointed;
+    public boolean isAppointed;
     Facility AppointedFacility;
     NormalUser fitnessBuddy;
 
-    public PersonTimeInterval(boolean isAvailable, boolean isAppointed,Facility f1, NormalUser u1) {
-        this.isAvailable = isAvailable;
-        this.isAppointed = isAppointed;
-        this.AppointedFacility = f1;
-        this.fitnessBuddy = u1;
-
+    public PersonTimeInterval(int startingHour) {
+        super(startingHour);
     }
 
     boolean addFitnessBuddy(NormalUser user) {
@@ -37,8 +33,10 @@ public class PersonTimeInterval extends TimeInterval {
     }
 
     @Override
-    boolean addAppointment(NormalUser user) {
-        this.isAppointed = true;
+    public boolean addAppointment(NormalUser user) {
+        // if we add an appointment,
+        // isAppointed should be changed to true, and AppointedFacility should be set
+        // we will take this appointedFacility when the user chooses the facility.
         return false;
     }
 
@@ -47,4 +45,8 @@ public class PersonTimeInterval extends TimeInterval {
         this.isAppointed = false;
         return false;
     }
-}
+
+    public Facility getAppointedFacility() {
+        return AppointedFacility;
+    }
+ }

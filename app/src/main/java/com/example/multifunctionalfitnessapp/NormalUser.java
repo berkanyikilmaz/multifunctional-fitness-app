@@ -7,9 +7,8 @@ public class NormalUser extends User {
     Schedule schedule;
     boolean wantsFitnessBuddy;
 
-    public NormalUser(String name, String surname, String password, String phoneNumber, String email, Schedule schedule) {
-        super(name, surname, surname, phoneNumber, email);
-        this.schedule = schedule;
+    public NormalUser(String name, String surname, String username, String password, String phoneNumber, String email) {
+        super(name, surname, username, password, phoneNumber, email);
         wantsFitnessBuddy = false;
     }
 
