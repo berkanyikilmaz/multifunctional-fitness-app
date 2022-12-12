@@ -23,7 +23,7 @@ public class Schedule {
         return fullSchedule[day].fullDailySchedule[startingHour];
     }
 
-    void removeAppointment(TimeInterval period) {
+    public void removeAppointment(TimeInterval period) {
     int removingHour = period.startingHour;
     fullSchedule[period.dailySchedule.day].fullDailySchedule[removingHour] = null;
     }
@@ -50,5 +50,6 @@ public class Schedule {
 
         }
 
-        return availablePeriods;}
+        return availablePeriods;
+    }
 }

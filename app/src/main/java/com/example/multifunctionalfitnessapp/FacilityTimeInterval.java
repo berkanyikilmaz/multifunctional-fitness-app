@@ -37,7 +37,7 @@ public class FacilityTimeInterval extends TimeInterval {
         this.appointedUsers = appointedUsers;
     }
 
-    boolean isFull() {
+    public boolean isFull() {
         return quota == noOfAppointedUser;
     }
 
