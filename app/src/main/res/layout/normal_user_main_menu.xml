@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_alignParentRight="true"
+        android:text="Logout"
+        android:layout_alignParentTop="true"
+        />
+    
+    <TextView
+        android:id="@+id/welcomeNameTitle"
+        android:layout_below="@id/logoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Welcome Name!"
+        android:textSize="24sp"
+        android:gravity="center"
+        />
+
+    <Button
+        android:id="@+id/profileButton"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:text="My Profile"
+        android:layout_below="@id/welcomeNameTitle"
+        />
+
+    <Button
+        android:id="@+id/findFitnessBuddyButton"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:text="Find a Fitness Buddy"
+        android:layout_below= "@id/profileButton"
+    />
+
+    <Button
+        android:id="@+id/makeAppointmentButton"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:text="Make an Appointment"
+        android:layout_below= "@id/findFitnessBuddyButton"
+        />
+
+    <TextView
+        android:id="@+id/yourScheduleTitle"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:text="Your Schedule"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:layout_below= "@id/makeAppointmentButton"
+        />
+
+    <Button
+        android:id="@+id/buttonD"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_toRightOf="@id/yourScheduleTitle"
+        android:layout_below= "@id/makeAppointmentButton"
+        android:text="D"
+        />
+
+    <Button
+        android:id="@+id/buttonW"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_toRightOf="@id/buttonD"
+        android:layout_below= "@id/makeAppointmentButton"
+        android:text="W"
+        />
+
+    <include
+        android:id="@+id/schedule"
+        layout="@layout/daily_schedule"
+        android:layout_width="350dp"
+        android:layout_height="450dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/buttonW"
+        android:layout_marginTop="10dp"
+        />
+
+</RelativeLayout>
