@@ -18,7 +18,6 @@ public class Main_Menu_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
-        // Bunun contentView methodunun altında olması bir şeyi etkiler mi?
         findFitnessBuddy = findViewById(R.id.button3);
         findFitnessBuddy.setOnClickListener(new View.OnClickListener() {
             @Override
