@@ -3,6 +3,7 @@ package com.example.multifunctionalfitnessapp.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.multifunctionalfitnessapp.DailySchedule;
@@ -33,80 +34,158 @@ public class Daily_Schedule_Activity extends AppCompatActivity {
                 // in this case the interval is appointed,
                 // we should display the appointed facility
                 String facilityName = interval.getAppointedFacility().getName();
-                if (i == 8) {
-                    // hour 1
-                    ((TextView) findViewById(R.id.Hour1)).setText("Appointment at " + facilityName);
+                if (i == 0) {
+                    ((Button) findViewById(R.id.Hour1)).setText("appointment at " + facilityName);
+                }
+                else if (i == 1) {
+                    ((Button) findViewById(R.id.Hour2)).setText("appointment at " + facilityName);
+                }
+                else if (i == 2) {
+                    ((Button) findViewById(R.id.Hour3)).setText("appointment at " + facilityName);
+                }
+                else if (i == 3) {
+                    ((Button) findViewById(R.id.Hour4)).setText("appointment at " + facilityName);
+                }
+                else if (i == 4) {
+                    ((Button) findViewById(R.id.Hour5)).setText("appointment at " + facilityName);
+                }
+                else if (i == 5) {
+                    ((Button) findViewById(R.id.Hour6)).setText("appointment at " + facilityName);
+                }
+                else if (i == 6) {
+                    ((Button) findViewById(R.id.Hour7)).setText("appointment at " + facilityName);
+                }
+                else if (i == 7) {
+                    ((Button) findViewById(R.id.Hour8)).setText("appointment at " + facilityName);
+                }
+                else if (i == 8) {
+                    ((Button) findViewById(R.id.Hour9)).setText("appointment at " + facilityName);
                 }
                 else if (i == 9) {
-                    ((TextView) findViewById(R.id.Hour2)).setText("Appointment at " + facilityName);
+                    ((Button) findViewById(R.id.Hour10)).setText("appointment at " + facilityName);
                 }
                 else if (i == 10) {
-                    ((TextView) findViewById(R.id.Hour3)).setText("Appointment at " + facilityName);
+                    ((Button) findViewById(R.id.Hour11)).setText("appointment at " + facilityName);
                 }
                 else if (i == 11) {
-                    ((TextView) findViewById(R.id.Hour4)).setText("Appointment at " + facilityName);
+                    ((Button) findViewById(R.id.Hour12)).setText("appointment at " + facilityName);
                 }
                 else if (i == 12) {
-                    ((TextView) findViewById(R.id.Hour5)).setText("Appointment at " + facilityName);
+                    ((Button) findViewById(R.id.Hour13)).setText("appointment at " + facilityName);
                 }
                 else if (i == 13) {
-                    ((TextView) findViewById(R.id.Hour6)).setText("Appointment at " + facilityName);
+                    ((Button) findViewById(R.id.Hour14)).setText("appointment at " + facilityName);
                 }
                 else if (i == 14) {
-                    ((TextView) findViewById(R.id.Hour7)).setText("Appointment at " + facilityName);
+                    ((Button) findViewById(R.id.Hour15)).setText("appointment at " + facilityName);
                 }
                 else if (i == 15) {
-                    ((TextView) findViewById(R.id.Hour8)).setText("Appointment at " + facilityName);
+                    ((Button) findViewById(R.id.Hour16)).setText("appointment at " + facilityName);
                 }
                 else if (i == 16) {
-                    ((TextView) findViewById(R.id.Hour9)).setText("Appointment at " + facilityName);
+                    ((Button) findViewById(R.id.Hour17)).setText("appointment at " + facilityName);
                 }
                 else if (i == 17) {
-                    ((TextView) findViewById(R.id.Hour10)).setText("Appointment at " + facilityName);
+                    ((Button) findViewById(R.id.Hour18)).setText("appointment at " + facilityName);
                 }
                 else if (i == 18) {
-                    ((TextView) findViewById(R.id.Hour11)).setText("Appointment at " + facilityName);
+                    ((Button) findViewById(R.id.Hour19)).setText("appointment at " + facilityName);
+                }
+                else if (i == 19) {
+                    ((Button) findViewById(R.id.Hour20)).setText("appointment at " + facilityName);
+                }
+                else if (i == 20) {
+                    ((Button) findViewById(R.id.Hour21)).setText("appointment at " + facilityName);
+                }
+                else if (i == 21) {
+                    ((Button) findViewById(R.id.Hour22)).setText("appointment at " + facilityName);
+                }
+                else if (i == 22) {
+                    ((Button) findViewById(R.id.Hour23)).setText("appointment at " + facilityName);
+                }
+                else if (i == 23) {
+                    ((Button) findViewById(R.id.Hour24)).setText("appointment at " + facilityName);
                 }
 
             }
+            /*
             else {
                 // in this case the interval is not appointed,
                 // therefore free
-                if (i == 8) {
-                    // hour 1
-                    ((TextView) findViewById(R.id.Hour1)).setText("No appointment");
+                if (i == 0) {
+                    ((Button) findViewById(R.id.Hour1)).setText("No appointment");
+                }
+                else if (i == 1) {
+                    ((Button) findViewById(R.id.Hour2)).setText(occupancyRate);
+                }
+                else if (i == 2) {
+                    ((Button) findViewById(R.id.Hour3)).setText(occupancyRate);
+                }
+                else if (i == 3) {
+                    ((Button) findViewById(R.id.Hour4)).setText(occupancyRate);
+                }
+                else if (i == 4) {
+                    ((Button) findViewById(R.id.Hour5)).setText(occupancyRate);
+                }
+                else if (i == 5) {
+                    ((Button) findViewById(R.id.Hour6)).setText(occupancyRate);
+                }
+                else if (i == 6) {
+                    ((Button) findViewById(R.id.Hour7)).setText(occupancyRate);
+                }
+                else if (i == 7) {
+                    ((Button) findViewById(R.id.Hour8)).setText(occupancyRate);
+                }
+                else if (i == 8) {
+                    ((Button) findViewById(R.id.Hour9)).setText(occupancyRate);
                 }
                 else if (i == 9) {
-                    ((TextView) findViewById(R.id.Hour2)).setText("No appointment");
+                    ((Button) findViewById(R.id.Hour10)).setText(occupancyRate);
                 }
                 else if (i == 10) {
-                    ((TextView) findViewById(R.id.Hour3)).setText("No appointment");
+                    ((Button) findViewById(R.id.Hour11)).setText(occupancyRate);
                 }
                 else if (i == 11) {
-                    ((TextView) findViewById(R.id.Hour4)).setText("No appointment");
+                    ((Button) findViewById(R.id.Hour12)).setText(occupancyRate);
                 }
                 else if (i == 12) {
-                    ((TextView) findViewById(R.id.Hour5)).setText("No appointment");
+                    ((Button) findViewById(R.id.Hour13)).setText(occupancyRate);
                 }
                 else if (i == 13) {
-                    ((TextView) findViewById(R.id.Hour6)).setText("No appointment");
+                    ((Button) findViewById(R.id.Hour14)).setText(occupancyRate);
                 }
                 else if (i == 14) {
-                    ((TextView) findViewById(R.id.Hour7)).setText("No appointment");
+                    ((Button) findViewById(R.id.Hour15)).setText(occupancyRate);
                 }
                 else if (i == 15) {
-                    ((TextView) findViewById(R.id.Hour8)).setText("No appointment");
+                    ((Button) findViewById(R.id.Hour16)).setText(occupancyRate);
                 }
                 else if (i == 16) {
-                    ((TextView) findViewById(R.id.Hour9)).setText("No appointment");
+                    ((Button) findViewById(R.id.Hour17)).setText(occupancyRate);
                 }
                 else if (i == 17) {
-                    ((TextView) findViewById(R.id.Hour10)).setText("No appointment");
+                    ((Button) findViewById(R.id.Hour18)).setText(occupancyRate);
                 }
                 else if (i == 18) {
-                    ((TextView) findViewById(R.id.Hour11)).setText("No appointment");
+                    ((Button) findViewById(R.id.Hour19)).setText(occupancyRate);
+                }
+                else if (i == 19) {
+                    ((Button) findViewById(R.id.Hour20)).setText(occupancyRate);
+                }
+                else if (i == 20) {
+                    ((Button) findViewById(R.id.Hour21)).setText(occupancyRate);
+                }
+                else if (i == 21) {
+                    ((Button) findViewById(R.id.Hour22)).setText(occupancyRate);
+                }
+                else if (i == 22) {
+                    ((Button) findViewById(R.id.Hour23)).setText(occupancyRate);
+                }
+                else if (i == 23) {
+                    ((Button) findViewById(R.id.Hour24)).setText(occupancyRate);
                 }
             }
+            */
         }
     }
 
