@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="300dp"
+    android:layout_width="match_parent"
     android:layout_height="125dp"
     >
 
@@ -36,7 +36,7 @@
         android:layout_below="@id/facilityTitle"
         android:layout_toRightOf="@id/timePeriod"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         />
 
@@ -50,7 +50,17 @@
         android:layout_below="@id/quotaText"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@id/timePeriod"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="10dp"
+        />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_cross_icon"
+        android:layout_below="@id/facilityTitle"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         />
 
 </RelativeLayout>
