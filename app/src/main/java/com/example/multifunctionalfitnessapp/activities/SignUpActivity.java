@@ -46,6 +46,7 @@ public class SignUpActivity extends AppCompatActivity {
         registerUsertypeDropdown();
         registerLoginTextButton();
         registerContinueButton();
+
     }
 
     private void registerUsertypeDropdown() {
@@ -102,6 +103,7 @@ public class SignUpActivity extends AppCompatActivity {
                         NormalUser newNormalUser = new NormalUser(nameText, surnameText, usernameText, passwordText, phoneNoText, emailText);
                         handleSignUp(newNormalUser, userType);
                         Log.d("signup", "normal user");
+                        startActivity( new Intent( SignUpActivity.this, Daily_Schedule_Activity.class ) );
                         break;
                     case "Facility Owner":
                         FacilityOwner newFacilityOwner = new FacilityOwner(nameText, surnameText, usernameText, passwordText, phoneNoText, emailText);
@@ -112,6 +114,7 @@ public class SignUpActivity extends AppCompatActivity {
                         Log.d("signup", "Couldn't signed up");
                         break;
                 }
+
             }
         });
     }
