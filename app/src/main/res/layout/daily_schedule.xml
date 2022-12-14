@@ -95,17 +95,18 @@
 
                     android:text="01:00"/>
             </LinearLayout>
-            <TextView
+
+            <Button
                 android:id="@+id/Hour1"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-
-                android:gravity="center"
-                android:background="@color/white"
-                android:layout_marginBottom="1dp"
                 android:layout_marginHorizontal="1dp"
-                android:text="Hour1"/>
+
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="Hour1" />
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -152,17 +153,18 @@
 
                     android:text="02:00"/>
             </LinearLayout>
-            <TextView
+
+            <Button
                 android:id="@+id/Hour2"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-
-                android:gravity="center"
-                android:background="@color/white"
-                android:layout_marginBottom="1dp"
                 android:layout_marginHorizontal="1dp"
-                android:text="Hour2"/>
+
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="Hour2" />
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -209,17 +211,18 @@
 
                     android:text="03:00"/>
             </LinearLayout>
-            <TextView
+
+            <Button
                 android:id="@+id/Hour3"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-
-                android:gravity="center"
-                android:background="@color/white"
-                android:layout_marginBottom="1dp"
                 android:layout_marginHorizontal="1dp"
-                android:text="Hour3"/>
+
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="Hour3" />
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -266,17 +269,18 @@
 
                     android:text="04:00"/>
             </LinearLayout>
-            <TextView
+
+            <Button
                 android:id="@+id/Hour4"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-
-                android:gravity="center"
-                android:background="@color/white"
-                android:layout_marginBottom="1dp"
                 android:layout_marginHorizontal="1dp"
-                android:text="Hour4"/>
+
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="Hour4" />
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -323,17 +327,18 @@
 
                     android:text="05:00"/>
             </LinearLayout>
-            <TextView
+
+            <Button
                 android:id="@+id/Hour5"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-
-                android:gravity="center"
-                android:background="@color/white"
-                android:layout_marginBottom="1dp"
                 android:layout_marginHorizontal="1dp"
-                android:text="Hour5"/>
+
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="Hour5" />
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -380,17 +385,18 @@
 
                     android:text="06:00"/>
             </LinearLayout>
-            <TextView
+
+            <Button
                 android:id="@+id/Hour6"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-
-                android:gravity="center"
-                android:background="@color/white"
-                android:layout_marginBottom="1dp"
                 android:layout_marginHorizontal="1dp"
-                android:text="Hour6"/>
+
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="Hour6" />
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -437,17 +443,18 @@
 
                     android:text="07:00"/>
             </LinearLayout>
-            <TextView
+
+            <Button
                 android:id="@+id/Hour7"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-
-                android:gravity="center"
-                android:background="@color/white"
-                android:layout_marginBottom="1dp"
                 android:layout_marginHorizontal="1dp"
-                android:text="Hour7"/>
+
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="Hour7" />
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -494,17 +501,18 @@
 
                     android:text="08:00"/>
             </LinearLayout>
-            <TextView
+
+            <Button
                 android:id="@+id/Hour8"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-
-                android:gravity="center"
-                android:background="@color/white"
-                android:layout_marginBottom="1dp"
                 android:layout_marginHorizontal="1dp"
-                android:text="Hour8"/>
+
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="Hour8" />
         </TableRow>
     <TableRow
         android:layout_width="match_parent"
@@ -551,17 +559,18 @@
 
             android:text="09:00"/>
     </LinearLayout>
-    <TextView
-        android:id="@+id/Hour9"
-        android:layout_width="120dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
 
-        android:gravity="center"
-        android:background="@color/white"
-        android:layout_marginBottom="1dp"
-        android:layout_marginHorizontal="1dp"
-        android:text="Hour9"/>
+        <Button
+            android:id="@+id/Hour9"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="1dp"
+
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="Hour9" />
     </TableRow>
     <TableRow
         android:layout_width="match_parent"
@@ -608,17 +617,18 @@
 
             android:text="10:00"/>
     </LinearLayout>
-        <TextView
+
+        <Button
             android:id="@+id/Hour10"
             android:layout_width="120dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-
-            android:gravity="center"
-            android:background="@color/white"
-            android:layout_marginBottom="1dp"
             android:layout_marginHorizontal="1dp"
-            android:text="Hour10"/>
+
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="Hour10" />
     </TableRow>
 
     <TableRow
@@ -666,17 +676,18 @@
 
                 android:text="11:00"/>
         </LinearLayout>
-        <TextView
+
+        <Button
             android:id="@+id/Hour11"
             android:layout_width="120dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-
-            android:gravity="center"
-            android:background="@color/white"
-            android:layout_marginBottom="1dp"
             android:layout_marginHorizontal="1dp"
-            android:text="Hour11"/>
+
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="Hour11" />
     </TableRow>
 
 <TableRow
@@ -724,17 +735,18 @@ android:layout_weight="1"
 
         android:text="12:00"/>
 </LinearLayout>
-<TextView
-    android:id="@+id/Hour12"
-    android:layout_width="120dp"
-    android:layout_height="match_parent"
-    android:layout_weight="1"
 
-    android:gravity="center"
-    android:background="@color/white"
-    android:layout_marginBottom="1dp"
-    android:layout_marginHorizontal="1dp"
-    android:text="Hour12"/>
+    <Button
+        android:id="@+id/Hour12"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="1dp"
+
+        android:layout_marginBottom="1dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="Hour12" />
 </TableRow>
 
 <TableRow
@@ -782,17 +794,18 @@ android:layout_weight="1"
 
         android:text="13:00"/>
 </LinearLayout>
-<TextView
-    android:id="@+id/Hour13"
-    android:layout_width="120dp"
-    android:layout_height="match_parent"
-    android:layout_weight="1"
 
-    android:gravity="center"
-    android:background="@color/white"
-    android:layout_marginBottom="1dp"
-    android:layout_marginHorizontal="1dp"
-    android:text="Hour13"/>
+    <Button
+        android:id="@+id/Hour13"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="1dp"
+
+        android:layout_marginBottom="1dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="Hour13" />
 </TableRow>
 
 <TableRow
@@ -840,17 +853,18 @@ android:layout_weight="1"
 
         android:text="14:00"/>
 </LinearLayout>
-<TextView
-    android:id="@+id/Hour14"
-    android:layout_width="120dp"
-    android:layout_height="match_parent"
-    android:layout_weight="1"
 
-    android:gravity="center"
-    android:background="@color/white"
-    android:layout_marginBottom="1dp"
-    android:layout_marginHorizontal="1dp"
-    android:text="Hour14"/>
+    <Button
+        android:id="@+id/Hour14"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="1dp"
+
+        android:layout_marginBottom="1dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="Hour14" />
 </TableRow>
 
 <TableRow
@@ -898,17 +912,18 @@ android:layout_weight="1"
 
         android:text="15:00"/>
 </LinearLayout>
-<TextView
-    android:id="@+id/Hour15"
-    android:layout_width="120dp"
-    android:layout_height="match_parent"
-    android:layout_weight="1"
 
-    android:gravity="center"
-    android:background="@color/white"
-    android:layout_marginBottom="1dp"
-    android:layout_marginHorizontal="1dp"
-    android:text="Hour15"/>
+    <Button
+        android:id="@+id/Hour15"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="1dp"
+
+        android:layout_marginBottom="1dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="Hour15" />
 </TableRow>
 
 <TableRow
@@ -956,17 +971,18 @@ android:layout_weight="1"
 
         android:text="16:00"/>
 </LinearLayout>
-<TextView
-    android:id="@+id/Hour16"
-    android:layout_width="120dp"
-    android:layout_height="match_parent"
-    android:layout_weight="1"
 
-    android:gravity="center"
-    android:background="@color/white"
-    android:layout_marginBottom="1dp"
-    android:layout_marginHorizontal="1dp"
-    android:text="Hour16"/>
+    <Button
+        android:id="@+id/Hour16"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="1dp"
+
+        android:layout_marginBottom="1dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="Hour16" />
 </TableRow>
 
 <TableRow
@@ -1014,17 +1030,18 @@ android:layout_weight="1"
 
         android:text="17:00"/>
 </LinearLayout>
-<TextView
-    android:id="@+id/Hour17"
-    android:layout_width="120dp"
-    android:layout_height="match_parent"
-    android:layout_weight="1"
 
-    android:gravity="center"
-    android:background="@color/white"
-    android:layout_marginBottom="1dp"
-    android:layout_marginHorizontal="1dp"
-    android:text="Hour17"/>
+    <Button
+        android:id="@+id/Hour17"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="1dp"
+
+        android:layout_marginBottom="1dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="Hour17" />
 </TableRow>
 
 <TableRow
@@ -1072,17 +1089,18 @@ android:layout_weight="1"
 
         android:text="18:00"/>
 </LinearLayout>
-<TextView
-    android:id="@+id/Hour18"
-    android:layout_width="120dp"
-    android:layout_height="match_parent"
-    android:layout_weight="1"
 
-    android:gravity="center"
-    android:background="@color/white"
-    android:layout_marginBottom="1dp"
-    android:layout_marginHorizontal="1dp"
-    android:text="Hour18"/>
+    <Button
+        android:id="@+id/Hour18"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="1dp"
+
+        android:layout_marginBottom="1dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="Hour18" />
 </TableRow>
 
 <TableRow
@@ -1130,17 +1148,18 @@ android:layout_weight="1"
 
         android:text="19:00"/>
 </LinearLayout>
-<TextView
-    android:id="@+id/Hour19"
-    android:layout_width="120dp"
-    android:layout_height="match_parent"
-    android:layout_weight="1"
 
-    android:gravity="center"
-    android:background="@color/white"
-    android:layout_marginBottom="1dp"
-    android:layout_marginHorizontal="1dp"
-    android:text="Hour19"/>
+    <Button
+        android:id="@+id/Hour19"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="1dp"
+
+        android:layout_marginBottom="1dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="Hour19" />
 </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -1187,17 +1206,18 @@ android:layout_weight="1"
 
                     android:text="20:00"/>
             </LinearLayout>
-            <TextView
+
+            <Button
                 android:id="@+id/Hour20"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-
-                android:gravity="center"
-                android:background="@color/white"
-                android:layout_marginBottom="1dp"
                 android:layout_marginHorizontal="1dp"
-                android:text="Hour20"/>
+
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="Hour20" />
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -1244,17 +1264,18 @@ android:layout_weight="1"
 
                     android:text="21:00"/>
             </LinearLayout>
-            <TextView
+
+            <Button
                 android:id="@+id/Hour21"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-
-                android:gravity="center"
-                android:background="@color/white"
-                android:layout_marginBottom="1dp"
                 android:layout_marginHorizontal="1dp"
-                android:text="Hour21"/>
+
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="Hour21" />
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -1301,17 +1322,18 @@ android:layout_weight="1"
 
                     android:text="22:00"/>
             </LinearLayout>
-            <TextView
+
+            <Button
                 android:id="@+id/Hour22"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-
-                android:gravity="center"
-                android:background="@color/white"
-                android:layout_marginBottom="1dp"
                 android:layout_marginHorizontal="1dp"
-                android:text="Hour22"/>
+
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="Hour22" />
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -1358,17 +1380,18 @@ android:layout_weight="1"
 
                     android:text="23:00"/>
             </LinearLayout>
-            <TextView
+
+            <Button
                 android:id="@+id/Hour23"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-
-                android:gravity="center"
-                android:background="@color/white"
-                android:layout_marginBottom="1dp"
                 android:layout_marginHorizontal="1dp"
-                android:text="Hour23"/>
+
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="Hour23" />
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -1415,17 +1438,18 @@ android:layout_weight="1"
 
                     android:text="00:00"/>
             </LinearLayout>
-            <TextView
+
+            <Button
                 android:id="@+id/Hour24"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-
-                android:gravity="center"
-                android:background="@color/white"
-                android:layout_marginBottom="1dp"
                 android:layout_marginHorizontal="1dp"
-                android:text="Hour24"/>
+
+                android:layout_marginBottom="1dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="Hour24" />
         </TableRow>
 
 
