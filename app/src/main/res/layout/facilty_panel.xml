@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="125dp"
+    >
+
+    <TextView
+        android:id="@+id/facilityTitle"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_centerHorizontal="true"
+        android:text="Facility #"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        />
+
+    <TextView
+        android:id="@+id/timePeriod"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:text="Current Time Period"
+        android:textAlignment="center"
+        android:layout_below="@id/facilityTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/quotaText"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:text="Quota: "
+        android:textAlignment="center"
+        android:layout_below="@id/facilityTitle"
+        android:layout_toRightOf="@id/timePeriod"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/appointmentsText"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:layout_centerHorizontal="true"
+        android:text="Appointments: "
+        android:textAlignment="center"
+        android:layout_below="@id/quotaText"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/timePeriod"
+        android:layout_marginLeft="20dp"
+        />
+
+</RelativeLayout>
