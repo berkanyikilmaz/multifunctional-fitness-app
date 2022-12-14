@@ -20,7 +20,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row0"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
@@ -37,6 +39,7 @@
                     android:layout_marginBottom="1dp"
                     android:layout_marginHorizontal="1dp"
                     android:text="Time"/>
+
                 <TextView
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
@@ -53,7 +56,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row1"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
@@ -110,7 +115,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row2"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
@@ -167,7 +174,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row3"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
@@ -224,7 +233,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row4"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
@@ -281,7 +292,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row5"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
@@ -338,7 +351,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row6"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
@@ -395,7 +410,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row7"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
@@ -452,7 +469,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row8"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
@@ -509,7 +528,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row9"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
@@ -566,7 +587,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row10"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
@@ -624,7 +647,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row11"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
@@ -682,7 +707,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row12"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
@@ -740,7 +767,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row13"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
@@ -798,7 +827,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row14"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
@@ -856,7 +887,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row15"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
@@ -914,7 +947,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row16"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
@@ -972,7 +1007,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row17"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
@@ -1030,7 +1067,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row18"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
@@ -1088,7 +1127,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row19"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
@@ -1145,7 +1186,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row20"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
@@ -1202,7 +1245,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row21"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
@@ -1259,7 +1304,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row22"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
@@ -1316,7 +1363,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row23"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
@@ -1373,7 +1422,9 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:onClick="onClick"
+                android:clickable="true"
+                android:id="@+id/row24"
                 android:gravity="center_vertical"
 
                 android:layout_weight="1"
