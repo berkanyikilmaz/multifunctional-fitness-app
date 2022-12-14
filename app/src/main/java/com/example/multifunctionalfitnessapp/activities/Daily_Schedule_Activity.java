@@ -27,7 +27,7 @@ public class Daily_Schedule_Activity extends AppCompatActivity {
         // we should have a for loop controlling each and making the necassary udpates
         DailySchedule dailySchedule = new DailySchedule();
         // i will be the starting hour
-        for (int i = 8; i <= 18; i++) {
+        for (int i = 0; i <= 23; i++) {
             // getting the PersonTimeInterval object for the specific hour
             PersonTimeInterval interval = (PersonTimeInterval) dailySchedule.getInterval(i);
             if (interval.isAppointed) {
