@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import com.example.multifunctionalfitnessapp.R;
 
-public class Main_Menu_Activity extends AppCompatActivity {
+public class User_Main_Menu_Activity extends AppCompatActivity {
 
     Button findFitnessBuddy;
     Button myProfile;
@@ -22,16 +22,18 @@ public class Main_Menu_Activity extends AppCompatActivity {
         findFitnessBuddy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Main_Menu_Activity.this, Fitness_Buddy_Found_Activity.class));
+                startActivity(new Intent(User_Main_Menu_Activity.this, Fitness_Buddy_Found_Activity.class));
             }
         });
         myProfile = findViewById(R.id.profileButton);
         myProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Main_Menu_Activity.this, User_Profile_Activity.class));
+                startActivity(new Intent(User_Main_Menu_Activity.this, User_Profile_Activity.class));
             }
         });
     }
+
+
 
 }
