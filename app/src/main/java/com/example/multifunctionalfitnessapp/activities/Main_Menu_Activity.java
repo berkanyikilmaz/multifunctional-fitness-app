@@ -17,15 +17,15 @@ public class Main_Menu_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_menu);
-        findFitnessBuddy = findViewById(R.id.button3);
+        setContentView(R.layout.normal_user_main_menu);
+        findFitnessBuddy = findViewById(R.id.findFitnessBuddyButton);
         findFitnessBuddy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Main_Menu_Activity.this, Fitness_Buddy_Found_Activity.class));
             }
         });
-        myProfile = findViewById(R.id.button2);
+        myProfile = findViewById(R.id.profileButton);
         myProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
