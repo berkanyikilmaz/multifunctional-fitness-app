@@ -2,8 +2,12 @@ package com.example.multifunctionalfitnessapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.multifunctionalfitnessapp.DailySchedule;
@@ -13,11 +17,35 @@ import com.example.multifunctionalfitnessapp.R;
 
 public class Daily_Schedule_Activity extends AppCompatActivity {
 
+
+    TableLayout layout = (TableLayout) findViewById(R.id.layout0);
+    int rowNumber = layout.getChildCount();
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.daily_schedule);
-        updateHours();
+        DailySchedule dailySchedule = new DailySchedule();
+        PersonTimeInterval interval = (PersonTimeInterval) dailySchedule.getInterval(0);
+        String facilityName = interval.getAppointedFacility().getName();
+
+
+        for(int n = 1; n< rowNumber; n++) {
+            TableRow row = (TableRow)layout.getChildAt(n);
+            row.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+
+            TextView name = (TextView) row.getChildAt(2);
+            name.setText("Appointment at:" + facilityName);
+            name.setBackgroundColor(Color.BLUE);
+        }
+
     }
 
     public void updateHours() {
@@ -27,6 +55,7 @@ public class Daily_Schedule_Activity extends AppCompatActivity {
         // we should have a for loop controlling each and making the necassary udpates
         DailySchedule dailySchedule = new DailySchedule();
         // i will be the starting hour
+
         for (int i = 0; i <= 23; i++) {
             // getting the PersonTimeInterval object for the specific hour
             PersonTimeInterval interval = (PersonTimeInterval) dailySchedule.getInterval(i);
@@ -36,6 +65,7 @@ public class Daily_Schedule_Activity extends AppCompatActivity {
                 String facilityName = interval.getAppointedFacility().getName();
                 if (i == 0) {
                     ((TextView) findViewById(R.id.Hour1)).setText("appointment at " + facilityName);
+                    ((TextView) findViewById(R.id.Hour1)).setBackgroundColor(Color.BLUE);
                 }
                 else if (i == 1) {
                     ((TextView) findViewById(R.id.Hour2)).setText("appointment at " + facilityName);

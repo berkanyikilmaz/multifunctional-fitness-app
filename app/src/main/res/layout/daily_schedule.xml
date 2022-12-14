@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#7A3AC2"
-
+            android:id="@+id/layout0"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="1dp">
             <TableRow
