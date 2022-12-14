@@ -59,12 +59,14 @@
         android:layout_below="@id/facilityPanel1"
         />
 
-    <include
-        android:id="@+id/facilityPanel2"
-        layout="@layout/facility_panel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/facilityPanel1"
+    <Button
+        android:id="@+id/createButton"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:text="Create New Facility"
+        android:layout_below="@id/facilityPanel2"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="75dp"
         />
 
 
