@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import com.example.multifunctionalfitnessapp.NormalUser;
@@ -40,12 +41,50 @@ public class User_Profile_Activity extends AppCompatActivity {
         usernameBox =findViewById(R.id.checkBox6);
         passwordBox = findViewById(R.id.checkBox7);
         numberBox = findViewById(R.id.checkBox5);
+        numberBox.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              onCheckboxClicked(view);
+
+          }
+      });
         nameBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ///
+                onCheckboxClicked(view);
             }
         });
+        surnameBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onCheckboxClicked(view);
+            }
+        });
+        mailBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onCheckboxClicked(view);
+            }
+        });
+        usernameBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onCheckboxClicked(view);
+            }
+        });
+        passwordBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onCheckboxClicked(view);
+            }
+        });
+        numberBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onCheckboxClicked(view);
+            }
+        });
+
         // we should set these according to the user
         name.setText(user.getName());
         surname.setText(user.getSurname());
@@ -53,6 +92,51 @@ public class User_Profile_Activity extends AppCompatActivity {
         phoneNumber.setText(user.getPhoneNumber());
         password.setText(user.getPassword());
         userName.setText(user.getUsername());
+    }
+
+    public void onCheckboxClicked(View view) {
+        // Is the view now checked?
+        boolean checked = ((CheckBox) view).isChecked();
+
+        // Check which checkbox was clicked
+        switch(view.getId()) {
+            case R.id.checkBox2:
+                if (checked)
+                surname.setText(surnameBox.getText());
+            else
+                // Remove the meat
+                break;
+            case R.id.checkBox3:
+                if (checked)
+                email.setText(mailBox.getText());
+            else
+                // I'm lactose intolerant
+                break;
+            case R.id.checkBox4:
+                if (checked)
+                    name.setText(nameBox.getText());
+                else
+                    // Remove the meat
+                    break;
+            case R.id.checkBox5:
+                if (checked)
+                    phoneNumber.setText(numberBox.getText());
+                else
+                    // Remove the meat
+                    break;
+            case R.id.checkBox6:
+                if (checked)
+                    userName.setText(usernameBox.getText());
+                else
+                    // Remove the meat
+                    break;
+            case R.id.checkBox7:
+                if (checked)
+                    password.setText(passwordBox.getText());
+                else
+                    // Remove the meat
+                    break;
+        }
     }
 
     public void updateContents() {
