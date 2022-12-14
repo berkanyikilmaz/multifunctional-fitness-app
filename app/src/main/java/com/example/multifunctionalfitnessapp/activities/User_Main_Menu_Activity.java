@@ -13,6 +13,7 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
 
     Button findFitnessBuddy;
     Button myProfile;
+    Button makeAnAppointment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,13 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(User_Main_Menu_Activity.this, User_Profile_Activity.class));
+            }
+        });
+        makeAnAppointment = findViewById(R.id.makeAppointmentButton);
+        makeAnAppointment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(User_Main_Menu_Activity.this, Make_Appointment_Activity.class));
             }
         });
     }
