@@ -8,6 +8,7 @@ public abstract class User {
     String password;
     String phoneNumber;
     String email;
+    String userType;
 
     public User(String name, String surname, String username, String password, String phoneNumber, String email) {
         this.name = name;
@@ -16,6 +17,7 @@ public abstract class User {
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.userType = null;
     }
 
     void displayProfile() {}
@@ -36,6 +38,7 @@ public abstract class User {
     public String getEmail() {
         return email;
     }
+    public String getUserType() { return userType; }
 
     public void setName(String name) {
         this.name = name;
@@ -53,4 +56,6 @@ public abstract class User {
     public void setEmail(String email) {
         this.email = email;
     }
+    public void setUserType(String userType) { this.userType = userType; }
+
 }

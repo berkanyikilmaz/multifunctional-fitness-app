@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -14,12 +15,19 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.multifunctionalfitnessapp.Constants;
+import com.example.multifunctionalfitnessapp.FirebaseManager;
 import com.example.multifunctionalfitnessapp.PersonTimeInterval;
 import com.example.multifunctionalfitnessapp.R;
 import com.example.multifunctionalfitnessapp.Schedule;
 import com.example.multifunctionalfitnessapp.ScheduleHelper;
+import com.example.multifunctionalfitnessapp.User;
+import com.example.multifunctionalfitnessapp.UserData;
+import com.google.firebase.database.DatabaseReference;
 
 public class Create_Schedule_Activity extends AppCompatActivity {
+
+    FirebaseManager firebaseManager = FirebaseManager.getInstance();
+    UserData userData;
 
     TableLayout dailySchedule;
     View createScheduleView;
@@ -34,7 +42,11 @@ public class Create_Schedule_Activity extends AppCompatActivity {
 
         userSchedule = Schedule.createEmptyUserSchedule();
 
+        userData = UserData.getInstance();
+        Log.d("username", userData.username);
+
         registerDailyScheduleLayout();
+        registerContinueButton();
     }
 
     public void registerDailyScheduleLayout() {
@@ -61,18 +73,6 @@ public class Create_Schedule_Activity extends AppCompatActivity {
                 }
             });
         }
-
-        /*ScheduleHelper.setScheduleLayout(this, normalUserMainMenuScheduleView, new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("" + name.getText().toString(), "is clicked");
-                // OPEN PERSON TIME INTERVAL PANEL
-                    if(!name.getBackground().equals(Color.RED))
-                        name.setBackgroundColor(Color.RED);
-                    else
-                        name.setBackgroundColor(Color.WHITE);
-            }
-        });*/
     }
 
     public void registerDaysDropdown() {
@@ -86,6 +86,23 @@ public class Create_Schedule_Activity extends AppCompatActivity {
                 Log.d("days", adapterView.getItemAtPosition(i).toString() + " at position " + i + " is selected.");
                 selectedDay = i;
                 ScheduleHelper.updateCreateScheduleValues(dailySchedule, userSchedule.fullSchedule[selectedDay]);
+            }
+        });
+    }
+
+    public void registerContinueButton() {
+        Button continueButton = (Button)findViewById(R.id.continueButton);
+        DatabaseReference userRef = firebaseManager.databaseRef.child("users").child(userData.username);
+
+        continueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for (int i = 0; i < userSchedule.fullSchedule.length; i++) {
+                    for (int j = 0; j < (userSchedule.fullSchedule[i]).fullDailySchedule.length; j++) {
+
+                        userRef.child("schedule").child(i+"").child(j+"").setValue((userSchedule.fullSchedule[i]).fullDailySchedule[j]);
+                    }
+                }
             }
         });
     }

@@ -101,25 +101,23 @@ public class SignUpActivity extends AppCompatActivity {
                 switch (userType) {
                     case "Normal User":
                         NormalUser newNormalUser = new NormalUser(nameText, surnameText, usernameText, passwordText, phoneNoText, emailText);
-                        handleSignUp(newNormalUser, userType);
+                        handleSignUp(newNormalUser);
                         Log.d("signup", "normal user");
-                        startActivity( new Intent( SignUpActivity.this, Daily_Schedule_Activity.class ) );
                         break;
                     case "Facility Owner":
                         FacilityOwner newFacilityOwner = new FacilityOwner(nameText, surnameText, usernameText, passwordText, phoneNoText, emailText);
-                        handleSignUp(newFacilityOwner, userType);
+                        handleSignUp(newFacilityOwner);
                         Log.d("signup", "facilityOwner");
                         break;
                     default:
                         Log.d("signup", "Couldn't signed up");
                         break;
                 }
-
             }
         });
     }
 
-    private void handleSignUp(User user, String userType) {
+    private void handleSignUp(User user) {
         firebaseManager.databaseRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -128,7 +126,10 @@ public class SignUpActivity extends AppCompatActivity {
                     Toast.makeText(SignUpActivity.this, "Username is already registered!", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    firebaseManager.sendUserDataToDatabase(user, userType);
+                    firebaseManager.sendUserDataToDatabase(user);
+                    UserData userData = UserData.getInstance();
+                    userData.login(user.getUsername());
+                    startActivity( new Intent( SignUpActivity.this, Create_Schedule_Activity.class ) );
                 }
             }
 

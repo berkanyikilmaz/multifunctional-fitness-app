@@ -10,6 +10,7 @@ public class NormalUser extends User {
     public NormalUser(String name, String surname, String username, String password, String phoneNumber, String email) {
         super(name, surname, username, password, phoneNumber, email);
         wantsFitnessBuddy = false;
+        userType = "Normal User";
     }
 
     public ArrayList<NormalUser> findFitnessBuddy() {

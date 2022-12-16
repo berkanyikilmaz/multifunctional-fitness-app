@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.example.multifunctionalfitnessapp.FirebaseManager;
 import com.example.multifunctionalfitnessapp.R;
+import com.example.multifunctionalfitnessapp.User;
+import com.example.multifunctionalfitnessapp.UserData;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -69,6 +71,8 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     private void handleLogin(String usernameText, String passwordText) {
+        String user;
+
         firebaseManager.databaseRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -77,7 +81,9 @@ public class LogInActivity extends AppCompatActivity {
 
                     if (getPassword.equals(passwordText)) {
                         Toast.makeText(LogInActivity.this, "Login successfull", Toast.LENGTH_SHORT).show();
-
+                        UserData userData = UserData.getInstance();
+                        userData.login(usernameText);
+                        startActivity( new Intent( LogInActivity.this, User_Main_Menu_Activity.class ) );
                     }
                     else {
                         Toast.makeText(LogInActivity.this, "Wrong password", Toast.LENGTH_SHORT).show();

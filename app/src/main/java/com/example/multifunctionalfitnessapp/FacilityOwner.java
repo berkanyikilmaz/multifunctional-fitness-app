@@ -9,6 +9,7 @@ public class FacilityOwner extends User {
     public FacilityOwner(String name, String surname, String username, String password, String phoneNumber, String email) {
         super( name, surname, username, password, phoneNumber, email );
         facilities = new ArrayList<>();
+        userType = "Facility Owner";
     }
 
     boolean deleteFacility(int index) {

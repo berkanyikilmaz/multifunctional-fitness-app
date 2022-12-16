@@ -41,6 +41,13 @@ public class ScheduleHelper {
         });
     }
 
+    public static int getRowIndex(TableRow row, Context ctx) {
+        String rowId = ctx.getResources().getResourceName(row.getId()).replace(replaceRowText,"");
+        int rowIndex = Integer.parseInt(rowId) - 1;
+
+        return rowIndex;
+    }
+
     public static void updateCreateScheduleValues(TableLayout scheduleTable, DailySchedule dailySchedule) {
 
         for (int n = 1; n < scheduleTable.getChildCount(); n++) {
@@ -58,10 +65,5 @@ public class ScheduleHelper {
         }
     }
 
-    public static int getRowIndex(TableRow row, Context ctx) {
-        String rowId = ctx.getResources().getResourceName(row.getId()).replace(replaceRowText,"");
-        int rowIndex = Integer.parseInt(rowId) - 1;
 
-        return rowIndex;
-    }
 }

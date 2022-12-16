@@ -18,6 +18,8 @@ import android.widget.TextView;
 import com.example.multifunctionalfitnessapp.Constants;
 import com.example.multifunctionalfitnessapp.R;
 import com.example.multifunctionalfitnessapp.ScheduleHelper;
+import com.example.multifunctionalfitnessapp.User;
+import com.example.multifunctionalfitnessapp.UserData;
 
 public class User_Main_Menu_Activity extends AppCompatActivity {
 
@@ -29,15 +31,20 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
     View normalUserMainMenuScheduleView;
     int selectedDay = 0;
 
+    UserData userData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.normal_user_main_menu);
 
+        userData = UserData.getInstance();
+
         registerFindFitnessBuddyButton();
         registerMyProfileButton();
         registerMakeAnAppointmentButton();
         registerDailyScheduleLayout();
+
     }
 
     public void registerFindFitnessBuddyButton() {
