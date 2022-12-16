@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.multifunctionalfitnessapp.Constants;
 import com.example.multifunctionalfitnessapp.R;
+import com.example.multifunctionalfitnessapp.ScheduleHelper;
 
 public class User_Main_Menu_Activity extends AppCompatActivity {
 
@@ -26,6 +27,7 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
 
     TableLayout dailySchedule;
     View normalUserMainMenuScheduleView;
+    int selectedDay = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,14 +84,26 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     Log.d("" + name.getText().toString(), "is clicked");
-                    //TODO OPEN PERSON TIME INTERVAL PANEL
-                    /*if(!name.getBackground().equals(Color.RED))
+                    // OPEN PERSON TIME INTERVAL PANEL
+                    if(!name.getBackground().equals(Color.RED))
                         name.setBackgroundColor(Color.RED);
                     else
-                        name.setBackgroundColor(Color.WHITE);*/
+                        name.setBackgroundColor(Color.WHITE);
                 }
             });
         }
+
+        /*ScheduleHelper.setScheduleLayout(this, normalUserMainMenuScheduleView, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("" + name.getText().toString(), "is clicked");
+                // OPEN PERSON TIME INTERVAL PANEL
+                    if(!name.getBackground().equals(Color.RED))
+                        name.setBackgroundColor(Color.RED);
+                    else
+                        name.setBackgroundColor(Color.WHITE);
+            }
+        });*/
     }
 
     public void registerDaysDropdown() {
@@ -101,6 +115,7 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d("days", adapterView.getItemAtPosition(i).toString() + " at position " + i + " is selected.");
+                selectedDay = i;
             }
         });
     }
