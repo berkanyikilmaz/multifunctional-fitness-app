@@ -56,26 +56,10 @@
         android:text="Your Schedule"
         android:textSize="24sp"
         android:gravity="center"
+        android:layout_centerHorizontal="true"
         android:layout_below= "@id/makeAppointmentButton"
         />
 
-    <Button
-        android:id="@+id/buttonD"
-        android:layout_width="50dp"
-        android:layout_height="40dp"
-        android:layout_toRightOf="@id/yourScheduleTitle"
-        android:layout_below= "@id/makeAppointmentButton"
-        android:text="D"
-        />
-
-    <Button
-        android:id="@+id/buttonW"
-        android:layout_width="50dp"
-        android:layout_height="40dp"
-        android:layout_toRightOf="@id/buttonD"
-        android:layout_below= "@id/makeAppointmentButton"
-        android:text="W"
-        />
 
     <include
         android:id="@+id/normalUserMainMenuSchedule"
@@ -83,7 +67,7 @@
         android:layout_width="350dp"
         android:layout_height="450dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/buttonW"
+        android:layout_below="@id/yourScheduleTitle"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="40dp"
         />
