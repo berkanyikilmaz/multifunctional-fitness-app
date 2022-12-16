@@ -18,8 +18,7 @@ import com.example.multifunctionalfitnessapp.R;
 
 public class Daily_Schedule_Activity extends AppCompatActivity {
 
-
-    TableLayout layout = (TableLayout) findViewById(R.id.layout0);
+    TableLayout layout = (TableLayout) findViewById(R.id.dailyScheduleTableLayout);
     int rowNumber = layout.getChildCount();
 
     DailySchedule dailySchedule = new DailySchedule();
@@ -32,9 +31,6 @@ public class Daily_Schedule_Activity extends AppCompatActivity {
         setContentView(R.layout.daily_schedule);
         specifyUnavailablePeriods();
         appointmentEdit();
-
-
-
     }
 
     public void specifyUnavailablePeriods(){
@@ -51,9 +47,6 @@ public class Daily_Schedule_Activity extends AppCompatActivity {
                         name.setBackgroundColor(Color.WHITE);
                 }
             });
-
-
-
         }
     }
 
@@ -65,7 +58,6 @@ public class Daily_Schedule_Activity extends AppCompatActivity {
             if (interval.isAppointed) {
                 name.setText("Appointment at:" + facilityName);
                 name.setBackgroundColor(Color.BLUE);
-
             }
 
             /*public void updateHours () {

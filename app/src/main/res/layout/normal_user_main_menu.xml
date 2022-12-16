@@ -78,7 +78,7 @@
         />
 
     <include
-        android:id="@+id/schedule"
+        android:id="@+id/normalUserMainMenuSchedule"
         layout="@layout/daily_schedule"
         android:layout_width="350dp"
         android:layout_height="450dp"
