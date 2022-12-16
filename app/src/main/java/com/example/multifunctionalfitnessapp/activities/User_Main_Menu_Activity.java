@@ -44,7 +44,7 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
         registerMyProfileButton();
         registerMakeAnAppointmentButton();
         registerDailyScheduleLayout();
-
+        registerLogoutButton();
     }
 
     public void registerFindFitnessBuddyButton() {
@@ -77,11 +77,16 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
         });
     }
 
+    public void registerLogoutButton() {
+
+    }
+
     public void registerDailyScheduleLayout() {
         normalUserMainMenuScheduleView = findViewById(R.id.normalUserMainMenuSchedule);
         dailySchedule = normalUserMainMenuScheduleView.findViewById(R.id.dailyScheduleTableLayout);
 
         registerDaysDropdown();
+        ScheduleHelper.updateUserMainMenuScheduleValues(dailySchedule, selectedDay);
 
         for (int n = 1; n < dailySchedule.getChildCount(); n++) {
             TableRow row = (TableRow)dailySchedule.getChildAt(n);
@@ -90,27 +95,10 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
             row.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.d("" + name.getText().toString(), "is clicked");
-                    // OPEN PERSON TIME INTERVAL PANEL
-                    if(!name.getBackground().equals(Color.RED))
-                        name.setBackgroundColor(Color.RED);
-                    else
-                        name.setBackgroundColor(Color.WHITE);
+                    //OPEN TIME INTERVAL PANELS FOR THE CLICKED TIME INTERVAL
                 }
             });
         }
-
-        /*ScheduleHelper.setScheduleLayout(this, normalUserMainMenuScheduleView, new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("" + name.getText().toString(), "is clicked");
-                // OPEN PERSON TIME INTERVAL PANEL
-                    if(!name.getBackground().equals(Color.RED))
-                        name.setBackgroundColor(Color.RED);
-                    else
-                        name.setBackgroundColor(Color.WHITE);
-            }
-        });*/
     }
 
     public void registerDaysDropdown() {
@@ -123,6 +111,7 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d("days", adapterView.getItemAtPosition(i).toString() + " at position " + i + " is selected.");
                 selectedDay = i;
+                ScheduleHelper.updateUserMainMenuScheduleValues(dailySchedule, selectedDay);
             }
         });
     }

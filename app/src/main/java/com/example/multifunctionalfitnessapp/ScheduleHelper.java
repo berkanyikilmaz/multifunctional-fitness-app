@@ -11,6 +11,13 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+
 public class ScheduleHelper {
 
     public static String replaceRowText = "com.example.multifunctionalfitnessapp:id/row";
@@ -65,5 +72,41 @@ public class ScheduleHelper {
         }
     }
 
+    public static void updateUserMainMenuScheduleValues(TableLayout scheduleTable, int dailyScheduleIndex) {
+        UserData userData = UserData.getInstance();
 
+        DatabaseReference dailyScheduleRef = FirebaseManager.getInstance().databaseRef.child("users").child(userData.username).child("schedule").child(dailyScheduleIndex+"");
+
+        for (int i = 0; i < 24; i++) {
+            TableRow row = (TableRow)scheduleTable.getChildAt(i+1);
+            TextView name = (TextView)row.getChildAt(1);
+
+            DatabaseReference timeIntervalRef = dailyScheduleRef.child(i+"");
+
+            timeIntervalRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    PersonTimeInterval interval = snapshot.getValue(PersonTimeInterval.class);
+
+                    if (interval.isAppointed) {
+                        name.setBackgroundColor(Color.BLUE);
+                        name.setText("Appointed at " + interval.AppointedFacility.getName());
+                    }
+                    else if (!interval.isAvailable) {
+                        name.setBackgroundColor(Color.RED);
+                        name.setText("UNAVAILABLE");
+                    }
+                    else {
+                        name.setBackgroundColor(Color.WHITE);
+                        name.setText("");
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+    }
 }

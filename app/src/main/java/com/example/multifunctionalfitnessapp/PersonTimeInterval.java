@@ -7,6 +7,10 @@ public class PersonTimeInterval extends TimeInterval {
     Facility AppointedFacility;
     NormalUser fitnessBuddy;
 
+    public PersonTimeInterval() {
+        super();
+    }
+
     public PersonTimeInterval(int startingHour) {
         super(startingHour);
         isAvailable = true;

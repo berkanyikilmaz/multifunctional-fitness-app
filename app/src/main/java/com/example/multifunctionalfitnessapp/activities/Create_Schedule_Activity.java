@@ -1,5 +1,6 @@
 package com.example.multifunctionalfitnessapp.activities;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -103,6 +104,8 @@ public class Create_Schedule_Activity extends AppCompatActivity {
                         userRef.child("schedule").child(i+"").child(j+"").setValue((userSchedule.fullSchedule[i]).fullDailySchedule[j]);
                     }
                 }
+
+                startActivity( new Intent( Create_Schedule_Activity.this, User_Main_Menu_Activity.class ) );
             }
         });
     }

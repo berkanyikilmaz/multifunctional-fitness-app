@@ -6,6 +6,8 @@ public class TimeInterval {
     final int INTERVAL = 60; // in terms of minutes
     DailySchedule dailySchedule;
 
+    public TimeInterval() {}
+
     public TimeInterval(int startingHour) {
         this.startingHour = startingHour;
     }
