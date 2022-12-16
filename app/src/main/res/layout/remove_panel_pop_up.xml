@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp">
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="Dou you want to remove this hour?"
+        android:gravity="center"
+        android:textSize="20sp"
+        />
+
+    <Button
+        android:id="@+id/yesButton"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="Yes"
+        android:gravity="center"
+        android:layout_below="@id/question"
+        android:layout_marginLeft="105dp"
+        />
+    <Button
+        android:id="@+id/noButton"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="No"
+        android:gravity="center"
+        android:layout_below="@id/question"
+        android:layout_toRightOf="@id/yesButton"
+        android:layout_centerHorizontal="true"
+        />
+
+</RelativeLayout>
