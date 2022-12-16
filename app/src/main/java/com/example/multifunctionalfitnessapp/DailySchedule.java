@@ -2,16 +2,17 @@ package com.example.multifunctionalfitnessapp;
 //test
 
 import java.sql.Time;
+import java.time.DayOfWeek;
 
 public class DailySchedule extends Schedule {
 
     // these are the date of
     int day;
     int month;
-    TimeInterval[] fullDailySchedule;
+    public TimeInterval[] fullDailySchedule;
 
     public DailySchedule() {
-     fullDailySchedule = new TimeInterval[24];
+        fullDailySchedule = new TimeInterval[24];
     }
 
     public TimeInterval getInterval(int startingHour) {
@@ -26,4 +27,23 @@ public class DailySchedule extends Schedule {
         return super.getTimeInterval(interval);
     }
 
+    public static DailySchedule createNormalUserDailySchedule() {
+        DailySchedule newSchedule = new DailySchedule();
+
+        for (int i = 0; i < newSchedule.fullDailySchedule.length; i++) {
+            newSchedule.fullDailySchedule[i] = new PersonTimeInterval(i);
+        }
+
+        return newSchedule;
+    }
+
+    public static DailySchedule createFacilityDailySchedule() {
+        DailySchedule newSchedule = new DailySchedule();
+
+        for (int i = 0; i < newSchedule.fullDailySchedule.length; i++) {
+            newSchedule.fullDailySchedule[i] = new FacilityTimeInterval(i);
+        }
+
+        return newSchedule;
+    }
 }

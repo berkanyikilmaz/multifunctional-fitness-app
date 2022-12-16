@@ -9,7 +9,7 @@ enum DisplayType {
 
 public class Schedule {
     
-    DailySchedule[] fullSchedule;
+    public DailySchedule[] fullSchedule;
     DisplayType displayType = DisplayType.WEEKLY;
 
     public Schedule() {
@@ -51,5 +51,25 @@ public class Schedule {
         }
 
         return availablePeriods;
+    }
+
+    public static Schedule createEmptyUserSchedule() {
+        Schedule newSchedule = new Schedule();
+
+        for (int i = 0; i < 7; i++) {
+            newSchedule.fullSchedule[i] = DailySchedule.createNormalUserDailySchedule();
+        }
+
+        return newSchedule;
+    }
+
+    public static Schedule createEmptyFacilitySchedule() {
+        Schedule newSchedule = new Schedule();
+
+        for (int i = 0; i < 7; i++) {
+            newSchedule.fullSchedule[i] = DailySchedule.createFacilityDailySchedule();
+        }
+
+        return newSchedule;
     }
 }

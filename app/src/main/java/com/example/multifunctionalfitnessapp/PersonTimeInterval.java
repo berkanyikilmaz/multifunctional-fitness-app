@@ -2,13 +2,17 @@ package com.example.multifunctionalfitnessapp;
 
 public class PersonTimeInterval extends TimeInterval {
 
-    boolean isAvailable; // if the person is unavailable
+    public boolean isAvailable; // if the person is unavailable
     public boolean isAppointed;
     Facility AppointedFacility;
     NormalUser fitnessBuddy;
 
     public PersonTimeInterval(int startingHour) {
         super(startingHour);
+        isAvailable = true;
+        isAppointed = false;
+        AppointedFacility = null;
+        fitnessBuddy = null;
     }
 
     boolean addFitnessBuddy(NormalUser user) {

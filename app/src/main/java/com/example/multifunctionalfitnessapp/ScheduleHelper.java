@@ -1,6 +1,7 @@
 package com.example.multifunctionalfitnessapp;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,6 +12,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 public class ScheduleHelper {
+
+    public static String replaceRowText = "com.example.multifunctionalfitnessapp:id/row";
 
     public static void setScheduleLayout(Context ctx, View scheduleLayout, View.OnClickListener rowListener) {
         TableLayout dailySchedule = scheduleLayout.findViewById(R.id.dailyScheduleTableLayout);
@@ -36,5 +39,29 @@ public class ScheduleHelper {
                 Log.d("days", adapterView.getItemAtPosition(i).toString() + " at position " + i + " is selected.");
             }
         });
+    }
+
+    public static void updateCreateScheduleValues(TableLayout scheduleTable, DailySchedule dailySchedule) {
+
+        for (int n = 1; n < scheduleTable.getChildCount(); n++) {
+            TableRow row = (TableRow)scheduleTable.getChildAt(n);
+            TextView name = (TextView)row.getChildAt(1);
+
+            if (((PersonTimeInterval)(dailySchedule.fullDailySchedule[n-1])).isAvailable) {
+                name.setBackgroundColor(Color.WHITE);
+                name.setText("");
+            }
+            else {
+                name.setBackgroundColor(Color.RED);
+                name.setText("UNAVAILABLE");
+            }
+        }
+    }
+
+    public static int getRowIndex(TableRow row, Context ctx) {
+        String rowId = ctx.getResources().getResourceName(row.getId()).replace(replaceRowText,"");
+        int rowIndex = Integer.parseInt(rowId) - 1;
+
+        return rowIndex;
     }
 }
