@@ -25,11 +25,10 @@
     <Button
         android:id="@+id/profileButton"
         android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
-        android:text="My Profile"
+        android:layout_height="48dp"
         android:layout_below="@id/welcomeNameTitle"
-        />
+        android:layout_centerHorizontal="true"
+        android:text="My Profile" />
 
     <TextView
         android:id="@+id/facilitiesTitle"
