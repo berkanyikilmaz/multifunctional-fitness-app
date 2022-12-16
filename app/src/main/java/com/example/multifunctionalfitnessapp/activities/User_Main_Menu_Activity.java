@@ -7,11 +7,15 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.example.multifunctionalfitnessapp.Constants;
 import com.example.multifunctionalfitnessapp.R;
 
 public class User_Main_Menu_Activity extends AppCompatActivity {
@@ -68,22 +72,36 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
         normalUserMainMenuScheduleView = findViewById(R.id.normalUserMainMenuSchedule);
         dailySchedule = normalUserMainMenuScheduleView.findViewById(R.id.dailyScheduleTableLayout);
 
+        registerDaysDropdown();
+
         for (int n = 1; n < dailySchedule.getChildCount(); n++) {
             TableRow row = (TableRow)dailySchedule.getChildAt(n);
             TextView name = (TextView) row.getChildAt(1);
-
-            //Log.d("" + name.getText().toString(), "is clicked");
 
             row.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Log.d("" + name.getText().toString(), "is clicked");
-                    if(!name.getBackground().equals(Color.RED))
+                    //TODO OPEN PERSON TIME INTERVAL PANEL
+                    /*if(!name.getBackground().equals(Color.RED))
                         name.setBackgroundColor(Color.RED);
                     else
-                        name.setBackgroundColor(Color.WHITE);
+                        name.setBackgroundColor(Color.WHITE);*/
                 }
             });
         }
+    }
+
+    public void registerDaysDropdown() {
+        AutoCompleteTextView dropdown = normalUserMainMenuScheduleView.findViewById(R.id.daysAutoCompleteTextView);
+        ArrayAdapter<String> adapterItems = new ArrayAdapter<String>(this, R.layout.dropdown_item, Constants.DAYS);
+        dropdown.setAdapter(adapterItems);
+
+        dropdown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.d("days", adapterView.getItemAtPosition(i).toString() + " at position " + i + " is selected.");
+            }
+        });
     }
 }
