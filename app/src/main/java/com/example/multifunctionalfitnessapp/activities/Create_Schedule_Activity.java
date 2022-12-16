@@ -2,28 +2,30 @@ package com.example.multifunctionalfitnessapp.activities;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
+import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.multifunctionalfitnessapp.R;
 
 public class Create_Schedule_Activity extends AppCompatActivity {
-    @Override
 
+    TableLayout layout;
+    int rowNumber = layout.getChildCount();
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.daily_schedule);
-        //specifyUnavailablePeriods();
-
-
-
+        specifyUnavailablePeriods();
     }
-    /*public void specifyUnavailablePeriods(){
+
+    public void specifyUnavailablePeriods(){
+        layout = (TableLayout) findViewById(R.id.dailyScheduleTableLayout);
+
         for(int n = 1; n< rowNumber; n++) {
             TableRow row = (TableRow)layout.getChildAt(n);
             TextView name = (TextView) row.getChildAt(2);
@@ -37,9 +39,6 @@ public class Create_Schedule_Activity extends AppCompatActivity {
                         name.setBackgroundColor(Color.WHITE);
                 }
             });
-
-
-
         }
-    }*/
+    }
 }

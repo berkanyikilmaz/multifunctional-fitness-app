@@ -25,4 +25,5 @@ public class DailySchedule extends Schedule {
     TimeInterval getTimeInterval(TimeInterval interval) {
         return super.getTimeInterval(interval);
     }
+
 }
