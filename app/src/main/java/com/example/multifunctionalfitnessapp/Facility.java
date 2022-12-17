@@ -5,6 +5,7 @@ public class Facility {
     String name;
     Schedule schedule;
     FacilityOwner owner;
+    int quota; // added temporarily maybe we consider fixed quota for a facility
 
     public Facility(FacilityOwner owner) {
         this.owner = owner;
@@ -38,5 +39,13 @@ public class Facility {
 
     public Schedule getSchedule() {
         return schedule;
+    }
+
+    public int getQuota() {
+        return quota;
+    }
+
+    public void setQuota(int quota) {
+        this.quota = quota;
     }
 }

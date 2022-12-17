@@ -41,21 +41,11 @@
         android:layout_marginTop="75dp"
         />
 
-    <include
-        android:id="@+id/facilityPanel1"
-        layout="@layout/facility_panel"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/facilityContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="400dp"
         android:layout_below="@id/facilitiesTitle"
-        android:layout_marginTop="30dp"
-        />
-
-    <include
-        android:id="@+id/facilityPanel2"
-        layout="@layout/facility_panel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/facilityPanel1"
         />
 
     <Button
@@ -63,7 +53,7 @@
         android:layout_width="125dp"
         android:layout_height="75dp"
         android:text="Create New Facility"
-        android:layout_below="@id/facilityPanel2"
+        android:layout_below="@id/facilityContainer"
         android:layout_alignParentRight="true"
         android:layout_marginRight="75dp"
         />

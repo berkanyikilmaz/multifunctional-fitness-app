@@ -21,4 +21,7 @@ public class FacilityOwner extends User {
         return this.facilities.add(facility);
     }
 
+    public ArrayList<Facility> getFacilities() {
+        return facilities;
+    }
 }
