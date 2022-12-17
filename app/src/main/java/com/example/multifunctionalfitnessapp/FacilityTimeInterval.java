@@ -8,6 +8,7 @@ public class FacilityTimeInterval extends TimeInterval {
     int quota;
     int noOfAppointedUser;
     ArrayList<NormalUser> appointedUsers;
+    public boolean isSelected = false; // for facility schedule creation
 
     public FacilityTimeInterval() { super(); }
 
