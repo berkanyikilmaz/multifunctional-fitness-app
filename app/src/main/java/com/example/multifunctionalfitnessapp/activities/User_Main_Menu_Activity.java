@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -151,15 +152,18 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
             TextView name = (TextView) row.getChildAt(1);
 
             row.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View view) {
-                    if( (Integer.parseInt(name.getBackground().toString()) == (Color.RED))){
+                    ColorDrawable nameColor = (ColorDrawable) name.getBackground();
+                    int color = nameColor.getColor();
+                    if( !(color == (Color.RED))){
                         name.setBackgroundColor(Color.RED);
                         name.setText("UNAVAILABLE");
                     }
                     else{
                         name.setBackgroundColor(Color.WHITE);
-                        name.setText("aaa");
+                        name.setText("AVAILAVLE");
                     }
                 }
             });
