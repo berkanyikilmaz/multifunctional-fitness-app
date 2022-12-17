@@ -83,7 +83,13 @@ public class LogInActivity extends AppCompatActivity {
                         Toast.makeText(LogInActivity.this, "Login successfull", Toast.LENGTH_SHORT).show();
                         UserData userData = UserData.getInstance();
                         userData.login(usernameText);
-                        startActivity( new Intent( LogInActivity.this, User_Main_Menu_Activity.class ) );
+
+                        switch(snapshot.child(usernameText).child("userType").getValue(String.class)) {
+                            case "Normal User":
+                                startActivity( new Intent( LogInActivity.this, User_Main_Menu_Activity.class ) );
+                            case "Facility Owner":
+                                startActivity( new Intent( LogInActivity.this, Facility_Owner_Main_Menu_Activity.class ) );
+                        }
                     }
                     else {
                         Toast.makeText(LogInActivity.this, "Wrong password", Toast.LENGTH_SHORT).show();

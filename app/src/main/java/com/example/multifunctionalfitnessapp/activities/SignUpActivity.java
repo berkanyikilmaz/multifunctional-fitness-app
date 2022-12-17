@@ -129,7 +129,14 @@ public class SignUpActivity extends AppCompatActivity {
                     firebaseManager.sendUserDataToDatabase(user);
                     UserData userData = UserData.getInstance();
                     userData.login(user.getUsername());
-                    startActivity( new Intent( SignUpActivity.this, Create_Schedule_Activity.class ) );
+
+                    switch (user.getUserType()) {
+                        case "Normal User":
+                            startActivity( new Intent( SignUpActivity.this, Create_Schedule_Activity.class ) );
+                            break;
+                        case "Facility Owner":
+                            startActivity( new Intent( SignUpActivity.this, Create_Facility_Activity.class ) );
+                    }
                 }
             }
 
