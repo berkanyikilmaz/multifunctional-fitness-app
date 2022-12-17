@@ -5,6 +5,12 @@ import java.util.ArrayList;
 public class FacilityOwner extends User {
 
     ArrayList<Facility> facilities;
+
+    public FacilityOwner() {
+        super();
+        facilities = new ArrayList<Facility>();
+        userType = "Facility Owner";
+    }
     
     public FacilityOwner(String name, String surname, String username, String password, String phoneNumber, String email) {
         super( name, surname, username, password, phoneNumber, email );

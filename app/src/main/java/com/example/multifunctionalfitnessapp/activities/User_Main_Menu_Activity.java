@@ -1,5 +1,6 @@
 package com.example.multifunctionalfitnessapp.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -16,12 +17,23 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.multifunctionalfitnessapp.Constants;
+import com.example.multifunctionalfitnessapp.FirebaseManager;
+import com.example.multifunctionalfitnessapp.NormalUser;
+import com.example.multifunctionalfitnessapp.OnGetDataListener;
+import com.example.multifunctionalfitnessapp.PersonTimeInterval;
 import com.example.multifunctionalfitnessapp.R;
+import com.example.multifunctionalfitnessapp.Schedule;
 import com.example.multifunctionalfitnessapp.ScheduleHelper;
 import com.example.multifunctionalfitnessapp.User;
 import com.example.multifunctionalfitnessapp.UserData;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 public class User_Main_Menu_Activity extends AppCompatActivity {
+
+    FirebaseManager firebaseManager = FirebaseManager.getInstance();
 
     Button findFitnessBuddy;
     Button myProfile;
@@ -32,6 +44,7 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
     int selectedDay = 0;
 
     UserData userData;
+    NormalUser normalUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +53,48 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
 
         userData = UserData.getInstance();
 
-        registerFindFitnessBuddyButton();
-        registerMyProfileButton();
-        registerMakeAnAppointmentButton();
-        registerDailyScheduleLayout();
-        registerLogoutButton();
+        firebaseManager.getNormalUserSnapshot(userData.username, new OnGetDataListener() {
+            @Override
+            public void onSuccess(DataSnapshot snapshot) {
+                userData.setNormalUserFromSnapshot(snapshot);
+
+                Log.d("name", userData.normalUser.getName());
+                normalUser = userData.normalUser;
+
+                registerFindFitnessBuddyButton();
+                registerMyProfileButton();
+                registerMakeAnAppointmentButton();
+                registerDailyScheduleLayout();
+                registerLogoutButton();
+            }
+
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onFailure() {
+
+            }
+        });
+    }
+
+    public void getNormalUser(final OnGetDataListener listener) {
+        listener.onStart();
+        DatabaseReference ref = firebaseManager.databaseRef.child("users").child(userData.username);
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listener.onSuccess(snapshot);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                listener.onFailure();
+            }
+        });
     }
 
     public void registerFindFitnessBuddyButton() {
@@ -86,7 +136,7 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
         dailySchedule = normalUserMainMenuScheduleView.findViewById(R.id.dailyScheduleTableLayout);
 
         registerDaysDropdown();
-        ScheduleHelper.updateUserMainMenuScheduleValues(dailySchedule, selectedDay);
+        ScheduleHelper.updateUserMainMenuScheduleValuesFromUser(dailySchedule, selectedDay, normalUser);
 
         for (int n = 1; n < dailySchedule.getChildCount(); n++) {
             TableRow row = (TableRow)dailySchedule.getChildAt(n);
@@ -111,7 +161,7 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d("days", adapterView.getItemAtPosition(i).toString() + " at position " + i + " is selected.");
                 selectedDay = i;
-                ScheduleHelper.updateUserMainMenuScheduleValues(dailySchedule, selectedDay);
+                ScheduleHelper.updateUserMainMenuScheduleValuesFromUser(dailySchedule, selectedDay, normalUser);
             }
         });
     }

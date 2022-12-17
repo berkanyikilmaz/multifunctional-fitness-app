@@ -38,4 +38,20 @@ public class FirebaseManager {
 
         databaseRef.child("users").child(user.getUsername()).setValue(user);
     }
+
+    public void getNormalUserSnapshot(String username, final OnGetDataListener listener) {
+        listener.onStart();
+
+        databaseRef.child("users").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listener.onSuccess(snapshot);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 }

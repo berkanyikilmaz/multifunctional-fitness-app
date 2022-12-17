@@ -4,9 +4,16 @@ import java.util.ArrayList;
 
 public class NormalUser extends User {
 
-    Schedule schedule;
+    public Schedule schedule;
     boolean wantsFitnessBuddy;
     ArrayList<PersonTimeInterval> appointedHours = new ArrayList<>();
+
+    public NormalUser() {
+        super();
+        schedule = Schedule.createEmptyUserSchedule();
+        wantsFitnessBuddy = false;
+        userType = "Normal User";
+    }
 
     public NormalUser(String name, String surname, String username, String password, String phoneNumber, String email) {
         super(name, surname, username, password, phoneNumber, email);

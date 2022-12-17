@@ -87,8 +87,11 @@ public class LogInActivity extends AppCompatActivity {
                         switch(snapshot.child(usernameText).child("userType").getValue(String.class)) {
                             case "Normal User":
                                 startActivity( new Intent( LogInActivity.this, User_Main_Menu_Activity.class ) );
+                                break;
                             case "Facility Owner":
-                                startActivity( new Intent( LogInActivity.this, Facility_Owner_Main_Menu_Activity.class ) );
+                                //startActivity( new Intent( LogInActivity.this, Facility_Owner_Main_Menu_Activity.class ) );
+                                startActivity( new Intent( LogInActivity.this, User_Main_Menu_Activity.class ) );
+                                break;
                         }
                     }
                     else {

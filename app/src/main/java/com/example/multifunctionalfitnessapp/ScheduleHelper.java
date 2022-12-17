@@ -1,5 +1,6 @@
 package com.example.multifunctionalfitnessapp;
 
+import android.app.Person;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
@@ -159,6 +160,29 @@ public class ScheduleHelper {
 
                 }
             });
+        }
+    }
+
+    public static void updateUserMainMenuScheduleValuesFromUser(TableLayout scheduleTable, int dailyScheduleIndex, NormalUser normalUser) {
+        for (int i = 0; i < 24; i++) {
+            TableRow row = (TableRow)scheduleTable.getChildAt(i+1);
+            TextView name = (TextView)row.getChildAt(1);
+
+            DailySchedule dailySchedule = normalUser.schedule.fullSchedule[dailyScheduleIndex];
+            PersonTimeInterval interval = (PersonTimeInterval) dailySchedule.fullDailySchedule[i];
+
+            if (interval.isAppointed) {
+                name.setBackgroundColor(Color.BLUE);
+                name.setText("Appointed at " + interval.AppointedFacility.getName());
+            }
+            else if (!interval.isAvailable) {
+                name.setBackgroundColor(Color.RED);
+                name.setText("UNAVAILABLE");
+            }
+            else {
+                name.setBackgroundColor(Color.WHITE);
+                name.setText("");
+            }
         }
     }
 }
