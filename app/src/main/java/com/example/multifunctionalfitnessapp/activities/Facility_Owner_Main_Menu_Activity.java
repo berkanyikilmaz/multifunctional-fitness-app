@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +21,8 @@ import com.example.multifunctionalfitnessapp.R;
 import com.example.multifunctionalfitnessapp.RecyclerViewInterface;
 import com.example.multifunctionalfitnessapp.UserData;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 
 public class Facility_Owner_Main_Menu_Activity extends AppCompatActivity implements RecyclerViewInterface {
 
@@ -48,6 +52,8 @@ public class Facility_Owner_Main_Menu_Activity extends AppCompatActivity impleme
             public void onSuccess(DataSnapshot snapshot) {
                 userData.setFacilityOwnerFromDatabase(snapshot);
                 testFacilityOwner = userData.facilityOwner;
+
+                Log.d("ownerName", testFacilityOwner.getUsername());
 
                 recyclerView = (RecyclerView) findViewById(R.id.facilityContainer);
                 logoutButton();
@@ -112,7 +118,25 @@ public class Facility_Owner_Main_Menu_Activity extends AppCompatActivity impleme
 
     @Override
     public void onItemLongClick(int position) {
-        testFacilityOwner.getFacilities().remove(position);
-        facilityContainerAdapter.notifyItemRemoved(position);
+        Facility facilityToRemove = testFacilityOwner.getFacilities().get(position);
+        Log.d("facName", facilityToRemove.getName());
+
+        firebaseManager.deleteFacility(testFacilityOwner.getUsername(), facilityToRemove.getName(), new OnGetDataListener() {
+            @Override
+            public void onSuccess(DataSnapshot snapshot) {
+                testFacilityOwner.getFacilities().remove(position);
+                facilityContainerAdapter.notifyItemRemoved(position);
+            }
+
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onFailure() {
+
+            }
+        });
     }
 }

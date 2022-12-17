@@ -1,5 +1,7 @@
 package com.example.multifunctionalfitnessapp;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
@@ -51,5 +53,13 @@ public class FirebaseManager {
 
             }
         });
+    }
+
+    public void deleteFacility(String username, String facilityName, final OnGetDataListener listener) {
+        listener.onStart();
+
+        databaseRef.child("users").child(username).child("facilities").child(facilityName).removeValue();
+
+        listener.onSuccess(null);
     }
 }
