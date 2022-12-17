@@ -16,19 +16,27 @@ public class User_Profile_Activity extends AppCompatActivity {
 
     EditText name, surname, email, phoneNumber, password, userName;
     CheckBox nameBox,surnameBox,usernameBox,passwordBox, numberBox, mailBox;
+    User user = new NormalUser("ali", "ali", "ali", "ali", "5555555", "ali");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_profile_menu);
-        User user = new NormalUser("", "", "", "", "", "");
+
         displayContents(user);
+
         // buttons and their onClick methods should be added here
         // buttons will function as ways to making changes to the attributes of the user
         // changing user's attributes will be similar to sign-up
     }
 
     public void displayContents(User user) {
+        name.setText(user.getName());
+        surname.setText(user.getSurname());
+        email.setText(user.getEmail());
+        phoneNumber.setText(user.getPhoneNumber());
+        password.setText(user.getPassword());
+        userName.setText(user.getUsername());
         name = findViewById(R.id.editTextTextUsername);
         surname = findViewById(R.id.editTextTextPersonSurname);
         email = findViewById(R.id.editTextTextEmailAddress);
@@ -86,63 +94,67 @@ public class User_Profile_Activity extends AppCompatActivity {
         });
 
         // we should set these according to the user
-        name.setText(user.getName());
-        surname.setText(user.getSurname());
-        email.setText(user.getEmail());
-        phoneNumber.setText(user.getPhoneNumber());
-        password.setText(user.getPassword());
-        userName.setText(user.getUsername());
+
     }
 
     public void onCheckboxClicked(View view) {
-        // Is the view now checked?
+
         boolean checked = ((CheckBox) view).isChecked();
 
-        // Check which checkbox was clicked
+
         switch(view.getId()) {
             case R.id.checkBox2:
-                if (checked)
-                surname.setText(surnameBox.getText());
+                if (checked) {
+                    surname.setText(surnameBox.getText());
+                    user.setSurname(surname.toString());
+                }
             else
-                // Remove the meat
+
                 break;
             case R.id.checkBox3:
-                if (checked)
-                email.setText(mailBox.getText());
+                if (checked) {
+                    email.setText(mailBox.getText());
+                    user.setEmail(email.toString());
+                }
             else
-                // I'm lactose intolerant
+
                 break;
             case R.id.checkBox4:
-                if (checked)
+                if (checked) {
                     name.setText(nameBox.getText());
+                    user.setPhoneNumber(name.toString());
+                }
                 else
-                    // Remove the meat
+
                     break;
             case R.id.checkBox5:
-                if (checked)
+                if (checked) {
                     phoneNumber.setText(numberBox.getText());
+                    user.setPhoneNumber(phoneNumber.toString());
+                }
                 else
-                    // Remove the meat
+
                     break;
             case R.id.checkBox6:
-                if (checked)
+                if (checked) {
                     userName.setText(usernameBox.getText());
+                    user.setUsername(userName.toString());
+                }
                 else
-                    // Remove the meat
+
                     break;
             case R.id.checkBox7:
-                if (checked)
+                if (checked) {
                     password.setText(passwordBox.getText());
+                    user.setPassword(password.toString());
+                }
                 else
-                    // Remove the meat
+
                     break;
         }
     }
 
     public void updateContents() {
-        // will update the contents after some of them are changes
-        // will execute after a button is pressed
-        // task of this method can be broken down to several methods
-        // to update one by one, not all at once
+
     }
 }

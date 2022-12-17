@@ -1,5 +1,8 @@
 package com.example.multifunctionalfitnessapp;
 
+import com.example.multifunctionalfitnessapp.activities.Facility_Owner_Main_Menu_Activity;
+import com.example.multifunctionalfitnessapp.activities.Make_Appointment_Activity;
+
 public class PersonTimeInterval extends TimeInterval {
 
     public boolean isAvailable; // if the person is unavailable
@@ -42,10 +45,9 @@ public class PersonTimeInterval extends TimeInterval {
 
     @Override
     public boolean addAppointment(NormalUser user) {
-        // if we add an appointment,
-        // isAppointed should be changed to true, and AppointedFacility should be set
-        // we will take this appointedFacility when the user chooses the facility.
-        return false;
+        //AppointedFacility = new Facility(new FacilityOwner("Ege", "Fitness", "egefitness", "***","05052","ege@gmail.com"));
+        isAppointed = true;
+        return true;
     }
 
     @Override
