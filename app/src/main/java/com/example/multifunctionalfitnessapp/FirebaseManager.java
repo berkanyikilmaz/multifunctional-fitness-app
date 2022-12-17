@@ -55,6 +55,56 @@ public class FirebaseManager {
         });
     }
 
+    public void getCompleteSnapshot(final OnGetDataListener listener) {
+        listener.onStart();
+        databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listener.onSuccess(snapshot);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void getFacilitySnapshot(String facilityName, final OnGetDataListener listener) {
+        listener.onStart();
+
+        firebaseManager.databaseRef.child("facilities").child(facilityName).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listener.onSuccess(snapshot);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void setFacilities(String facilityName) {
+        getFacilitySnapshot(facilityName, new OnGetDataListener() {
+            @Override
+            public void onSuccess(DataSnapshot snapshot) {
+                Log.d("facName", facilityName);
+            }
+
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onFailure() {
+
+            }
+        });
+    }
+
     public void deleteFacility(String username, String facilityName, final OnGetDataListener listener) {
         listener.onStart();
 

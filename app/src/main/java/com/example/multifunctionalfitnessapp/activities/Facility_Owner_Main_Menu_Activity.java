@@ -47,7 +47,7 @@ public class Facility_Owner_Main_Menu_Activity extends AppCompatActivity impleme
         setContentView(R.layout.facility_owner_main_menu);
 
         userData = UserData.getInstance();
-        firebaseManager.getUserSnapshot(userData.username, new OnGetDataListener() {
+        firebaseManager.getCompleteSnapshot(new OnGetDataListener() {
             @Override
             public void onSuccess(DataSnapshot snapshot) {
                 userData.setFacilityOwnerFromDatabase(snapshot);

@@ -23,7 +23,7 @@ public class FacilityOwner extends User {
         return false;
     }
 
-    boolean addFacility(Facility facility) {
+    public boolean addFacility(Facility facility) {
         return this.facilities.add(facility);
     }
 

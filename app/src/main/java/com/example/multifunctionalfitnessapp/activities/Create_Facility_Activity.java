@@ -89,16 +89,15 @@ public class Create_Facility_Activity extends AppCompatActivity {
     public void registerContinueButton() {
         createFacilityButton = findViewById(R.id.createButton);
         DatabaseReference userRef = firebaseManager.databaseRef.child("users").child(userData.username);
+        DatabaseReference facilitiesRef = firebaseManager.databaseRef.child("facilities");
 
         createFacilityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String facilityNameText = facilityName.getText().toString();
 
-                /*Facility newFacility = new Facility(null);
-                newFacility.setName(facilityNameText);*/
-
-                DatabaseReference facilityRef = userRef.child("facilities").child(facilityNameText);
+                userRef.child("facilities").child(facilityNameText).setValue("");
+                DatabaseReference facilityRef = facilitiesRef.child(facilityNameText);
 
                 for (int i = 0; i < facilitySchedule.fullSchedule.length; i++) {
                     for (int j = 0; j < (facilitySchedule.fullSchedule[i]).fullDailySchedule.length; j++) {
