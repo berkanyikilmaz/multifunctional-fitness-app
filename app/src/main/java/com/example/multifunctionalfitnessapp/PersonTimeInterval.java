@@ -47,12 +47,14 @@ public class PersonTimeInterval extends TimeInterval {
     public boolean addAppointment(NormalUser user) {
         //AppointedFacility = new Facility(new FacilityOwner("Ege", "Fitness", "egefitness", "***","05052","ege@gmail.com"));
         isAppointed = true;
+        isAvailable = false;
         return true;
     }
-
+    public
     @Override
     boolean removeAppointment(NormalUser user) {
         this.isAppointed = false;
+        isAvailable = true;
         return false;
     }
 
