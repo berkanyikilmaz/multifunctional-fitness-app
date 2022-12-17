@@ -14,8 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.multifunctionalfitnessapp.Facility;
 import com.example.multifunctionalfitnessapp.FacilityOwner;
 import com.example.multifunctionalfitnessapp.R;
+import com.example.multifunctionalfitnessapp.RecyclerViewInterface;
 
-public class Facility_Owner_Main_Menu_Activity extends AppCompatActivity {
+public class Facility_Owner_Main_Menu_Activity extends AppCompatActivity implements RecyclerViewInterface {
 
     RecyclerView recyclerView;
     FacilityOwner facilityOwner = new FacilityOwner("Ege", "Fitness", "egefitness", "***","05052","ege@gmail.com");
@@ -24,6 +25,8 @@ public class Facility_Owner_Main_Menu_Activity extends AppCompatActivity {
     Facility f3 = new Facility(facilityOwner);
     Facility f4 = new Facility(facilityOwner);
     Facility f5 = new Facility(facilityOwner);
+
+    FacilityContainerAdapter facilityContainerAdapter;
 
 
     @Override
@@ -36,7 +39,7 @@ public class Facility_Owner_Main_Menu_Activity extends AppCompatActivity {
         profileButton();
         createButton();
 
-        FacilityContainerAdapter facilityContainerAdapter = new FacilityContainerAdapter(Facility_Owner_Main_Menu_Activity.this, facilityOwner );
+        facilityContainerAdapter = new FacilityContainerAdapter(Facility_Owner_Main_Menu_Activity.this, facilityOwner, this );
         recyclerView.setAdapter(facilityContainerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -76,4 +79,14 @@ public class Facility_Owner_Main_Menu_Activity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onItemClick(int position) {
+        startActivity( new Intent(Facility_Owner_Main_Menu_Activity.this, Edit_Facility_Activity.class));
+    }
+
+    @Override
+    public void onItemLongClick(int position) {
+        facilityOwner.getFacilities().remove(position);
+        facilityContainerAdapter.notifyItemRemoved(position);
+    }
 }

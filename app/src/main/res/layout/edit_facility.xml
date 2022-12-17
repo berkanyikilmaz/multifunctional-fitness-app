@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Facility Menu"
+        android:gravity="center"
+        android:textSize="26sp" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/title"
+        android:text="Facility Name: "
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/editTextFacilityName"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_below="@id/title"
+        android:layout_alignParentRight="true" />
+
+
+
+    <TextView
+        android:id="@+id/textQuota"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_below="@id/createScheduleDailySchedule"
+        android:layout_alignParentLeft="true"
+        android:text="Quota: "
+        android:layout_marginLeft="30dp"
+        android:textSize="24sp"
+        />
+
+    <EditText
+        android:id="@+id/editQuota"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_toRightOf="@+id/textQuota"
+        android:layout_below="@id/createScheduleDailySchedule"
+        android:hint=""
+        />
+    <Button
+        android:id="@+id/confirmButton"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/editQuota"
+        android:layout_toRightOf ="@+id/textQuota"
+        android:text="Confirm"
+        />
+
+    <include
+        android:id="@+id/createScheduleDailySchedule"
+        layout="@layout/daily_schedule"
+        android:layout_width="350dp"
+        android:layout_height="500dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/editTextFacilityName"
+        android:layout_marginTop="0dp" />
+
+</RelativeLayout>

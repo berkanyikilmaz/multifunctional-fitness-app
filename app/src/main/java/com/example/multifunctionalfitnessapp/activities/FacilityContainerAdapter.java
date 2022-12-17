@@ -11,15 +11,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.multifunctionalfitnessapp.FacilityOwner;
 import com.example.multifunctionalfitnessapp.R;
+import com.example.multifunctionalfitnessapp.RecyclerViewInterface;
 
 public class FacilityContainerAdapter extends RecyclerView.Adapter<FacilityContainerAdapter.MyViewHolder> {
 
-    FacilityOwner facilityOwner;
-    Context context;
+    private final RecyclerViewInterface recyclerViewInterface;
 
-    public FacilityContainerAdapter(Context context, FacilityOwner facilityOwner){
+    Context context;
+    FacilityOwner facilityOwner;
+
+    public FacilityContainerAdapter(Context context, FacilityOwner facilityOwner, RecyclerViewInterface recyclerViewInterface){
         this.context = context;
         this.facilityOwner = facilityOwner;
+        this.recyclerViewInterface = recyclerViewInterface;
     }
 
     @NonNull
@@ -27,7 +31,7 @@ public class FacilityContainerAdapter extends RecyclerView.Adapter<FacilityConta
     public FacilityContainerAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.facility_panel, parent, false);
-        return new MyViewHolder(view);
+        return new MyViewHolder(view,recyclerViewInterface);
     }
 
     @Override
@@ -37,7 +41,6 @@ public class FacilityContainerAdapter extends RecyclerView.Adapter<FacilityConta
         holder.quota.setText("8");
         holder.appointments.setText("5");
         //for last two we should get the current time periods quota and appointments
-
     }
 
     @Override
@@ -46,16 +49,41 @@ public class FacilityContainerAdapter extends RecyclerView.Adapter<FacilityConta
         return facilityOwner.getFacilities().size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView facilityTitle, timePeriod, quota, appointments;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
             facilityTitle = itemView.findViewById(R.id.facilityTitle);
             timePeriod =  itemView.findViewById(R.id.timePeriod);
             quota =  itemView.findViewById(R.id.quotaText);
             appointments =  itemView.findViewById(R.id.appointmentsText);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (recyclerViewInterface != null){
+                        int position = getAdapterPosition();
+                        if ( position != RecyclerView.NO_POSITION){
+                            recyclerViewInterface.onItemClick(position);
+                        }
+                    }
+                }
+            });
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    if (recyclerViewInterface != null){
+                        int position = getAdapterPosition();
+                        if ( position != RecyclerView.NO_POSITION){
+                            recyclerViewInterface.onItemLongClick(position);
+                        }
+                    }
+                    return true;
+                }
+            });
         }
     }
 }
