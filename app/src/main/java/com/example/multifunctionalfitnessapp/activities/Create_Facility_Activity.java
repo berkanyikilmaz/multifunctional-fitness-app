@@ -98,8 +98,6 @@ public class Create_Facility_Activity extends AppCompatActivity {
                 /*Facility newFacility = new Facility(null);
                 newFacility.setName(facilityNameText);*/
 
-                userRef.child("facilities").setValue(facilityNameText);
-
                 DatabaseReference facilityRef = userRef.child("facilities").child(facilityNameText);
 
                 for (int i = 0; i < facilitySchedule.fullSchedule.length; i++) {

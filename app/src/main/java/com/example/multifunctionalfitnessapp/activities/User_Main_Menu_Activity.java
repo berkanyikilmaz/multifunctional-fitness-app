@@ -22,11 +22,8 @@ import com.example.multifunctionalfitnessapp.Constants;
 import com.example.multifunctionalfitnessapp.FirebaseManager;
 import com.example.multifunctionalfitnessapp.NormalUser;
 import com.example.multifunctionalfitnessapp.OnGetDataListener;
-import com.example.multifunctionalfitnessapp.PersonTimeInterval;
 import com.example.multifunctionalfitnessapp.R;
-import com.example.multifunctionalfitnessapp.Schedule;
 import com.example.multifunctionalfitnessapp.ScheduleHelper;
-import com.example.multifunctionalfitnessapp.User;
 import com.example.multifunctionalfitnessapp.UserData;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -56,7 +53,7 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
 
         userData = UserData.getInstance();
 
-        firebaseManager.getNormalUserSnapshot(userData.username, new OnGetDataListener() {
+        firebaseManager.getUserSnapshot(userData.username, new OnGetDataListener() {
             @Override
             public void onSuccess(DataSnapshot snapshot) {
                 userData.setNormalUserFromSnapshot(snapshot);

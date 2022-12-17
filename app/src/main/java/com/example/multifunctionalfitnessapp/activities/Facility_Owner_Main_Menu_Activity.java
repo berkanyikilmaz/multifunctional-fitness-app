@@ -13,10 +13,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.multifunctionalfitnessapp.Facility;
 import com.example.multifunctionalfitnessapp.FacilityOwner;
+import com.example.multifunctionalfitnessapp.FirebaseManager;
+import com.example.multifunctionalfitnessapp.OnGetDataListener;
 import com.example.multifunctionalfitnessapp.R;
 import com.example.multifunctionalfitnessapp.RecyclerViewInterface;
+import com.example.multifunctionalfitnessapp.UserData;
+import com.google.firebase.database.DataSnapshot;
 
 public class Facility_Owner_Main_Menu_Activity extends AppCompatActivity implements RecyclerViewInterface {
+
+    FirebaseManager firebaseManager = FirebaseManager.getInstance();
 
     RecyclerView recyclerView;
     FacilityOwner facilityOwner = new FacilityOwner("Ege", "Fitness", "egefitness", "***","05052","ege@gmail.com");
@@ -28,21 +34,41 @@ public class Facility_Owner_Main_Menu_Activity extends AppCompatActivity impleme
 
     FacilityContainerAdapter facilityContainerAdapter;
 
+    UserData userData;
+    FacilityOwner testFacilityOwner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.facility_owner_main_menu);
 
-        recyclerView = (RecyclerView) findViewById(R.id.facilityContainer);
-        logoutButton();
-        profileButton();
-        createButton();
+        userData = UserData.getInstance();
+        firebaseManager.getUserSnapshot(userData.username, new OnGetDataListener() {
+            @Override
+            public void onSuccess(DataSnapshot snapshot) {
+                userData.setFacilityOwnerFromDatabase(snapshot);
+                testFacilityOwner = userData.facilityOwner;
 
-        facilityContainerAdapter = new FacilityContainerAdapter(Facility_Owner_Main_Menu_Activity.this, facilityOwner, this );
-        recyclerView.setAdapter(facilityContainerAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                recyclerView = (RecyclerView) findViewById(R.id.facilityContainer);
+                logoutButton();
+                profileButton();
+                createButton();
 
+                facilityContainerAdapter = new FacilityContainerAdapter(Facility_Owner_Main_Menu_Activity.this, testFacilityOwner, Facility_Owner_Main_Menu_Activity.this );
+                recyclerView.setAdapter(facilityContainerAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(Facility_Owner_Main_Menu_Activity.this));
+            }
+
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onFailure() {
+
+            }
+        });
     }
 
     private void logoutButton() {
@@ -86,7 +112,7 @@ public class Facility_Owner_Main_Menu_Activity extends AppCompatActivity impleme
 
     @Override
     public void onItemLongClick(int position) {
-        facilityOwner.getFacilities().remove(position);
+        testFacilityOwner.getFacilities().remove(position);
         facilityContainerAdapter.notifyItemRemoved(position);
     }
 }

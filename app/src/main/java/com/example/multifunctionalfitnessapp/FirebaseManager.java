@@ -2,8 +2,6 @@ package com.example.multifunctionalfitnessapp;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,7 +37,7 @@ public class FirebaseManager {
         databaseRef.child("users").child(user.getUsername()).setValue(user);
     }
 
-    public void getNormalUserSnapshot(String username, final OnGetDataListener listener) {
+    public void getUserSnapshot(String username, final OnGetDataListener listener) {
         listener.onStart();
 
         databaseRef.child("users").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
