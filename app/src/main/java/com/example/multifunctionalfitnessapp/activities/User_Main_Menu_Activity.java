@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -152,7 +153,14 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
             row.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //OPEN TIME INTERVAL PANELS FOR THE CLICKED TIME INTERVAL
+                    if( (Integer.parseInt(name.getBackground().toString()) == (Color.RED))){
+                        name.setBackgroundColor(Color.RED);
+                        name.setText("UNAVAILABLE");
+                    }
+                    else{
+                        name.setBackgroundColor(Color.WHITE);
+                        name.setText("aaa");
+                    }
                 }
             });
         }
