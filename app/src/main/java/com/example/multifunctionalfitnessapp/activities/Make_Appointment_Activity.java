@@ -10,12 +10,15 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.multifunctionalfitnessapp.Constants;
 import com.example.multifunctionalfitnessapp.Facility;
 import com.example.multifunctionalfitnessapp.FacilityOwner;
 import com.example.multifunctionalfitnessapp.FirebaseManager;
+import com.example.multifunctionalfitnessapp.PersonTimeInterval;
 import com.example.multifunctionalfitnessapp.R;
 import com.example.multifunctionalfitnessapp.Schedule;
 import com.example.multifunctionalfitnessapp.ScheduleHelper;
@@ -55,7 +58,7 @@ public class Make_Appointment_Activity extends AppCompatActivity {
     }
 
     public void registerFacilitiesToChoose() {
-
+// ich bin ein berliner
         
     }
 
@@ -65,6 +68,27 @@ public class Make_Appointment_Activity extends AppCompatActivity {
         dailySchedule = makeAppointmentScheduleView.findViewById(R.id.dailyScheduleTableLayout);
 
         registerDaysDropdown();
+        ScheduleHelper.updateMakeAppointmentScheduleValues(dailySchedule,
+                userSchedule.fullSchedule[selectedDay], facilitySchedule.fullSchedule[selectedDay]);
+
+        for (int n = 1; n < dailySchedule.getChildCount(); n++) {
+            TableRow row = (TableRow)dailySchedule.getChildAt(n);
+            TextView name = (TextView) row.getChildAt(1);
+
+            row.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int rowIndex = ScheduleHelper.getRowIndex(row, view.getContext());
+
+                    PersonTimeInterval interval = (PersonTimeInterval) userSchedule.fullSchedule[selectedDay].fullDailySchedule[rowIndex];
+                    interval.isAvailable = !interval.isAvailable;
+                    Log.d(rowIndex + "", interval.isAvailable + "");
+
+                    ScheduleHelper.updateMakeAppointmentScheduleValues(dailySchedule,
+                            userSchedule.fullSchedule[selectedDay], facilitySchedule.fullSchedule[selectedDay]);
+                }
+            });
+        }
     }
 
     public void registerDaysDropdown() {
@@ -90,9 +114,16 @@ public class Make_Appointment_Activity extends AppCompatActivity {
         appointButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Add appointment to user's schedule
+                // Add appointment to the facility and change the quota
                 for (int i = 0; i < facilitySchedule.fullSchedule.length; i++) {
                     for (int j = 0; j < (facilitySchedule.fullSchedule[i]).fullDailySchedule.length; j++) {
-
+                         /*
+                        // If color is yellow
+                        // add appointment to the user
+                        // add appointment to the facility,
+                        // use methods defined in facility class to increase quota and make necessary changes
+                        // */
                         userRef.child("schedule").child(i+"").child(j+"").setValue((facilitySchedule.fullSchedule[i]).fullDailySchedule[j]);
                     }
                 }
