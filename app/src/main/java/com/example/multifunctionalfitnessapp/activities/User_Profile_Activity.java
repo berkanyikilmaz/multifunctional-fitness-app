@@ -124,7 +124,7 @@ public class User_Profile_Activity extends AppCompatActivity {
             case R.id.checkBox4:
                 if (checked) {
                     name.setText(name.getText());
-                    user.setPhoneNumber(name.toString());
+                    user.setName(name.toString());
 
                 }
                 else
