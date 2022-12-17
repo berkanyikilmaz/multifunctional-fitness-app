@@ -38,8 +38,8 @@ public class FacilityContainerAdapter extends RecyclerView.Adapter<FacilityConta
     public void onBindViewHolder(@NonNull FacilityContainerAdapter.MyViewHolder holder, int position) {
         holder.facilityTitle.setText(facilityOwner.getFacilities().get(position).getName());
         holder.timePeriod.setText("09-10"); //should be current time period
-        holder.quota.setText("8");
-        holder.appointments.setText("5");
+        holder.quota.setText("Quota: 8");
+        holder.appointments.setText("Appointments: 5");
         //for last two we should get the current time periods quota and appointments
     }
 

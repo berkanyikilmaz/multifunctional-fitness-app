@@ -27,6 +27,7 @@ public class Delete_Facility_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //delete selected facility from current owners facility
+
                 startActivity( new Intent( Delete_Facility_Activity.this, Facility_Owner_Main_Menu_Activity.class ) );
 
             }

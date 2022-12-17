@@ -86,7 +86,10 @@ public class Facility_Owner_Main_Menu_Activity extends AppCompatActivity impleme
 
     @Override
     public void onItemLongClick(int position) {
+        startActivity( new Intent(Facility_Owner_Main_Menu_Activity.this, Delete_Facility_Activity.class));
         facilityOwner.getFacilities().remove(position);
         facilityContainerAdapter.notifyItemRemoved(position);
+        //We can immediately delete a facility without notification here deleting activity call but if we want to ask again we should do it in delete facility activity but
+        // I don't know how to reach adapter outside this class?
     }
 }
