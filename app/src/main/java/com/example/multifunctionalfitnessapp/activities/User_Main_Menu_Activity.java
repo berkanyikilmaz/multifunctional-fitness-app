@@ -160,7 +160,7 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
                     }
                     else{
                         name.setBackgroundColor(Color.WHITE);
-                        name.setText("AVAILAVLE");
+                        name.setText("");
                     }
                 }
             });
