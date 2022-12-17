@@ -65,21 +65,21 @@ public class ScheduleHelper {
 
             if (((PersonTimeInterval)(userDailySchedule.fullDailySchedule[n-1])).isAvailable &&
                     !((FacilityTimeInterval)(facilityDailySchedule.fullDailySchedule[n-1])).isFull()) {
-                name.setBackgroundColor(Color.WHITE);
+                name.setBackgroundColor(Color.DKGRAY);
                 name.setText("");
             }
             else if (!((PersonTimeInterval)(userDailySchedule.fullDailySchedule[n-1])).isAvailable &&
-                    ((FacilityTimeInterval)(facilityDailySchedule.fullDailySchedule[n-1])).isFull()) {
+                    !((FacilityTimeInterval)(facilityDailySchedule.fullDailySchedule[n-1])).isFull()) {
                 name.setBackgroundColor(Color.YELLOW);
                 name.setText("");
             }
             else if (((PersonTimeInterval)(userDailySchedule.fullDailySchedule[n-1])).isAvailable &&
                     !((FacilityTimeInterval)(facilityDailySchedule.fullDailySchedule[n-1])).isFull()) {
-                name.setBackgroundColor(Color.CYAN);
+                name.setBackgroundColor(Color.RED);
                 name.setText("quota is full");
             }
             else {
-                // when the user is not available
+
                 name.setBackgroundColor(Color.RED);
                 name.setText("UNAVAILABLE");
             }
