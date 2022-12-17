@@ -3,6 +3,7 @@ package com.example.multifunctionalfitnessapp.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -31,12 +32,7 @@ public class User_Profile_Activity extends AppCompatActivity {
     }
 
     public void displayContents(User user) {
-        name.setText(user.getName());
-        surname.setText(user.getSurname());
-        email.setText(user.getEmail());
-        phoneNumber.setText(user.getPhoneNumber());
-        password.setText(user.getPassword());
-        userName.setText(user.getUsername());
+
         name = findViewById(R.id.editTextTextUsername);
         surname = findViewById(R.id.editTextTextPersonSurname);
         email = findViewById(R.id.editTextTextEmailAddress);
@@ -49,6 +45,12 @@ public class User_Profile_Activity extends AppCompatActivity {
         usernameBox =findViewById(R.id.checkBox6);
         passwordBox = findViewById(R.id.checkBox7);
         numberBox = findViewById(R.id.checkBox5);
+        name.setText(user.getName());
+        surname.setText(user.getSurname());
+        email.setText(user.getEmail());
+        phoneNumber.setText(user.getPhoneNumber());
+        password.setText(user.getPassword());
+        userName.setText(user.getUsername());
         numberBox.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
@@ -105,7 +107,7 @@ public class User_Profile_Activity extends AppCompatActivity {
         switch(view.getId()) {
             case R.id.checkBox2:
                 if (checked) {
-                    surname.setText(surnameBox.getText());
+                    surname.setText(surname.getText());
                     user.setSurname(surname.toString());
                 }
             else
@@ -113,7 +115,7 @@ public class User_Profile_Activity extends AppCompatActivity {
                 break;
             case R.id.checkBox3:
                 if (checked) {
-                    email.setText(mailBox.getText());
+                    email.setText(email.getText());
                     user.setEmail(email.toString());
                 }
             else
@@ -121,15 +123,16 @@ public class User_Profile_Activity extends AppCompatActivity {
                 break;
             case R.id.checkBox4:
                 if (checked) {
-                    name.setText(nameBox.getText());
+                    name.setText(name.getText());
                     user.setPhoneNumber(name.toString());
+
                 }
                 else
 
                     break;
             case R.id.checkBox5:
                 if (checked) {
-                    phoneNumber.setText(numberBox.getText());
+                    phoneNumber.setText(phoneNumber.getText());
                     user.setPhoneNumber(phoneNumber.toString());
                 }
                 else
@@ -137,7 +140,7 @@ public class User_Profile_Activity extends AppCompatActivity {
                     break;
             case R.id.checkBox6:
                 if (checked) {
-                    userName.setText(usernameBox.getText());
+                    userName.setText(userName.getText());
                     user.setUsername(userName.toString());
                 }
                 else
@@ -145,7 +148,7 @@ public class User_Profile_Activity extends AppCompatActivity {
                     break;
             case R.id.checkBox7:
                 if (checked) {
-                    password.setText(passwordBox.getText());
+                    password.setText(password.getText());
                     user.setPassword(password.toString());
                 }
                 else
