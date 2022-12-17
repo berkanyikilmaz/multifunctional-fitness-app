@@ -109,6 +109,7 @@ public class FirebaseManager {
         listener.onStart();
 
         databaseRef.child("users").child(username).child("facilities").child(facilityName).removeValue();
+        databaseRef.child("facilities").child(facilityName).removeValue();
 
         listener.onSuccess(null);
     }

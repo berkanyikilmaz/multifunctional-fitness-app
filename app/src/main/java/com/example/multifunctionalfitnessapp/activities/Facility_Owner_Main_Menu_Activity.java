@@ -44,7 +44,6 @@ public class Facility_Owner_Main_Menu_Activity extends AppCompatActivity impleme
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.facility_owner_main_menu);
 
         userData = UserData.getInstance();
         firebaseManager.getCompleteSnapshot(new OnGetDataListener() {
@@ -54,6 +53,8 @@ public class Facility_Owner_Main_Menu_Activity extends AppCompatActivity impleme
                 testFacilityOwner = userData.facilityOwner;
 
                 Log.d("ownerName", testFacilityOwner.getUsername());
+
+                setContentView(R.layout.facility_owner_main_menu);
 
                 recyclerView = (RecyclerView) findViewById(R.id.facilityContainer);
                 logoutButton();
