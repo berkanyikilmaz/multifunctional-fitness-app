@@ -51,9 +51,9 @@ public class Make_Appointment_Activity extends AppCompatActivity {
         facilitySchedule = Schedule.createEmptyFacilitySchedule();
         userData = UserData.getInstance();
 
-        registerFacilitiesToChoose();
-        registerMakeAnAppointmentScheduleLayout();
-        registerAppointButton();
+        //registerFacilitiesToChoose();
+        //registerMakeAnAppointmentScheduleLayout();
+        //registerAppointButton();
         registerFacilityDropdown();
     }
 
@@ -64,7 +64,7 @@ public class Make_Appointment_Activity extends AppCompatActivity {
 
     public void registerMakeAnAppointmentScheduleLayout() {
 
-        makeAppointmentScheduleView = findViewById(R.id.createScheduleDailySchedule);
+        makeAppointmentScheduleView = findViewById(R.id.makeAppointmentDailySchedule);
         dailySchedule = makeAppointmentScheduleView.findViewById(R.id.dailyScheduleTableLayout);
 
         registerDaysDropdown();
@@ -91,6 +91,8 @@ public class Make_Appointment_Activity extends AppCompatActivity {
         }
     }
 
+
+
     public void registerDaysDropdown() {
         AutoCompleteTextView dropdown = makeAppointmentScheduleView.findViewById(R.id.daysAutoCompleteTextView);
         ArrayAdapter<String> adapterItems = new ArrayAdapter<String>(this, R.layout.dropdown_item, Constants.DAYS);
@@ -105,6 +107,7 @@ public class Make_Appointment_Activity extends AppCompatActivity {
             }
         });
     }
+
 
     public void registerAppointButton() {
 
