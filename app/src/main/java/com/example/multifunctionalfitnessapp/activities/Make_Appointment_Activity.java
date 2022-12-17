@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import com.example.multifunctionalfitnessapp.R;
 import com.example.multifunctionalfitnessapp.Schedule;
 import com.example.multifunctionalfitnessapp.ScheduleHelper;
 import com.example.multifunctionalfitnessapp.UserData;
+import com.google.firebase.database.DatabaseReference;
 
 public class Make_Appointment_Activity extends AppCompatActivity {
 
@@ -26,10 +28,11 @@ public class Make_Appointment_Activity extends AppCompatActivity {
     UserData userData;
 
     TableLayout dailySchedule;
-    View MakeAppointmentScheduleView;
+    View makeAppointmentScheduleView;
     int selectedDay = 0;
 
-    Schedule facilitySchedule; //FOR FACILITY CHOSEN
+    Schedule userSchedule; // FOR THE USER
+    Schedule facilitySchedule; //FOR THE CHOSEN FACILITY
 
     Facility chosenFacility = new Facility(new FacilityOwner("","","","","",""));
     String[] days = new String[]{"facility1", "facility2","facility3",};
@@ -58,12 +61,49 @@ public class Make_Appointment_Activity extends AppCompatActivity {
 
     public void registerMakeAnAppointmentScheduleLayout() {
 
+        makeAppointmentScheduleView = findViewById(R.id.createScheduleDailySchedule);
+        dailySchedule = makeAppointmentScheduleView.findViewById(R.id.dailyScheduleTableLayout);
 
-        
+        registerDaysDropdown();
+    }
+
+    public void registerDaysDropdown() {
+        AutoCompleteTextView dropdown = makeAppointmentScheduleView.findViewById(R.id.daysAutoCompleteTextView);
+        ArrayAdapter<String> adapterItems = new ArrayAdapter<String>(this, R.layout.dropdown_item, Constants.DAYS);
+        dropdown.setAdapter(adapterItems);
+
+        dropdown.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.d("days", adapterView.getItemAtPosition(i).toString() + " at position " + i + " is selected.");
+                selectedDay = i;
+                ScheduleHelper.updateCreateScheduleValues(dailySchedule, userSchedule.fullSchedule[selectedDay]);
+            }
+        });
     }
 
     public void registerAppointButton() {
 
+        Button appointButton = (Button) findViewById(R.id.makeAppointmentButton);
+        DatabaseReference userRef = firebaseManager.databaseRef.child("users").child(userData.username);
+
+        appointButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for (int i = 0; i < facilitySchedule.fullSchedule.length; i++) {
+                    for (int j = 0; j < (facilitySchedule.fullSchedule[i]).fullDailySchedule.length; j++) {
+
+                        userRef.child("schedule").child(i+"").child(j+"").setValue((facilitySchedule.fullSchedule[i]).fullDailySchedule[j]);
+                    }
+                }
+                for (int i = 0; i < userSchedule.fullSchedule.length; i++) {
+                    for (int j = 0; j < (userSchedule.fullSchedule[i]).fullDailySchedule.length; j++) {
+
+                        userRef.child("schedule").child(i+"").child(j+"").setValue((userSchedule.fullSchedule[i]).fullDailySchedule[j]);
+                    }
+                }
+            }
+        });
     }
 
     public void registerFacilityDropdown() {

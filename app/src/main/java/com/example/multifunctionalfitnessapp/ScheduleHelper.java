@@ -55,6 +55,36 @@ public class ScheduleHelper {
         return rowIndex;
     }
 
+    public static void updateMakeAppointmentScheduleValues(TableLayout scheduleTable, DailySchedule userDailySchedule, DailySchedule facilityDailySchedule) {
+        // takes parameters (TableLayout scheduleTable, DailySchedule userDailySchedule, DailySchedule facilityDailySchedule)
+
+        for (int n = 1; n < scheduleTable.getChildCount(); n++) {
+            TableRow row = (TableRow)scheduleTable.getChildAt(n);
+            TextView name = (TextView)row.getChildAt(1);
+
+            if (((PersonTimeInterval)(userDailySchedule.fullDailySchedule[n-1])).isAvailable &&
+                    !((FacilityTimeInterval)(facilityDailySchedule.fullDailySchedule[n-1])).isFull()) {
+                name.setBackgroundColor(Color.WHITE);
+                name.setText("");
+            }
+            else if (!((PersonTimeInterval)(userDailySchedule.fullDailySchedule[n-1])).isAvailable &&
+                    ((FacilityTimeInterval)(facilityDailySchedule.fullDailySchedule[n-1])).isFull()) {
+                name.setBackgroundColor(Color.YELLOW);
+                name.setText("");
+            }
+            else if (((PersonTimeInterval)(userDailySchedule.fullDailySchedule[n-1])).isAvailable &&
+                    !((FacilityTimeInterval)(facilityDailySchedule.fullDailySchedule[n-1])).isFull()) {
+                name.setBackgroundColor(Color.CYAN);
+                name.setText("quota is full");
+            }
+            else {
+                // when the user is not available
+                name.setBackgroundColor(Color.RED);
+                name.setText("UNAVAILABLE");
+            }
+        }
+    }
+
     public static void updateCreateScheduleValues(TableLayout scheduleTable, DailySchedule dailySchedule) {
 
         for (int n = 1; n < scheduleTable.getChildCount(); n++) {
