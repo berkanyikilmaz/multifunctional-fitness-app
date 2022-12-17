@@ -54,6 +54,7 @@ public class Create_Facility_Activity extends AppCompatActivity {
         registerFacilityNameAndQuota();
         registerDailyScheduleLayout();
         registerConfirmButton();
+        registerContinueButton();
     }
 
     public void registerFacilityNameAndQuota() {
@@ -94,8 +95,8 @@ public class Create_Facility_Activity extends AppCompatActivity {
             public void onClick(View view) {
                 String facilityNameText = facilityName.getText().toString();
 
-                Facility newFacility = new Facility(null);
-                newFacility.setName(facilityNameText);
+                /*Facility newFacility = new Facility(null);
+                newFacility.setName(facilityNameText);*/
 
                 userRef.child("facilities").setValue(facilityNameText);
 

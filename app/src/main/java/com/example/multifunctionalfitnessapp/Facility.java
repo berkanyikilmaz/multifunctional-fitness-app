@@ -9,7 +9,7 @@ public class Facility {
 
     public Facility(FacilityOwner owner) {
         this.owner = owner;
-        owner.addFacility(this);
+        //owner.addFacility(this);
     }
 
     boolean removeAppointment(NormalUser user, TimeInterval interval) {
