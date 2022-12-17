@@ -38,6 +38,7 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
     Button findFitnessBuddy;
     Button myProfile;
     Button makeAnAppointment;
+    Button logoutButton;
 
     TableLayout dailySchedule;
     View normalUserMainMenuScheduleView;
@@ -128,7 +129,13 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
     }
 
     public void registerLogoutButton() {
-
+        logoutButton = findViewById(R.id.logoutButton);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(User_Main_Menu_Activity.this, LogInActivity.class));
+            }
+        });
     }
 
     public void registerDailyScheduleLayout() {
