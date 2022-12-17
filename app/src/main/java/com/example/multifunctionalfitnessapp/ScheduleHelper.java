@@ -72,6 +72,28 @@ public class ScheduleHelper {
         }
     }
 
+    public static void updateCreateFacilityScheduleValues(TableLayout scheduleTable, DailySchedule dailySchedule) {
+        for (int n = 1; n < scheduleTable.getChildCount(); n++) {
+            TableRow row = (TableRow)scheduleTable.getChildAt(n);
+            TextView name = (TextView)row.getChildAt(1);
+
+            FacilityTimeInterval interval = ((FacilityTimeInterval)(dailySchedule.fullDailySchedule[n-1]));
+
+            if (interval.isSelected) {
+                name.setBackgroundColor(Color.GREEN);
+                name.setText("SELECTED");
+            }
+            else if (interval.quota == 0) {
+                name.setBackgroundColor(Color.WHITE);
+                name.setText("Quota: 0");
+            }
+            else {
+                name.setBackgroundColor(Color.YELLOW);
+                name.setText("Quota: " + interval.quota);
+            }
+        }
+    }
+
     public static void updateUserMainMenuScheduleValues(TableLayout scheduleTable, int dailyScheduleIndex) {
         UserData userData = UserData.getInstance();
 

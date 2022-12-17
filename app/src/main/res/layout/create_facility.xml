@@ -32,7 +32,7 @@
         android:id="@+id/createButton"
         android:layout_width="100dp"
         android:layout_height="80dp"
-        android:layout_below="@id/createScheduleDailySchedule"
+        android:layout_below="@id/createFacilityScheduleLayout"
         android:layout_alignParentRight="true"
         android:text="Create Facility"
         />
@@ -41,7 +41,7 @@
         android:id="@+id/textQuota"
         android:layout_width="100dp"
         android:layout_height="80dp"
-        android:layout_below="@id/createScheduleDailySchedule"
+        android:layout_below="@id/createFacilityScheduleLayout"
         android:layout_alignParentLeft="true"
         android:text="Quota: "
         android:layout_marginLeft="30dp"
@@ -55,7 +55,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:layout_toRightOf="@+id/textQuota"
-        android:layout_below="@id/createScheduleDailySchedule"
+        android:layout_below="@id/createFacilityScheduleLayout"
         android:hint=""
         />
     <Button
@@ -69,7 +69,7 @@
         />
 
     <include
-        android:id="@+id/createScheduleDailySchedule"
+        android:id="@+id/createFacilityScheduleLayout"
         layout="@layout/daily_schedule"
         android:layout_width="350dp"
         android:layout_height="500dp"
