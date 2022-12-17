@@ -3,31 +3,59 @@ package com.example.multifunctionalfitnessapp.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TableLayout;
 
+import com.example.multifunctionalfitnessapp.Facility;
+import com.example.multifunctionalfitnessapp.FacilityOwner;
+import com.example.multifunctionalfitnessapp.FirebaseManager;
 import com.example.multifunctionalfitnessapp.R;
+import com.example.multifunctionalfitnessapp.Schedule;
+import com.example.multifunctionalfitnessapp.UserData;
 
 public class Make_Appointment_Activity extends AppCompatActivity {
+
+    FirebaseManager firebaseManager = FirebaseManager.getInstance();
+    UserData userData;
+
+    TableLayout dailySchedule;
+    View MakeAppointmentScheduleView;
+    int selectedDay = 0;
+
+    Schedule facilitySchedule; //FOR FACILITY CHOSEN
+
+    Facility chosenFacility = new Facility(new FacilityOwner("","","","","",""));
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.make_appointment);
+
+        facilitySchedule = Schedule.createEmptyFacilitySchedule();
+        userData = UserData.getInstance();
+
+        registerFacilitiesToChoose();
+        registerMakeAnAppointmentScheduleLayout();
+        registerAppointButton();
     }
 
-    public void showFacilitiesToChoose() {
-        // I should figure out how we can take the choice inside this method
+    public void registerFacilitiesToChoose() {
 
-        // this method will show facilities for the user to choose from
-        // after the user has chosen 1, displayFacility method
-        // will be used to display the weekly schedule of the chosen facility
-        registerMakeAnAppointmentScheduleLayout();
+        
     }
 
     public void registerMakeAnAppointmentScheduleLayout() {
-        // this method will display the weekly schedule of the facility user chose
-        // we can display it not as we do for displaying a facility to the owner
-        // we better do it with colors saying available or not
-        // for example; red for unavailable hours and white for the available ones
+
+
+        
+    }
+
+    public void registerAppointButton() {
+
+    }
+
+    public void registerFacilitiesDropdown() {
         
     }
 }
