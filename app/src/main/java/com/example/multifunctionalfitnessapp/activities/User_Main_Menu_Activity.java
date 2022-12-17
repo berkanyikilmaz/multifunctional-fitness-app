@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -154,13 +155,18 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
                 public void onClick(View view) {
                     ColorDrawable nameColor = (ColorDrawable) name.getBackground();
                     int color = nameColor.getColor();
-                    if( !(color == (Color.RED))){
-                        name.setBackgroundColor(Color.RED);
-                        name.setText("UNAVAILABLE");
-                    }
-                    else{
+                    if( (color == (Color.RED))){
                         name.setBackgroundColor(Color.WHITE);
                         name.setText("");
+                    }
+                    else if(color ==(Color.BLUE)){
+                        PopupDialog popup_dialog = new PopupDialog (_context);
+                        popup_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        popup_dialog.setContentView(R.layout.popup_dialog_layout);
+                    }
+                    else{
+                        name.setBackgroundColor(Color.RED);
+                        name.setText("UNAVAILABLE");
                     }
                 }
             });
