@@ -2,7 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/slotsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
 
+        android:layout_marginTop="0dp"
+        android:gravity="center"
+        android:text="Available Slots"
+        android:textAlignment="center"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/facilitiesTitle"
@@ -11,50 +20,44 @@
         android:text="Facilities: "
         android:textAlignment="center"
         android:textSize="24sp"
-        android:layout_marginTop="32dp"
         android:gravity="center"
-        />
-
-    <AutoCompleteTextView
-        android:id="@+id/facilityChoice"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="32dp"
-        android:layout_marginRight="53dp"
-        android:inputType="none"
-        android:text="Choose a Facility"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/slotsTitle"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/facilityChoice"
-        android:layout_marginTop="0dp"
-        android:gravity="center"
-        android:text="Available Slots"
-        android:textAlignment="center"
-        android:textSize="24sp" />
-
-
-    <Button
-        android:id="@+id/confirmButton"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_below="@id/createScheduleDailySchedule"
-        android:layout_alignParentRight="true"
-        android:text="Appoint"
-        />
-
-    <include
-        android:id="@+id/createScheduleDailySchedule"
-        layout="@layout/daily_schedule"
-        android:layout_width="350dp"
-        android:layout_height="500dp"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/slotsTitle"
-        android:layout_marginTop="0dp" />
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/a1"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="Select Facility"
+        android:layout_below="@id/slotsTitle"
+        android:layout_toRightOf="@id/facilitiesTitle"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+        <AutoCompleteTextView
+            android:id="@id/autoCompleteTextView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none">
+
+        </AutoCompleteTextView>
+    </com.google.android.material.textfield.TextInputLayout>
+
+        <include
+            android:id="@+id/createScheduleDailySchedule"
+            layout="@layout/daily_schedule"
+            android:layout_width="350dp"
+            android:layout_height="500dp"
+            android:layout_marginTop="0dp"
+            android:layout_below="@id/a1"
+            android:layout_centerHorizontal="true"/>
+
+        <Button
+            android:id="@+id/confirmButton"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:text="Appoınt"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/createScheduleDailySchedule"/>
 
 
 </RelativeLayout>

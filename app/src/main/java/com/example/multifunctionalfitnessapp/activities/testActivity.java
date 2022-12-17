@@ -14,7 +14,7 @@ import com.example.multifunctionalfitnessapp.R;
 import java.util.ArrayList;
 
 public class testActivity extends AppCompatActivity {
-    String[] days = new String[]{"monday", "tuesday,thursday"};
+    String[] days = new String[]{"facility1", "facility2","facility3",};
     AutoCompleteTextView autoCompleteTextView2my;
     ArrayAdapter<String> adapterItems;
 
