@@ -20,6 +20,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.multifunctionalfitnessapp.Constants;
+import com.example.multifunctionalfitnessapp.ExampleDialog;
 import com.example.multifunctionalfitnessapp.FirebaseManager;
 import com.example.multifunctionalfitnessapp.NormalUser;
 import com.example.multifunctionalfitnessapp.OnGetDataListener;
@@ -31,7 +32,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
-public class User_Main_Menu_Activity extends AppCompatActivity {
+import org.w3c.dom.Text;
+
+public class User_Main_Menu_Activity extends AppCompatActivity implements ExampleDialog.ExampleDialogListener {
 
     FirebaseManager firebaseManager = FirebaseManager.getInstance();
 
@@ -146,7 +149,7 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
         ScheduleHelper.updateUserMainMenuScheduleValuesFromUser(dailySchedule, selectedDay, normalUser);
 
         for (int n = 1; n < dailySchedule.getChildCount(); n++) {
-            TableRow row = (TableRow)dailySchedule.getChildAt(n);
+            TableRow row = (TableRow) dailySchedule.getChildAt(n);
             TextView name = (TextView) row.getChildAt(1);
 
             row.setOnClickListener(new View.OnClickListener() {
@@ -158,11 +161,10 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
                     if( (color == (Color.RED))){
                         name.setBackgroundColor(Color.WHITE);
                         name.setText("");
+                        //we should remove unavailable hour from users schedule
                     }
-                    else if(color ==(Color.BLUE)){
-                        PopupDialog popup_dialog = new PopupDialog (_context);
-                        popup_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                        popup_dialog.setContentView(R.layout.popup_dialog_layout);
+                    else if(color ==(Color.WHITE)){
+                        openDialog(name);
                     }
                     else{
                         name.setBackgroundColor(Color.RED);
@@ -186,5 +188,16 @@ public class User_Main_Menu_Activity extends AppCompatActivity {
                 ScheduleHelper.updateUserMainMenuScheduleValuesFromUser(dailySchedule, selectedDay, normalUser);
             }
         });
+    }
+
+    public void openDialog(TextView name){
+        ExampleDialog dialog = new ExampleDialog(name);
+        dialog.show(getSupportFragmentManager(), "dialog");
+    }
+
+
+    public void applyRemoval(TextView name) {
+        name.setBackgroundColor(Color.GREEN);
+        name.setText("NO APPOINTMENT");
     }
 }
