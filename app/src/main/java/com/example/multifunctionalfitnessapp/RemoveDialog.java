@@ -12,12 +12,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-public class ExampleDialog extends AppCompatDialogFragment {
+public class RemoveDialog extends AppCompatDialogFragment {
 
-    private ExampleDialogListener listener;
+    private RemoveDialogListener listener;
     private TextView name;
 
-    public ExampleDialog(TextView name){
+    public RemoveDialog(TextView name){
         this.name = name;
     }
 
@@ -45,13 +45,13 @@ public class ExampleDialog extends AppCompatDialogFragment {
         super.onAttach(context);
 
         try {
-            listener = (ExampleDialogListener) context;
+            listener = (RemoveDialogListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + "must implement ExampleDialogListener");
         }
     }
 
-    public interface ExampleDialogListener{
+    public interface RemoveDialogListener{
         void applyRemoval(TextView name);
     }
 }

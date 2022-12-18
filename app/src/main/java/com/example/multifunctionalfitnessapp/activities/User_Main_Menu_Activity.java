@@ -6,11 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -20,7 +18,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.multifunctionalfitnessapp.Constants;
-import com.example.multifunctionalfitnessapp.ExampleDialog;
+import com.example.multifunctionalfitnessapp.RemoveDialog;
 import com.example.multifunctionalfitnessapp.FirebaseManager;
 import com.example.multifunctionalfitnessapp.NormalUser;
 import com.example.multifunctionalfitnessapp.OnGetDataListener;
@@ -32,9 +30,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
-public class User_Main_Menu_Activity extends AppCompatActivity implements ExampleDialog.ExampleDialogListener {
+public class User_Main_Menu_Activity extends AppCompatActivity implements RemoveDialog.RemoveDialogListener {
 
     FirebaseManager firebaseManager = FirebaseManager.getInstance();
 
@@ -164,7 +160,7 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Exampl
                         //we should remove unavailable hour from users schedule
                     }
                     else if(color ==(Color.WHITE)){
-                        openDialog(name);
+                        openRemoveDialog(name);
                     }
                     else{
                         name.setBackgroundColor(Color.RED);
@@ -190,8 +186,8 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Exampl
         });
     }
 
-    public void openDialog(TextView name){
-        ExampleDialog dialog = new ExampleDialog(name);
+    public void openRemoveDialog(TextView name){
+        RemoveDialog dialog = new RemoveDialog(name);
         dialog.show(getSupportFragmentManager(), "dialog");
     }
 
