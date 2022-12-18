@@ -30,6 +30,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Locale;
+
 public class User_Main_Menu_Activity extends AppCompatActivity implements RemoveDialog.RemoveDialogListener {
 
     FirebaseManager firebaseManager = FirebaseManager.getInstance();
@@ -38,6 +40,7 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
     Button myProfile;
     Button makeAnAppointment;
     Button logoutButton;
+    TextView welcomeNameTextView;
 
     TableLayout dailySchedule;
     View normalUserMainMenuScheduleView;
@@ -61,6 +64,7 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
                 Log.d("name", userData.normalUser.getName());
                 normalUser = userData.normalUser;
 
+                updateWelcomeNameTitle();
                 registerFindFitnessBuddyButton();
                 registerMyProfileButton();
                 registerMakeAnAppointmentButton();
@@ -80,6 +84,10 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
         });
     }
 
+    public void updateWelcomeNameTitle(){
+        welcomeNameTextView = findViewById(R.id.welcomeNameTitle);
+        welcomeNameTextView.setText("Welcome " + normalUser.getName().toUpperCase(Locale.ROOT) + "!");
+    }
     public void getNormalUser(final OnGetDataListener listener) {
         listener.onStart();
         DatabaseReference ref = firebaseManager.databaseRef.child("users").child(userData.username);

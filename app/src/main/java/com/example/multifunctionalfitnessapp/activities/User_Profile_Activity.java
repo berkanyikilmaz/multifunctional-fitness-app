@@ -29,6 +29,7 @@ public class User_Profile_Activity extends AppCompatActivity {
         // buttons and their onClick methods should be added here
         // buttons will function as ways to making changes to the attributes of the user
         // changing user's attributes will be similar to sign-up
+
     }
 
     public void displayContents(User user) {
@@ -39,12 +40,12 @@ public class User_Profile_Activity extends AppCompatActivity {
         phoneNumber = findViewById(R.id.editTextPhone);
         password = findViewById(R.id.editTextTextPassword);
         userName = findViewById(R.id.editTextTextPersonName);
-        nameBox = findViewById(R.id.checkBox4);
-        surnameBox = findViewById(R.id.checkBox2);
-        mailBox = findViewById(R.id.checkBox3);
-        usernameBox =findViewById(R.id.checkBox6);
-        passwordBox = findViewById(R.id.checkBox7);
-        numberBox = findViewById(R.id.checkBox5);
+        nameBox = findViewById(R.id.nameCheckBox);
+        surnameBox = findViewById(R.id.surnameCheckBox);
+        mailBox = findViewById(R.id.emailCheckBox);
+        usernameBox =findViewById(R.id.userNameCheckBox);
+        passwordBox = findViewById(R.id.passwordCheckBox);
+        numberBox = findViewById(R.id.phoneNumberCheckBox);
         name.setText(user.getName());
         surname.setText(user.getSurname());
         email.setText(user.getEmail());
@@ -103,57 +104,50 @@ public class User_Profile_Activity extends AppCompatActivity {
 
         boolean checked = ((CheckBox) view).isChecked();
 
-
         switch(view.getId()) {
-            case R.id.checkBox2:
-                if (checked) {
-                    surname.setText(surname.getText());
-                    user.setSurname(surname.toString());
-                }
-            else
-
-                break;
-            case R.id.checkBox3:
-                if (checked) {
-                    email.setText(email.getText());
-                    user.setEmail(email.toString());
-                }
-            else
-
-                break;
-            case R.id.checkBox4:
+            case R.id.nameCheckBox:
                 if (checked) {
                     name.setText(name.getText());
                     user.setName(name.toString());
 
                 }
                 else
-
-                    break;
-            case R.id.checkBox5:
+                break;
+            case R.id.surnameCheckBox:
+                if (checked) {
+                    surname.setText(surname.getText());
+                    user.setSurname(surname.toString());
+                }
+                else
+                break;
+            case R.id.emailCheckBox:
+                if (checked) {
+                    email.setText(email.getText());
+                    user.setEmail(email.toString());
+                }
+                else
+                break;
+            case R.id.phoneNumberCheckBox:
                 if (checked) {
                     phoneNumber.setText(phoneNumber.getText());
                     user.setPhoneNumber(phoneNumber.toString());
                 }
                 else
-
-                    break;
-            case R.id.checkBox6:
-                if (checked) {
-                    userName.setText(userName.getText());
-                    user.setUsername(userName.toString());
-                }
-                else
-
-                    break;
-            case R.id.checkBox7:
+                break;
+            case R.id.passwordCheckBox:
                 if (checked) {
                     password.setText(password.getText());
                     user.setPassword(password.toString());
                 }
                 else
-
-                    break;
+                break;
+            case R.id.userNameCheckBox:
+                if (checked) {
+                    userName.setText(userName.getText());
+                    user.setUsername(userName.toString());
+                }
+                else
+                break;
         }
     }
 
