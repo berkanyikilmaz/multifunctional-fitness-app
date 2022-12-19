@@ -39,7 +39,7 @@ public class NormalUser extends User {
         ArrayList<NormalUser> appointedUsersInInterval = new ArrayList<>();
        for(int k = 0; k<appointedHours.size();k++){
            if(appointedHours.get(k).equals(selectedInterval)){
-              appointedUsersInInterval= ((FacilityTimeInterval)f1.schedule.getTimeInterval(selectedInterval)).getAppointedUsers();
+              appointedUsersInInterval= ((FacilityTimeInterval)f1.schedule.getTimeInterval(selectedInterval)).appointedUsers;
            }
 
 

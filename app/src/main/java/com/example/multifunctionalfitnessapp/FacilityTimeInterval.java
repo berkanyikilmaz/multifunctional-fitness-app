@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class FacilityTimeInterval extends TimeInterval {
 
     // these are for facility appointments
-    int quota;
-    int noOfAppointedUser;
-    ArrayList<NormalUser> appointedUsers;
+    public int quota;
+    public int noOfAppointedUser;
+    public ArrayList<NormalUser> appointedUsers;
     public boolean isSelected = false; // for facility schedule creation
 
     public FacilityTimeInterval() { super(); }
@@ -22,25 +22,25 @@ public class FacilityTimeInterval extends TimeInterval {
         return quota;
     }
 
-    public int getNoOfAppointedUser() {
+    /*public int getNoOfAppointedUser() {
         return noOfAppointedUser;
-    }
+    }*/
 
-    public ArrayList<NormalUser> getAppointedUsers() {
+    /*public ArrayList<NormalUser> getAppointedUsers() {
         return appointedUsers;
-    }
+    }*/
 
     public void setQuota(int quota) {
         this.quota = quota;
     }
 
-    public void setNoOfAppointedUser(int noOfAppointedUser) {
+    /*public void setNoOfAppointedUser(int noOfAppointedUser) {
         this.noOfAppointedUser = noOfAppointedUser;
-    }
+    }*/
 
-    public void setAppointedUsers(ArrayList<NormalUser> appointedUsers) {
+    /*public void setAppointedUsers(ArrayList<NormalUser> appointedUsers) {
         this.appointedUsers = appointedUsers;
-    }
+    }*/
 
     public boolean isFull() {
         return quota == noOfAppointedUser;

@@ -1,6 +1,5 @@
 package com.example.multifunctionalfitnessapp;
 
-import android.app.Person;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
@@ -56,14 +55,18 @@ public class ScheduleHelper {
         return rowIndex;
     }
 
-    public static void updateMakeAppointmentScheduleValues(TableLayout scheduleTable, DailySchedule userDailySchedule, DailySchedule facilityDailySchedule) {
+    public static void updateMakeAppointmentScheduleValues(TableLayout scheduleTable, DailySchedule userDailySchedule, DailySchedule facilityDailySchedule, DailySchedule commonSchedule) {
         // takes parameters (TableLayout scheduleTable, DailySchedule userDailySchedule, DailySchedule facilityDailySchedule)
 
         for (int n = 1; n < scheduleTable.getChildCount(); n++) {
             TableRow row = (TableRow)scheduleTable.getChildAt(n);
             TextView name = (TextView)row.getChildAt(1);
 
-            if (((PersonTimeInterval)(userDailySchedule.fullDailySchedule[n-1])).isAvailable &&
+            if (((FacilityTimeInterval)(commonSchedule.fullDailySchedule[n-1])).isSelected) {
+                name.setBackgroundColor(Color.GREEN);
+                name.setText("SELECTED");
+            }
+            else if (((PersonTimeInterval)(userDailySchedule.fullDailySchedule[n-1])).isAvailable &&
                     !((FacilityTimeInterval)(facilityDailySchedule.fullDailySchedule[n-1])).isFull()) {
                 name.setBackgroundColor(Color.DKGRAY);
                 name.setText("");
@@ -143,7 +146,7 @@ public class ScheduleHelper {
 
                     if (interval.isAppointed) {
                         name.setBackgroundColor(Color.BLUE);
-                        name.setText("Appointed at " + interval.AppointedFacility.getName());
+                        name.setText("Appointed at " + interval.appointedFacility.getName());
                     }
                     else if (!interval.isAvailable) {
                         name.setBackgroundColor(Color.RED);
@@ -173,7 +176,7 @@ public class ScheduleHelper {
 
             if (interval.isAppointed) {
                 name.setBackgroundColor(Color.BLUE);
-                name.setText("Appointed at " + interval.AppointedFacility.getName());
+                name.setText("Appointed at " + interval.appointedFacility.getName());
             }
             else if (!interval.isAvailable) {
                 name.setBackgroundColor(Color.RED);

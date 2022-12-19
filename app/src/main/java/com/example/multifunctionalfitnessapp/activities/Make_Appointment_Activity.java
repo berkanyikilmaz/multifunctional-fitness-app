@@ -2,6 +2,8 @@ package com.example.multifunctionalfitnessapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +18,6 @@ import android.widget.Toast;
 
 import com.example.multifunctionalfitnessapp.Constants;
 import com.example.multifunctionalfitnessapp.Facility;
-import com.example.multifunctionalfitnessapp.FacilityOwner;
 import com.example.multifunctionalfitnessapp.FacilityTimeInterval;
 import com.example.multifunctionalfitnessapp.FirebaseManager;
 import com.example.multifunctionalfitnessapp.NormalUser;
@@ -42,14 +43,14 @@ public class Make_Appointment_Activity extends AppCompatActivity {
     View makeAppointmentScheduleView;
     int selectedDay = 0;
 
-    Schedule userSchedule; // FOR THE USER
-    Schedule facilitySchedule; //FOR THE CHOSEN FACILITY
 
     ArrayList<Facility> allFacilities;
     AutoCompleteTextView autoCompleteTextView2my;
     ArrayAdapter<String> adapterItems;
 
     int selectedFacility = 0;
+
+    Schedule commonSchedule;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,28 +64,20 @@ public class Make_Appointment_Activity extends AppCompatActivity {
         firebaseManager.getFacilitiesSnapshot(new OnGetDataListener() {
             @Override
             public void onSuccess(DataSnapshot snapshot) {
+                commonSchedule = Schedule.createEmptyFacilitySchedule();
+
                 for (DataSnapshot childSnapshot : snapshot.getChildren()) {
                     Facility newFacility = new Facility();
                     newFacility.setName(childSnapshot.getKey());
-
-                    Schedule facilitySchedule = Schedule.createEmptyFacilitySchedule();
-
-                    for (int day = 0; day < 7; day++) {
-                        for (int hour = 0; hour < 24; hour++) {
-                            FacilityTimeInterval interval = childSnapshot.child("schedule").child(day+"").child(hour+"").getValue(FacilityTimeInterval.class);
-                            facilitySchedule.fullSchedule[day].fullDailySchedule[hour] = interval;
-                        }
-                    }
-
-                    newFacility.setSchedule(facilitySchedule);
+                    Log.d("facName", childSnapshot.getKey());
+                    userData.setFacilitySchedule(newFacility, childSnapshot);
                     allFacilities.add(newFacility);
                 }
 
                 setContentView(R.layout.make_appointment);
 
-                //registerFacilitiesToChoose();
                 registerMakeAnAppointmentScheduleLayout();
-                //registerAppointButton();
+                registerAppointButton();
                 registerFacilityDropdown();
             }
 
@@ -100,10 +93,6 @@ public class Make_Appointment_Activity extends AppCompatActivity {
         });
     }
 
-    public void registerFacilitiesToChoose() {
-
-    }
-
     public void registerMakeAnAppointmentScheduleLayout() {
 
         makeAppointmentScheduleView = findViewById(R.id.makeAppointmentDailySchedule);
@@ -113,7 +102,8 @@ public class Make_Appointment_Activity extends AppCompatActivity {
         ScheduleHelper.updateMakeAppointmentScheduleValues(
                 dailySchedule,
                 normalUser.getSchedule().fullSchedule[selectedDay],
-                allFacilities.get(selectedFacility).getSchedule().fullSchedule[selectedDay]);
+                allFacilities.get(selectedFacility).getSchedule().fullSchedule[selectedDay],
+                commonSchedule.fullSchedule[selectedDay]);
 
         for (int n = 1; n < dailySchedule.getChildCount(); n++) {
             TableRow row = (TableRow)dailySchedule.getChildAt(n);
@@ -124,20 +114,24 @@ public class Make_Appointment_Activity extends AppCompatActivity {
                 public void onClick(View view) {
                     int rowIndex = ScheduleHelper.getRowIndex(row, view.getContext());
 
-                    PersonTimeInterval interval = (PersonTimeInterval) userSchedule.fullSchedule[selectedDay].fullDailySchedule[rowIndex];
-                    interval.isAvailable = !interval.isAvailable;
-                    Log.d(rowIndex + "", interval.isAvailable + "");
-
                     ScheduleHelper.updateMakeAppointmentScheduleValues(
                             dailySchedule,
                             normalUser.getSchedule().fullSchedule[selectedDay],
-                            allFacilities.get(selectedFacility).getSchedule().fullSchedule[selectedDay]);
+                            allFacilities.get(selectedFacility).getSchedule().fullSchedule[selectedDay],
+                            commonSchedule.fullSchedule[selectedDay]);
+
+                    ColorDrawable nameColor = (ColorDrawable) name.getBackground();
+                    int color = nameColor.getColor();
+                    if (color == Color.DKGRAY) {
+                        FacilityTimeInterval interval = ((FacilityTimeInterval)(commonSchedule.fullSchedule[selectedDay].fullDailySchedule[rowIndex]));
+                        interval.isSelected = !interval.isSelected;
+                        name.setBackgroundColor(Color.GREEN);
+                        name.setText("SELECTED");
+                    }
                 }
             });
         }
     }
-
-
 
     public void registerDaysDropdown() {
         AutoCompleteTextView dropdown = makeAppointmentScheduleView.findViewById(R.id.daysAutoCompleteTextView);
@@ -153,7 +147,8 @@ public class Make_Appointment_Activity extends AppCompatActivity {
                 ScheduleHelper.updateMakeAppointmentScheduleValues(
                         dailySchedule,
                         normalUser.getSchedule().fullSchedule[selectedDay],
-                        allFacilities.get(selectedFacility).getSchedule().fullSchedule[selectedDay]);
+                        allFacilities.get(selectedFacility).getSchedule().fullSchedule[selectedDay],
+                        commonSchedule.fullSchedule[selectedDay]);
             }
         });
     }
@@ -161,31 +156,55 @@ public class Make_Appointment_Activity extends AppCompatActivity {
 
     public void registerAppointButton() {
 
-        Button appointButton = (Button) findViewById(R.id.makeAppointmentButton);
+        Button appointButton = findViewById(R.id.appointConfirmButton);
         DatabaseReference userRef = firebaseManager.databaseRef.child("users").child(userData.username);
+
+        Facility facility = allFacilities.get(selectedFacility);
 
         appointButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Add appointment to user's schedule
                 // Add appointment to the facility and change the quota
-                for (int i = 0; i < facilitySchedule.fullSchedule.length; i++) {
-                    for (int j = 0; j < (facilitySchedule.fullSchedule[i]).fullDailySchedule.length; j++) {
-                         /*
+                for (int day = 0; day < 7; day++) {
+                    for (int hour = 0; hour < 24; hour++) {
+                        /*
                         // If color is yellow
                         // add appointment to the user
                         // add appointment to the facility,
                         // use methods defined in facility class to increase quota and make necessary changes
                         // */
-                        userRef.child("schedule").child(i+"").child(j+"").setValue((facilitySchedule.fullSchedule[i]).fullDailySchedule[j]);
+                        PersonTimeInterval userInterval = (PersonTimeInterval)normalUser.getSchedule().fullSchedule[day].fullDailySchedule[hour];
+                        FacilityTimeInterval facilityInterval = (FacilityTimeInterval)facility.getSchedule().fullSchedule[day].fullDailySchedule[hour];
+                        FacilityTimeInterval commonInterval = (FacilityTimeInterval)commonSchedule.fullSchedule[day].fullDailySchedule[hour];
+
+                        if (commonInterval.isSelected == true) {
+                            commonInterval.isSelected = false;
+
+                            userInterval.isAppointed = true;
+                            userInterval.isAvailable = false;
+                            userInterval.appointedFacility = facility;
+
+                            facilityInterval.appointedUsers.add(normalUser);
+                            facilityInterval.noOfAppointedUser = (facilityInterval.appointedUsers.size());
+
+                            DatabaseReference userIntervalRef = firebaseManager.databaseRef.child("users").child(normalUser.getUsername()).child("schedule").child(day+"").child(hour+"");
+                            userIntervalRef.child("isAppointed").setValue(true);
+                            userIntervalRef.child("isAvailable").setValue(false);
+                            userIntervalRef.child("appointedFacility").setValue(facility.getName());
+
+                            DatabaseReference facilityIntervalRef = firebaseManager.databaseRef.child("facilities").child(facility.getName()).child("schedule").child(day+"").child(hour+"");
+                            facilityIntervalRef.child("appointedUsers").child(normalUser.getUsername()).setValue("");
+                            facilityIntervalRef.child("noOfAppointedUsers").setValue(facilityInterval.noOfAppointedUser);
+                        }
                     }
                 }
-                for (int i = 0; i < userSchedule.fullSchedule.length; i++) {
+                /*for (int i = 0; i < userSchedule.fullSchedule.length; i++) {
                     for (int j = 0; j < (userSchedule.fullSchedule[i]).fullDailySchedule.length; j++) {
 
                         userRef.child("schedule").child(i+"").child(j+"").setValue((userSchedule.fullSchedule[i]).fullDailySchedule[j]);
                     }
-                }
+                }*/
             }
         });
     }
@@ -211,10 +230,13 @@ public class Make_Appointment_Activity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Item: "+item,Toast.LENGTH_SHORT).show();
                 selectedFacility = i;
 
+                commonSchedule = Schedule.createEmptyFacilitySchedule();
+
                 ScheduleHelper.updateMakeAppointmentScheduleValues(
                         dailySchedule,
                         normalUser.getSchedule().fullSchedule[selectedDay],
-                        allFacilities.get(selectedFacility).getSchedule().fullSchedule[selectedDay]);
+                        allFacilities.get(selectedFacility).getSchedule().fullSchedule[selectedDay],
+                        commonSchedule.fullSchedule[selectedDay]);
             }
         });
 

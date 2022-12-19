@@ -1,13 +1,10 @@
 package com.example.multifunctionalfitnessapp;
 
-import com.example.multifunctionalfitnessapp.activities.Facility_Owner_Main_Menu_Activity;
-import com.example.multifunctionalfitnessapp.activities.Make_Appointment_Activity;
-
 public class PersonTimeInterval extends TimeInterval {
 
     public boolean isAvailable; // if the person is unavailable
     public boolean isAppointed;
-    Facility AppointedFacility;
+    public Facility appointedFacility;
     NormalUser fitnessBuddy;
 
     public PersonTimeInterval() {
@@ -18,7 +15,7 @@ public class PersonTimeInterval extends TimeInterval {
         super(startingHour);
         isAvailable = true;
         isAppointed = false;
-        AppointedFacility = null;
+        appointedFacility = null;
         fitnessBuddy = null;
     }
 
@@ -59,6 +56,6 @@ public class PersonTimeInterval extends TimeInterval {
     }
 
     public Facility getAppointedFacility() {
-        return AppointedFacility;
+        return appointedFacility;
     }
  }

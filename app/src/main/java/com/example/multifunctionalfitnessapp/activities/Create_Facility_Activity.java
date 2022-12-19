@@ -75,7 +75,7 @@ public class Create_Facility_Activity extends AppCompatActivity {
                         FacilityTimeInterval interval = (FacilityTimeInterval) facilitySchedule.fullSchedule[i].fullDailySchedule[j];
 
                         if (interval.isSelected) {
-                            interval.setQuota(newQuota);
+                            interval.quota = newQuota;
                             interval.isSelected = false;
                         }
                     }

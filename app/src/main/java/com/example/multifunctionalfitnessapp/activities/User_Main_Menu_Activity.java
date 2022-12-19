@@ -57,7 +57,7 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
 
         userData = UserData.getInstance();
 
-        firebaseManager.getUserSnapshot(userData.username, new OnGetDataListener() {
+        firebaseManager.getCompleteSnapshot(new OnGetDataListener() {
             @Override
             public void onSuccess(DataSnapshot snapshot) {
                 userData.setNormalUserFromSnapshot(snapshot);
