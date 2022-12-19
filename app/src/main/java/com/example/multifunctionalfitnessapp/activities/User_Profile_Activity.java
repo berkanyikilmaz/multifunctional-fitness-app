@@ -9,18 +9,23 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
+import com.example.multifunctionalfitnessapp.FirebaseManager;
 import com.example.multifunctionalfitnessapp.NormalUser;
 import com.example.multifunctionalfitnessapp.R;
 import com.example.multifunctionalfitnessapp.User;
 import com.example.multifunctionalfitnessapp.UserData;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class User_Profile_Activity extends AppCompatActivity {
+
+    FirebaseManager firebaseManager = FirebaseManager.getInstance();
 
     EditText name, surname, email, phoneNumber, password, userName;
     CheckBox nameBox,surnameBox,usernameBox,passwordBox, numberBox, mailBox;
-    User user = new NormalUser("ali", "ali", "ali", "ali", "5555555", "ali");
 
-    User newUser;
+    User user;
     UserData userData;
 
     @Override
@@ -29,9 +34,9 @@ public class User_Profile_Activity extends AppCompatActivity {
         setContentView(R.layout.user_profile_menu);
 
         userData = UserData.getInstance();
-        newUser = userData.getUser();
+        user = userData.getUser();
 
-        displayContents(newUser);
+        displayContents(user);
 
 
         // buttons and their onClick methods should be added here
@@ -68,7 +73,7 @@ public class User_Profile_Activity extends AppCompatActivity {
           public void onClick(View view) {
               onCheckboxClicked(view);
           }
-      });
+        });
         nameBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,9 +110,6 @@ public class User_Profile_Activity extends AppCompatActivity {
                 onCheckboxClicked(view);
             }
         });
-
-        // we should set these according to the user
-
     }
 
     public void onCheckboxClicked(View view) {
@@ -117,50 +119,52 @@ public class User_Profile_Activity extends AppCompatActivity {
         switch(view.getId()) {
             case R.id.nameCheckBox:
                 if (checked) {
-                    name.setText(name.getText());
-                    user.setName(name.toString());
+                    name.setText(name.getText().toString());
+                    user.setName(name.getText().toString());
+                    firebaseManager.updateUserValue(user, "name", user.getName());
                 }
                 else
                 break;
             case R.id.surnameCheckBox:
                 if (checked) {
-                    surname.setText(surname.getText());
-                    user.setSurname(surname.toString());
+                    surname.setText(surname.getText().toString());
+                    user.setSurname(surname.getText().toString());
+                    firebaseManager.updateUserValue(user, "surname", user.getSurname());
                 }
                 else
                 break;
             case R.id.emailCheckBox:
                 if (checked) {
-                    email.setText(email.getText());
-                    user.setEmail(email.toString());
+                    email.setText(email.getText().toString());
+                    user.setEmail(email.getText().toString());
+                    firebaseManager.updateUserValue(user, "email", user.getEmail());
                 }
                 else
                 break;
             case R.id.phoneNumberCheckBox:
                 if (checked) {
-                    phoneNumber.setText(phoneNumber.getText());
-                    user.setPhoneNumber(phoneNumber.toString());
+                    phoneNumber.setText(phoneNumber.getText().toString());
+                    user.setPhoneNumber(phoneNumber.getText().toString());
+                    firebaseManager.updateUserValue(user, "phoneNumber", user.getPhoneNumber());
                 }
                 else
                 break;
             case R.id.passwordCheckBox:
                 if (checked) {
-                    password.setText(password.getText());
-                    user.setPassword(password.toString());
+                    password.setText(password.getText().toString());
+                    user.setPassword(password.getText().toString());
+                    firebaseManager.updateUserValue(user, "password", user.getPassword());
                 }
                 else
                 break;
             case R.id.userNameCheckBox:
                 if (checked) {
-                    userName.setText(userName.getText());
-                    user.setUsername(userName.toString());
+                    userName.setText(userName.getText().toString());
+                    user.setUsername(userName.getText().toString());
+                    firebaseManager.updateUserValue(user, "username", user.getUsername());
                 }
                 else
                 break;
         }
-    }
-
-    public void updateContents() {
-
     }
 }

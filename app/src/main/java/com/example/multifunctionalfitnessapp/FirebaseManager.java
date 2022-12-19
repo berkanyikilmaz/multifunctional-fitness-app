@@ -10,6 +10,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class FirebaseManager {
 
     private static FirebaseManager firebaseManager = null;
@@ -121,6 +124,22 @@ public class FirebaseManager {
         });
     }
 
+    public void getSnapshotFromReference(DatabaseReference ref, final OnGetDataListener listener) {
+        listener.onStart();
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listener.onSuccess(snapshot);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     public void deleteFacility(String username, String facilityName, final OnGetDataListener listener) {
         listener.onStart();
 
@@ -128,5 +147,11 @@ public class FirebaseManager {
         databaseRef.child("facilities").child(facilityName).removeValue();
 
         listener.onSuccess(null);
+    }
+
+    public void updateUserValue(User user, String node, String value) {
+        Map<String, Object> update = new HashMap<>();
+        update.put(node, value);
+        firebaseManager.databaseRef.child("users").child(user.getUsername()).updateChildren(update);
     }
 }
