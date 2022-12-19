@@ -1,5 +1,6 @@
 package com.example.multifunctionalfitnessapp.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +27,7 @@ import com.example.multifunctionalfitnessapp.Schedule;
 import com.example.multifunctionalfitnessapp.ScheduleHelper;
 import com.example.multifunctionalfitnessapp.UserData;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
 
 public class Edit_Facility_Activity extends AppCompatActivity {
 
@@ -35,6 +37,7 @@ public class Edit_Facility_Activity extends AppCompatActivity {
     EditText facilityName;
     EditText quotaEditText;
     Button confirmButton;
+    Button continueButton;
 
     TableLayout dailySchedule;
     View editFacilityView;
@@ -51,11 +54,35 @@ public class Edit_Facility_Activity extends AppCompatActivity {
         registerFacilityNameAndQuota();
         registerDailyScheduleLayout();
         registerConfirmButton();
-
-
-
+        registerContinueButton();
 
     }
+
+    public void registerContinueButton(){
+        continueButton = (Button) findViewById(R.id.editFacilityContinueButton);
+        DatabaseReference userRef = firebaseManager.databaseRef.child("users").child(userData.username);
+        DatabaseReference facilitiesRef = firebaseManager.databaseRef.child("facilities");
+
+        continueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String facilityNameText = facilityName.getText().toString();
+
+                userRef.child("facilities").child(facilityNameText).setValue("");
+                DatabaseReference facilityRef = facilitiesRef.child(facilityNameText);
+
+                for (int i = 0; i < facilitySchedule.fullSchedule.length; i++) {
+                    for (int j = 0; j < (facilitySchedule.fullSchedule[i]).fullDailySchedule.length; j++) {
+
+                        facilityRef.child("schedule").child(i+"").child(j+"").setValue((facilitySchedule.fullSchedule[i]).fullDailySchedule[j]);
+                    }
+                }
+
+                startActivity( new Intent( Edit_Facility_Activity.this, Facility_Owner_Main_Menu_Activity.class ) );
+            }
+        });
+    }
+
     public void registerConfirmButton(){
         confirmButton = findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(new View.OnClickListener() {

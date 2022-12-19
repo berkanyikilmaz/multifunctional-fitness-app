@@ -43,7 +43,7 @@
 
     <EditText
         android:id="@+id/editQuota"
-        android:layout_width="200dp"
+        android:layout_width="240dp"
         android:layout_height="40dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -53,11 +53,20 @@
         />
     <Button
         android:id="@+id/confirmButton"
-        android:layout_width="200dp"
+        android:layout_width="120dp"
         android:layout_height="60dp"
         android:layout_below="@id/editQuota"
         android:layout_toRightOf ="@+id/textQuota"
-        android:text="Confirm"
+        android:text="Confirm Quota"
+        />
+
+    <Button
+        android:id="@+id/editFacilityContinueButton"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/editQuota"
+        android:layout_toRightOf ="@+id/confirmButton"
+        android:text="Continue"
         />
 
     <include
