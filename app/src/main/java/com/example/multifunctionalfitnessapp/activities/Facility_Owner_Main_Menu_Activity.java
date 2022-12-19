@@ -83,7 +83,7 @@ public class Facility_Owner_Main_Menu_Activity extends AppCompatActivity impleme
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity( new Intent( Facility_Owner_Main_Menu_Activity.this, User_Profile_Activity.class ) );
+                startActivity( new Intent( Facility_Owner_Main_Menu_Activity.this, User_Profile_Activity2.class ) );
                 Log.d("profileButton", " is clicked!");
             }
         });

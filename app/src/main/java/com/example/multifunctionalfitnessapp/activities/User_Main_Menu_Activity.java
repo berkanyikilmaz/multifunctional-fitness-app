@@ -120,7 +120,7 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
         myProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(User_Main_Menu_Activity.this, User_Profile_Activity.class));
+                startActivity(new Intent(User_Main_Menu_Activity.this, User_Profile_Activity2.class));
             }
         });
     }

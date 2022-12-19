@@ -75,8 +75,8 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activities.User_Profile_Activity"
-            android:exported="false">
+            android:name=".activities.User_Profile_Activity2"
+            android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
