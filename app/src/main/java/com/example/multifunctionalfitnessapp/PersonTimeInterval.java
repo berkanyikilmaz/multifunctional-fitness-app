@@ -4,11 +4,7 @@ public class PersonTimeInterval extends TimeInterval {
 
     public boolean isAvailable; // if the person is unavailable
     public boolean isAppointed;
-<<<<<<< Updated upstream
     public Facility appointedFacility;
-=======
-    public Facility AppointedFacility;
->>>>>>> Stashed changes
     NormalUser fitnessBuddy;
 
     public PersonTimeInterval() {
