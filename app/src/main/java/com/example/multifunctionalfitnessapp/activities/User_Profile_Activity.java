@@ -12,6 +12,7 @@ import android.widget.EditText;
 import com.example.multifunctionalfitnessapp.NormalUser;
 import com.example.multifunctionalfitnessapp.R;
 import com.example.multifunctionalfitnessapp.User;
+import com.example.multifunctionalfitnessapp.UserData;
 
 public class User_Profile_Activity extends AppCompatActivity {
 
@@ -19,12 +20,19 @@ public class User_Profile_Activity extends AppCompatActivity {
     CheckBox nameBox,surnameBox,usernameBox,passwordBox, numberBox, mailBox;
     User user = new NormalUser("ali", "ali", "ali", "ali", "5555555", "ali");
 
+    User newUser;
+    UserData userData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_profile_menu);
 
-        displayContents(user);
+        userData = UserData.getInstance();
+        newUser = userData.getUser();
+
+        displayContents(newUser);
+
 
         // buttons and their onClick methods should be added here
         // buttons will function as ways to making changes to the attributes of the user
@@ -52,11 +60,13 @@ public class User_Profile_Activity extends AppCompatActivity {
         phoneNumber.setText(user.getPhoneNumber());
         password.setText(user.getPassword());
         userName.setText(user.getUsername());
+
+
+
         numberBox.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
               onCheckboxClicked(view);
-
           }
       });
         nameBox.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +119,6 @@ public class User_Profile_Activity extends AppCompatActivity {
                 if (checked) {
                     name.setText(name.getText());
                     user.setName(name.toString());
-
                 }
                 else
                 break;

@@ -24,6 +24,8 @@ public class UserData {
     public String username;
     public String name;
 
+    public String existingUserType;
+
     public UserData() {
         username = null;
         name = null;
@@ -71,6 +73,7 @@ public class UserData {
         }
 
         normalUser.schedule = userSchedule;
+        existingUserType = "Normal User";
     }
 
     //this method uses complete snapshot
@@ -110,13 +113,15 @@ public class UserData {
 
             newFacility.setSchedule(facilitySchedule);
         }
+
+        existingUserType = "Facility Owner";
     }
 
-    /*public void setFacilities() {
-
-    }*/
-
-
+    public User getUser() {
+        if (existingUserType.equals("Facility Owner")) return facilityOwner;
+        else if (existingUserType.equals("Normal User")) return normalUser;
+        else return null;
+    }
 
     public NormalUser getNormalUser() {
         return normalUser;
