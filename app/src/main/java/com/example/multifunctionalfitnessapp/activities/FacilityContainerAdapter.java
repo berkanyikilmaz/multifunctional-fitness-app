@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.multifunctionalfitnessapp.FacilityOwner;
+import com.example.multifunctionalfitnessapp.FacilityTimeInterval;
 import com.example.multifunctionalfitnessapp.FirebaseManager;
 import com.example.multifunctionalfitnessapp.OnGetDataListener;
 import com.example.multifunctionalfitnessapp.R;
@@ -52,7 +53,7 @@ public class FacilityContainerAdapter extends RecyclerView.Adapter<FacilityConta
     @Override
     public void onBindViewHolder(@NonNull FacilityContainerAdapter.MyViewHolder holder, int position) {
         int timeIntervalIndex;
-        int dayIndex;
+        int dayIndex = -1;
         userData = UserData.getInstance();
         firebaseManager.getCompleteSnapshot(new OnGetDataListener() {
             @Override
@@ -77,11 +78,32 @@ public class FacilityContainerAdapter extends RecyclerView.Adapter<FacilityConta
         Calendar.getInstance().setTimeZone(Calendar.getInstance().getTimeZone());
         Date currentTime = Calendar.getInstance().getTime();
         String currentDate = simpleDateFormat.format(currentTime);
+        Calendar date = Calendar.getInstance();
+        String dayToday = android.text.format.DateFormat.format("EEEE", date).toString();
+        if(dayToday.equalsIgnoreCase("Monday"))
+            dayIndex=0;
+        if(dayToday.equalsIgnoreCase("Tuesday"))
+            dayIndex=1;
+        if(dayToday.equalsIgnoreCase("Wednesday"))
+            dayIndex=2;
+        if(dayToday.equalsIgnoreCase("Thursday"))
+            dayIndex=3;
+        if(dayToday.equalsIgnoreCase("Friday"))
+            dayIndex=4;
+        if(dayToday.equalsIgnoreCase("Saturday"))
+            dayIndex=5;
+        if(dayToday.equalsIgnoreCase("Sunday"))
+            dayIndex=6;
+
+        holder.quota.setText(dayIndex+" ");
+
+        //int day =Calendar.getInstance().getFirstDayOfWeek();
         timeIntervalIndex = Integer.parseInt(currentDate.substring(11,13));
-        dayIndex = Integer.parseInt(currentDate.substring(0,2)) % 7;
+
+
         holder.timePeriod.setText(currentDate);
-        holder.quota.setText("Quota: " + facilityOwner.getFacilities().get(position).getName());
-        holder.appointments.setText("Appointments: " + facilityOwner.getFacilities().get(position).getName());
+        holder.quota.setText("Quota: " + ((FacilityTimeInterval)facilityOwner.getFacilities().get(position).getSchedule().fullSchedule[dayIndex].fullDailySchedule[timeIntervalIndex]).getQuota());
+        holder.appointments.setText("Appointments: " + ((FacilityTimeInterval)facilityOwner.getFacilities().get(position).getSchedule().fullSchedule[dayIndex].fullDailySchedule[timeIntervalIndex]).getAppointedUsers());
         //for last two we should get the current time periods quota and appointments
     }
 
