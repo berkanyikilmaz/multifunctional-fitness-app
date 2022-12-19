@@ -1,17 +1,23 @@
 package com.example.multifunctionalfitnessapp.activities;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.multifunctionalfitnessapp.FacilityOwner;
+import com.example.multifunctionalfitnessapp.FirebaseManager;
+import com.example.multifunctionalfitnessapp.OnGetDataListener;
 import com.example.multifunctionalfitnessapp.R;
 import com.example.multifunctionalfitnessapp.RecyclerViewInterface;
+import com.example.multifunctionalfitnessapp.UserData;
+import com.google.firebase.database.DataSnapshot;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -23,8 +29,11 @@ public class FacilityContainerAdapter extends RecyclerView.Adapter<FacilityConta
 
     private final RecyclerViewInterface recyclerViewInterface;
 
+    FirebaseManager firebaseManager = FirebaseManager.getInstance();
+
     Context context;
     FacilityOwner facilityOwner;
+    UserData userData;
 
     public FacilityContainerAdapter(Context context, FacilityOwner facilityOwner, RecyclerViewInterface recyclerViewInterface){
         this.context = context;
@@ -42,14 +51,37 @@ public class FacilityContainerAdapter extends RecyclerView.Adapter<FacilityConta
 
     @Override
     public void onBindViewHolder(@NonNull FacilityContainerAdapter.MyViewHolder holder, int position) {
+        int timeIntervalIndex;
+        int dayIndex;
+        userData = UserData.getInstance();
+        firebaseManager.getCompleteSnapshot(new OnGetDataListener() {
+            @Override
+            public void onSuccess(DataSnapshot snapshot) {
+                userData.setFacilityOwnerFromDatabase(snapshot);
+                facilityOwner = userData.facilityOwner;
+                Log.d("ownerName", facilityOwner.getUsername());
+            }
+
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onFailure() {
+
+            }
+        });
         holder.facilityTitle.setText(facilityOwner.getFacilities().get(position).getName());
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Calendar.getInstance().setTimeZone(Calendar.getInstance().getTimeZone());
         Date currentTime = Calendar.getInstance().getTime();
         String currentDate = simpleDateFormat.format(currentTime);
+        timeIntervalIndex = Integer.parseInt(currentDate.substring(11,13));
+        dayIndex = Integer.parseInt(currentDate.substring(0,2)) % 7;
         holder.timePeriod.setText(currentDate);
-        holder.quota.setText("Quota: 8");
-        holder.appointments.setText("Appointments: 5");
+        holder.quota.setText("Quota: " + facilityOwner.getFacilities().get(position).getSchedule().fullSchedule[].);
+        holder.appointments.setText("Appointments: " + facilityOwner.getFacilities().get(position).getName());
         //for last two we should get the current time periods quota and appointments
     }
 
