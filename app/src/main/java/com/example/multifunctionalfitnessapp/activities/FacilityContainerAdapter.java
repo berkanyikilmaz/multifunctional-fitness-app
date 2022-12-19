@@ -13,6 +13,12 @@ import com.example.multifunctionalfitnessapp.FacilityOwner;
 import com.example.multifunctionalfitnessapp.R;
 import com.example.multifunctionalfitnessapp.RecyclerViewInterface;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
+
 public class FacilityContainerAdapter extends RecyclerView.Adapter<FacilityContainerAdapter.MyViewHolder> {
 
     private final RecyclerViewInterface recyclerViewInterface;
@@ -37,7 +43,11 @@ public class FacilityContainerAdapter extends RecyclerView.Adapter<FacilityConta
     @Override
     public void onBindViewHolder(@NonNull FacilityContainerAdapter.MyViewHolder holder, int position) {
         holder.facilityTitle.setText(facilityOwner.getFacilities().get(position).getName());
-        holder.timePeriod.setText("09-10"); //should be current time period
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        Calendar.getInstance().setTimeZone(Calendar.getInstance().getTimeZone());
+        Date currentTime = Calendar.getInstance().getTime();
+        String currentDate = simpleDateFormat.format(currentTime);
+        holder.timePeriod.setText(currentDate);
         holder.quota.setText("Quota: 8");
         holder.appointments.setText("Appointments: 5");
         //for last two we should get the current time periods quota and appointments
