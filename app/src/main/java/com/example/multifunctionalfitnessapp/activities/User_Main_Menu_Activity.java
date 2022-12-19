@@ -85,10 +85,11 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
         });
     }
 
-    public void updateWelcomeNameTitle(){
+    private void updateWelcomeNameTitle(){
         welcomeNameTextView = findViewById(R.id.welcomeNameTitle);
         welcomeNameTextView.setText("Welcome " + normalUser.getName().toUpperCase(Locale.ROOT) + "!");
     }
+
     public void getNormalUser(final OnGetDataListener listener) {
         listener.onStart();
         DatabaseReference ref = firebaseManager.databaseRef.child("users").child(userData.username);

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +20,8 @@ import com.example.multifunctionalfitnessapp.RecyclerViewInterface;
 import com.example.multifunctionalfitnessapp.UserData;
 import com.google.firebase.database.DataSnapshot;
 
+import java.util.Locale;
+
 public class Facility_Owner_Main_Menu_Activity extends AppCompatActivity implements RecyclerViewInterface {
 
     FirebaseManager firebaseManager = FirebaseManager.getInstance();
@@ -26,6 +29,7 @@ public class Facility_Owner_Main_Menu_Activity extends AppCompatActivity impleme
     RecyclerView recyclerView;
 
     FacilityContainerAdapter facilityContainerAdapter;
+    TextView welcomeNameTextView;
 
     UserData userData;
     FacilityOwner facilityOwner;
@@ -49,6 +53,7 @@ public class Facility_Owner_Main_Menu_Activity extends AppCompatActivity impleme
                 logoutButton();
                 profileButton();
                 createButton();
+                updateWelcomeNameTitle();
 
                 facilityContainerAdapter = new FacilityContainerAdapter(Facility_Owner_Main_Menu_Activity.this, facilityOwner, Facility_Owner_Main_Menu_Activity.this );
                 recyclerView.setAdapter(facilityContainerAdapter);
@@ -65,6 +70,11 @@ public class Facility_Owner_Main_Menu_Activity extends AppCompatActivity impleme
 
             }
         });
+    }
+
+    private void updateWelcomeNameTitle(){
+        welcomeNameTextView = findViewById(R.id.welcomeNameTitle);
+        welcomeNameTextView.setText("Welcome " + facilityOwner.getName().toUpperCase(Locale.ROOT) + "!");
     }
 
     private void logoutButton() {
