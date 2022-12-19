@@ -103,6 +103,7 @@ public class Facility_Owner_Main_Menu_Activity extends AppCompatActivity impleme
 
     @Override
     public void onItemClick(int position) {
+        userData.facility = facilityOwner.getFacilities().get(position);
         startActivity( new Intent(Facility_Owner_Main_Menu_Activity.this, Edit_Facility_Activity.class));
     }
 

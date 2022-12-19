@@ -18,6 +18,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.multifunctionalfitnessapp.Constants;
+import com.example.multifunctionalfitnessapp.PersonTimeInterval;
 import com.example.multifunctionalfitnessapp.RemoveDialog;
 import com.example.multifunctionalfitnessapp.FirebaseManager;
 import com.example.multifunctionalfitnessapp.NormalUser;
@@ -160,19 +161,31 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
 
                 @Override
                 public void onClick(View view) {
+                    int rowIndex = ScheduleHelper.getRowIndex(row, view.getContext());
+
+                    PersonTimeInterval interval = (PersonTimeInterval) normalUser.schedule.fullSchedule[selectedDay].fullDailySchedule[rowIndex];
+
                     ColorDrawable nameColor = (ColorDrawable) name.getBackground();
                     int color = nameColor.getColor();
-                    if( (color == (Color.RED))){
+                    if ((color == (Color.RED))){
                         name.setBackgroundColor(Color.WHITE);
                         name.setText("");
                         //we should remove unavailable hour from users schedule
+
+                        interval.isAvailable = true;
+                        firebaseManager.updateUserSchedule(normalUser,selectedDay,rowIndex,"isAvailable", true);
                     }
-                    else if(color ==(Color.WHITE)){
+                    else if(color == (Color.BLUE)){
                         openRemoveDialog(name);
+
+                        //TODO implement facility removal
                     }
                     else{
                         name.setBackgroundColor(Color.RED);
                         name.setText("UNAVAILABLE");
+
+                        interval.isAvailable = false;
+                        firebaseManager.updateUserSchedule(normalUser,selectedDay,rowIndex,"isAvailable", false);
                     }
                 }
             });

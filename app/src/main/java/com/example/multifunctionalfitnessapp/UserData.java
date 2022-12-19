@@ -12,6 +12,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import kotlinx.coroutines.channels.ChannelResult;
+
 public class UserData {
 
     FirebaseManager firebaseManager = FirebaseManager.getInstance();
@@ -26,11 +28,14 @@ public class UserData {
 
     public String existingUserType;
 
+    public Facility facility;
+
     public UserData() {
         username = null;
         name = null;
         normalUser = new NormalUser();
         facilityOwner = new FacilityOwner();
+        facility = new Facility();
     }
 
     public static UserData getInstance() {
@@ -115,6 +120,22 @@ public class UserData {
         }
 
         existingUserType = "Facility Owner";
+    }
+
+    public void setFacilityFromSnapshot(DataSnapshot snapshot) {
+        facility = new Facility();
+        facility.setName(snapshot.getKey());
+
+        Schedule facilitySchedule = Schedule.createEmptyFacilitySchedule();
+
+        for (int day = 0; day < 7; day++) {
+            for (int hour = 0; hour < 24; hour++) {
+                FacilityTimeInterval interval = snapshot.child("schedule").child(day+"").child(hour+"").getValue(FacilityTimeInterval.class);
+                facilitySchedule.fullSchedule[day].fullDailySchedule[hour] = interval;
+            }
+        }
+
+        facility.setSchedule(facilitySchedule);
     }
 
     public User getUser() {

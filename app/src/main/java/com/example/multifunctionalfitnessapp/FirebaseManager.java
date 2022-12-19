@@ -154,4 +154,10 @@ public class FirebaseManager {
         update.put(node, value);
         firebaseManager.databaseRef.child("users").child(user.getUsername()).updateChildren(update);
     }
+
+    public void updateUserSchedule(User user, int day, int hour, String node, boolean value) {
+        Map<String, Object> update = new HashMap<>();
+        update.put(node, value);
+        firebaseManager.databaseRef.child("users").child(user.getUsername()).child("schedule").child(day+"").child(hour+"").updateChildren(update);
+    }
 }
