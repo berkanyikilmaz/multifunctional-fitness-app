@@ -16,6 +16,13 @@ public class TimeInterval {
 
         return false;
     }
+    public int getINTERVAL(){
+        return this.INTERVAL;
+    }
+
+    public int getStartingHour(){
+        return startingHour;
+    }
 
     boolean removeAppointment(NormalUser user) { return false; }
 
