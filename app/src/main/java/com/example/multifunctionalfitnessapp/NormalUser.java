@@ -6,7 +6,7 @@ public class NormalUser extends User {
 
     public Schedule schedule;
     boolean wantsFitnessBuddy;
-    ArrayList<PersonTimeInterval> appointedHours = new ArrayList<>();
+    public ArrayList<PersonTimeInterval> appointedHours = new ArrayList<>();
 
     public NormalUser() {
         super();
