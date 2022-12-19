@@ -2,6 +2,7 @@ package com.example.multifunctionalfitnessapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -42,7 +43,6 @@ public class Make_Appointment_Activity extends AppCompatActivity {
     TableLayout dailySchedule;
     View makeAppointmentScheduleView;
     int selectedDay = 0;
-
 
     ArrayList<Facility> allFacilities;
     AutoCompleteTextView autoCompleteTextView2my;
@@ -199,12 +199,8 @@ public class Make_Appointment_Activity extends AppCompatActivity {
                         }
                     }
                 }
-                /*for (int i = 0; i < userSchedule.fullSchedule.length; i++) {
-                    for (int j = 0; j < (userSchedule.fullSchedule[i]).fullDailySchedule.length; j++) {
 
-                        userRef.child("schedule").child(i+"").child(j+"").setValue((userSchedule.fullSchedule[i]).fullDailySchedule[j]);
-                    }
-                }*/
+                startActivity( new Intent( Make_Appointment_Activity.this, User_Main_Menu_Activity.class ) );
             }
         });
     }

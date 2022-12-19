@@ -117,16 +117,7 @@ public class UserData {
             Facility newFacility = new Facility(facilityOwner);
             newFacility.setName(facilitySnapshot.getKey());
 
-            Schedule facilitySchedule = Schedule.createEmptyFacilitySchedule();
-
-            for (int day = 0; day < 7; day++) {
-                for (int hour = 0; hour < 24; hour++) {
-                    FacilityTimeInterval interval = facilitySnapshot.child("schedule").child(day+"").child(hour+"").getValue(FacilityTimeInterval.class);
-                    facilitySchedule.fullSchedule[day].fullDailySchedule[hour] = interval;
-                }
-            }
-
-            newFacility.setSchedule(facilitySchedule);
+            setFacilitySchedule(newFacility, facilitySnapshot);
         }
 
         existingUserType = "Facility Owner";
