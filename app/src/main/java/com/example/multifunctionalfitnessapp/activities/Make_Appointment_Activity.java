@@ -124,9 +124,17 @@ public class Make_Appointment_Activity extends AppCompatActivity {
                     int color = nameColor.getColor();
                     if (color == Color.DKGRAY) {
                         FacilityTimeInterval interval = ((FacilityTimeInterval)(commonSchedule.fullSchedule[selectedDay].fullDailySchedule[rowIndex]));
-                        interval.isSelected = !interval.isSelected;
+                        interval.isSelected = true;
                         name.setBackgroundColor(Color.GREEN);
                         name.setText("SELECTED");
+                        Log.d("facN", allFacilities.get(selectedFacility).getName());
+                    }
+                    else if (color == Color.GREEN) {
+                        FacilityTimeInterval interval = ((FacilityTimeInterval)(commonSchedule.fullSchedule[selectedDay].fullDailySchedule[rowIndex]));
+                        interval.isSelected = false;
+                        name.setBackgroundColor(Color.DKGRAY);
+                        name.setText("");
+                        Log.d("facN", allFacilities.get(selectedFacility).getName());
                     }
                 }
             });
@@ -164,6 +172,8 @@ public class Make_Appointment_Activity extends AppCompatActivity {
         appointButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("clicked", "clicked");
+                Log.d("facN", allFacilities.get(selectedFacility).getName());
                 // Add appointment to user's schedule
                 // Add appointment to the facility and change the quota
                 for (int day = 0; day < 7; day++) {
@@ -185,6 +195,8 @@ public class Make_Appointment_Activity extends AppCompatActivity {
                             userInterval.isAvailable = false;
                             userInterval.appointedFacility = facility;
 
+                            Log.d("facN", allFacilities.get(selectedFacility).getName());
+
                             facilityInterval.appointedUsers.add(normalUser);
                             facilityInterval.noOfAppointedUser = (facilityInterval.appointedUsers.size());
 
@@ -195,7 +207,7 @@ public class Make_Appointment_Activity extends AppCompatActivity {
 
                             DatabaseReference facilityIntervalRef = firebaseManager.databaseRef.child("facilities").child(facility.getName()).child("schedule").child(day+"").child(hour+"");
                             facilityIntervalRef.child("appointedUsers").child(normalUser.getUsername()).setValue("");
-                            facilityIntervalRef.child("noOfAppointedUsers").setValue(facilityInterval.noOfAppointedUser);
+                            facilityIntervalRef.child("noOfAppointedUser").setValue(facilityInterval.noOfAppointedUser);
                         }
                     }
                 }
