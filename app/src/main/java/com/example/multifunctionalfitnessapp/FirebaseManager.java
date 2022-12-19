@@ -55,6 +55,22 @@ public class FirebaseManager {
         });
     }
 
+    public void getFacilitiesSnapshot(final OnGetDataListener listener) {
+        listener.onStart();
+
+        databaseRef.child("facilities").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listener.onSuccess(snapshot);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     public void getCompleteSnapshot(final OnGetDataListener listener) {
         listener.onStart();
         databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {

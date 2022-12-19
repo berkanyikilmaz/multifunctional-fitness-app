@@ -74,7 +74,7 @@ public class ScheduleHelper {
                 name.setText("");
             }
             else if (((PersonTimeInterval)(userDailySchedule.fullDailySchedule[n-1])).isAvailable &&
-                    !((FacilityTimeInterval)(facilityDailySchedule.fullDailySchedule[n-1])).isFull()) {
+                    ((FacilityTimeInterval)(facilityDailySchedule.fullDailySchedule[n-1])).isFull()) {
                 name.setBackgroundColor(Color.RED);
                 name.setText("quota is full");
             }

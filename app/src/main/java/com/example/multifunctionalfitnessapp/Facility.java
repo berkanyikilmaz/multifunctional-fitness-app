@@ -7,6 +7,10 @@ public class Facility {
     FacilityOwner owner;
     int quota; // added temporarily maybe we consider fixed quota for a facility
 
+    public Facility() {
+        this.owner = null;
+    }
+
     public Facility(FacilityOwner owner) {
         this.owner = owner;
         owner.addFacility(this);
