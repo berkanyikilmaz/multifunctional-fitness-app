@@ -34,7 +34,7 @@ public class FitnessBuddyContainerAdapter extends RecyclerView.Adapter<FitnessBu
 
     ArrayList<PersonTimeInterval> intervals;
 
-    UserData userData;
+    UserData userData = UserData.getInstance();
 
     Context context;
     NormalUser normalUser;
@@ -64,7 +64,7 @@ public class FitnessBuddyContainerAdapter extends RecyclerView.Adapter<FitnessBu
             Log.d("empty", "empty");
             return;
         }
-        PersonTimeInterval interval = intervals.get(position);
+        PersonTimeInterval interval = userData.fitnessBuddyTimeIntervals.get(position);
 
         Log.d("hey", "holder");
         firebaseManager.getUserSnapshot(interval.fitnessBuddy.getUsername(), new OnGetDataListener() {
@@ -95,7 +95,7 @@ public class FitnessBuddyContainerAdapter extends RecyclerView.Adapter<FitnessBu
 
     @Override
     public int getItemCount() {
-        return this.intervals.size();
+        return this.userData.fitnessBuddyTimeIntervals.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
