@@ -5,7 +5,7 @@
 
     <Button
         android:id="@+id/logoutButton"
-        android:layout_width="100dp"
+        android:layout_width="120dp"
         android:layout_height="45dp"
         android:layout_alignParentRight="true"
         android:text="Logout"

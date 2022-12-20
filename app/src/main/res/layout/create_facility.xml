@@ -14,28 +14,34 @@
 
     <TextView
         android:layout_width="200dp"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
         android:layout_below="@id/title"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
         android:text="Facility Name: "
         android:textAlignment="center"
+        android:gravity="center"
         android:textSize="24sp" />
 
     <EditText
         android:id="@+id/editTextFacilityName"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:layout_below="@id/title"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true"
+        android:textSize="24sp"
+        android:layout_marginTop="5dp"/>
 
     <Button
         android:id="@+id/createButton"
-        android:layout_width="100dp"
+        android:layout_width="120dp"
         android:layout_height="80dp"
         android:layout_below="@id/createFacilityScheduleLayout"
         android:layout_alignParentRight="true"
         android:text="Create Facility"
+        android:layout_marginRight="10dp"
         />
 
     <TextView
@@ -51,7 +57,7 @@
 
     <EditText
         android:id="@+id/editQuota"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="40dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -61,10 +67,9 @@
         />
     <Button
         android:id="@+id/confirmButton"
-        android:layout_width="120dp"
+        android:layout_width="150dp"
         android:layout_height="40dp"
         android:layout_below="@id/editQuota"
-        android:layout_toLeftOf ="@+id/createButton"
         android:layout_toRightOf ="@+id/textQuota"
         android:text="Confirm"
         />
@@ -76,6 +81,6 @@
         android:layout_height="500dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/editTextFacilityName"
-        android:layout_marginTop="0dp" />
+        android:layout_marginTop="0dp"/>
 
 </RelativeLayout>
