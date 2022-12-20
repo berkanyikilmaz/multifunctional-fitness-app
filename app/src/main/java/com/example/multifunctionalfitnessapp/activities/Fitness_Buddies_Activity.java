@@ -3,12 +3,14 @@ package com.example.multifunctionalfitnessapp.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.multifunctionalfitnessapp.Constants;
+import com.example.multifunctionalfitnessapp.FirebaseManager;
 import com.example.multifunctionalfitnessapp.NormalUser;
 import com.example.multifunctionalfitnessapp.OnGetDataListener;
 import com.example.multifunctionalfitnessapp.PersonTimeInterval;
@@ -17,10 +19,13 @@ import com.example.multifunctionalfitnessapp.RecyclerViewInterface;
 import com.example.multifunctionalfitnessapp.TimeInterval;
 import com.example.multifunctionalfitnessapp.UserData;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 
 public class Fitness_Buddies_Activity extends AppCompatActivity implements RecyclerViewInterface {
+
+    FirebaseManager firebaseManager = FirebaseManager.getInstance();
 
     RecyclerView recyclerView;
     FitnessBuddyContainerAdapter adapter;
@@ -66,14 +71,22 @@ public class Fitness_Buddies_Activity extends AppCompatActivity implements Recyc
 
     @Override
     public void onItemClick(int position) {
-        //üstüne tıklayınca nolacak karar vermek lazım
-        Log.d("item", "click");
     }
 
     @Override
     public void onItemLongClick(int position) {
-        //startActivity(new Intent(this,Fitness_Buddy_Found_Activity.class));
-        Log.d("item", "long click");
+        PersonTimeInterval interval = userData.fitnessBuddyTimeIntervals.get(position);
+
+        DatabaseReference usersRef = firebaseManager.databaseRef.child("users");
+        usersRef.child(normalUser.getUsername()).child("schedule").child(interval.dailySchedule.day+"").child(interval.getStartingHour()+"").child("fitnessBuddy").setValue(null);
+        usersRef.child(interval.fitnessBuddy.getUsername()).child("schedule").child(interval.dailySchedule.day+"").child(interval.getStartingHour()+"").child("fitnessBuddy").setValue(null);
+
+        interval.fitnessBuddy = null;
+
+        Toast.makeText(this, "Fitness Buddy removed", Toast.LENGTH_SHORT).show();
+
+        userData.fitnessBuddyTimeIntervals.remove(position);
+        adapter.notifyItemRemoved(position);
     }
 
 

@@ -96,10 +96,11 @@ public class Edit_Facility_Activity extends AppCompatActivity {
                         FacilityTimeInterval interval = (FacilityTimeInterval) facilitySchedule.fullSchedule[i].fullDailySchedule[j];
 
                         if (interval.isSelected) {
-                            //TODO CHECK IF IT IS ALLOWED TO CHANGE THE QUOTA
-                            interval.quota = newQuota;
-                            interval.isSelected = false;
-                            firebaseManager.updateFacilityQuota(facility,interval,interval.quota);
+                            if (interval.getNoOfAppointedUser() <= newQuota) {
+                                interval.quota = newQuota;
+                                interval.isSelected = false;
+                                firebaseManager.updateFacilityQuota(facility,interval,interval.quota);
+                            }
                         }
                     }
                 }
