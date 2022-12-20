@@ -62,7 +62,6 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.normal_user_main_menu);
 
         userData = UserData.getInstance();
 
@@ -73,6 +72,8 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
 
                 Log.d("name", userData.normalUser.getName());
                 normalUser = userData.normalUser;
+
+                setContentView(R.layout.normal_user_main_menu);
 
                 updateWelcomeNameTitle();
                 registerFindFitnessBuddyButton();
