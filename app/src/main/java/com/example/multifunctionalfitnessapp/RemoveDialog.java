@@ -5,8 +5,11 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -50,8 +53,15 @@ public class RemoveDialog extends AppCompatDialogFragment {
         timePeriodText = view.findViewById(R.id.timePeriod);
         facilityText = view.findViewById(R.id.appointmentMessage);
 
-        timePeriodText.setText(Constants.DAYS[interval.dailySchedule.day] + " " + interval.startingHour + " - " + (interval.startingHour + 1) );
+        timePeriodText.setText(Constants.DAYS[interval.dailySchedule.day] + "\n" + interval.startingHour + " - " + (interval.startingHour + 1) );
         facilityText.setText("Appointment in " + interval.appointedFacility.getName());
+
+        TextView title = new TextView(view.getContext());
+        title.setGravity(Gravity.CENTER);
+        title.setText("Appointment Menu");
+        title.setTextSize(28);
+        title.setBackgroundColor(Color.RED);
+        builder.setCustomTitle(title);
 
         builder.setView(view).setTitle("Remove Your Appointment").setNegativeButton("Remove", new DialogInterface.OnClickListener() {
             @Override
