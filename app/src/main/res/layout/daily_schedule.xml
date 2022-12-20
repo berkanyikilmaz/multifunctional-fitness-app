@@ -23,7 +23,7 @@
             android:layout_weight="1"
             android:inputType="none"
             android:text="Monday"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
