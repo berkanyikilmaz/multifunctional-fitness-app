@@ -185,7 +185,7 @@ public class Make_Appointment_Activity extends AppCompatActivity {
                         // use methods defined in facility class to increase quota and make necessary changes
                         // */
                         PersonTimeInterval userInterval = (PersonTimeInterval)normalUser.getSchedule().fullSchedule[day].fullDailySchedule[hour];
-                        FacilityTimeInterval facilityInterval = (FacilityTimeInterval)facility.getSchedule().fullSchedule[day].fullDailySchedule[hour];
+                        FacilityTimeInterval facilityInterval = (FacilityTimeInterval)allFacilities.get(selectedFacility).getSchedule().fullSchedule[day].fullDailySchedule[hour];
                         FacilityTimeInterval commonInterval = (FacilityTimeInterval)commonSchedule.fullSchedule[day].fullDailySchedule[hour];
 
                         if (commonInterval.isSelected == true) {
@@ -198,14 +198,14 @@ public class Make_Appointment_Activity extends AppCompatActivity {
                             Log.d("facN", allFacilities.get(selectedFacility).getName());
 
                             facilityInterval.appointedUsers.add(normalUser);
-                            facilityInterval.noOfAppointedUser = (facilityInterval.appointedUsers.size());
+                            facilityInterval.noOfAppointedUser = facilityInterval.appointedUsers.size();
 
                             DatabaseReference userIntervalRef = firebaseManager.databaseRef.child("users").child(normalUser.getUsername()).child("schedule").child(day+"").child(hour+"");
                             userIntervalRef.child("isAppointed").setValue(true);
                             userIntervalRef.child("isAvailable").setValue(false);
-                            userIntervalRef.child("appointedFacility").setValue(facility.getName());
+                            userIntervalRef.child("appointedFacility").setValue(allFacilities.get(selectedFacility).getName());
 
-                            DatabaseReference facilityIntervalRef = firebaseManager.databaseRef.child("facilities").child(facility.getName()).child("schedule").child(day+"").child(hour+"");
+                            DatabaseReference facilityIntervalRef = firebaseManager.databaseRef.child("facilities").child(allFacilities.get(selectedFacility).getName()).child("schedule").child(day+"").child(hour+"");
                             facilityIntervalRef.child("appointedUsers").child(normalUser.getUsername()).setValue("");
                             facilityIntervalRef.child("noOfAppointedUser").setValue(facilityInterval.noOfAppointedUser);
                         }
