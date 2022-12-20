@@ -5,19 +5,16 @@ import java.util.ArrayList;
 public class NormalUser extends User {
 
     public Schedule schedule;
-    boolean wantsFitnessBuddy;
     public ArrayList<PersonTimeInterval> appointedHours = new ArrayList<>();
 
     public NormalUser() {
         super();
         schedule = Schedule.createEmptyUserSchedule();
-        wantsFitnessBuddy = false;
         userType = "Normal User";
     }
 
     public NormalUser(String name, String surname, String username, String password, String phoneNumber, String email) {
         super(name, surname, username, password, phoneNumber, email);
-        wantsFitnessBuddy = false;
         userType = "Normal User";
     }
 

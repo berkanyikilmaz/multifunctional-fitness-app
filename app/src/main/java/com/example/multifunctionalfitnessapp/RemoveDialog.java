@@ -5,12 +5,15 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDialogFragment;
+
+import com.google.firebase.database.DataSnapshot;
 
 public class RemoveDialog extends AppCompatDialogFragment {
 
@@ -48,6 +51,27 @@ public class RemoveDialog extends AppCompatDialogFragment {
             public void onClick(DialogInterface dialogInterface, int i) {
                 //closes dialog nothing is needed
             }
+        }).setNeutralButton("Find Fitness Buddy", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                listener.findFitnessBuddy(interval, new OnGetDataListener() {
+                    @Override
+                    public void onSuccess(DataSnapshot snapshot) {
+                        Log.d("fitness", "fitness buddy found");
+                        Log.d("fitness", "fitness buddy: " + interval.fitnessBuddy.getUsername());
+                    }
+
+                    @Override
+                    public void onStart() {
+                        Log.d("fitness", "searching for fitness buddy");
+                    }
+
+                    @Override
+                    public void onFailure() {
+
+                    }
+                });
+            }
         });
         return builder.create();
     }
@@ -55,7 +79,6 @@ public class RemoveDialog extends AppCompatDialogFragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-
         try {
             listener = (RemoveDialogListener) context;
         } catch (ClassCastException e) {
@@ -65,5 +88,6 @@ public class RemoveDialog extends AppCompatDialogFragment {
 
     public interface RemoveDialogListener{
         void applyRemoval(TextView name);
+        void findFitnessBuddy(PersonTimeInterval interval, OnGetDataListener listener);
     }
 }

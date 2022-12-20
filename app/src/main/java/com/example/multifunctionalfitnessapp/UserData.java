@@ -70,6 +70,7 @@ public class UserData {
                 interval.isAvailable = intervalSnapshot.child("isAvailable").getValue(boolean.class);
                 interval.isAppointed = intervalSnapshot.child("isAppointed").getValue(boolean.class);
                 interval.startingHour = Integer.parseInt(intervalSnapshot.getKey());
+                interval.wantsFitnessBuddy = intervalSnapshot.child("wantsFitnessBuddy").getValue(boolean.class);
 
                 if (interval.isAppointed) { //JUST FOR NAME REFERENCE
                     DataSnapshot facilitySnapshot = snapshot.child("facilities").child(intervalSnapshot.child("appointedFacility").getValue(String.class));

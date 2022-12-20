@@ -5,7 +5,8 @@ public class PersonTimeInterval extends TimeInterval {
     public boolean isAvailable; // if the person is unavailable
     public boolean isAppointed;
     public Facility appointedFacility;
-    NormalUser fitnessBuddy;
+    public NormalUser fitnessBuddy;
+    public boolean wantsFitnessBuddy;
 
     public PersonTimeInterval() {
         super();
@@ -17,27 +18,7 @@ public class PersonTimeInterval extends TimeInterval {
         isAppointed = false;
         appointedFacility = null;
         fitnessBuddy = null;
-    }
-
-    boolean addFitnessBuddy(NormalUser user) {
-        if(user.wantsFitnessBuddy){
-            fitnessBuddy = user;
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
-    boolean removeFitnessBuddy(NormalUser user) {
-        if(!user.wantsFitnessBuddy){
-            fitnessBuddy = null;
-            return true;
-        }
-        else{
-            return false;
-        }
-
+        wantsFitnessBuddy = false;
     }
 
     @Override

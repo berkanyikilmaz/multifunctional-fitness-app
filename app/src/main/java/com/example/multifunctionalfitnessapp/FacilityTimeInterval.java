@@ -54,13 +54,13 @@ public class FacilityTimeInterval extends TimeInterval {
         return false;
     }
 
-    ArrayList<NormalUser> isMatching(NormalUser user) {
+    /*ArrayList<NormalUser> isMatching(NormalUser user) {
         ArrayList<NormalUser> fitnessBuddies = new ArrayList();
         for ( NormalUser matchingUser : appointedUsers ){
             if (user.wantsFitnessBuddy) fitnessBuddies.add(matchingUser);
         }
         return  fitnessBuddies;
-    }
+    }*/
 
     @Override
     boolean addAppointment(NormalUser user) {
