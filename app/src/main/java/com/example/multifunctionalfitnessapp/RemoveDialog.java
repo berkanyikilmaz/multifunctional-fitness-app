@@ -1,5 +1,6 @@
 package com.example.multifunctionalfitnessapp;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -9,24 +10,35 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import com.example.multifunctionalfitnessapp.activities.LogInActivity;
+import com.example.multifunctionalfitnessapp.activities.User_Main_Menu_Activity;
 import com.google.firebase.database.DataSnapshot;
 
 public class RemoveDialog extends AppCompatDialogFragment {
+
+    FirebaseManager firebaseManager = FirebaseManager.getInstance();
 
     private RemoveDialogListener listener;
     private TextView name;
     private PersonTimeInterval interval;
 
+    private NormalUser normalUser;
     private TextView timePeriodText;
     private TextView facilityText;
 
-    public RemoveDialog(TextView name, PersonTimeInterval interval){
+    private Activity mainView;
+
+    public RemoveDialog(TextView name, PersonTimeInterval interval, Activity view){
         this.name = name;
         this.interval = interval;
+        this.mainView = view;
+
+        normalUser = UserData.getInstance().normalUser;
     }
 
     @Override
@@ -54,23 +66,34 @@ public class RemoveDialog extends AppCompatDialogFragment {
         }).setNeutralButton("Find Fitness Buddy", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                listener.findFitnessBuddy(interval, new OnGetDataListener() {
-                    @Override
-                    public void onSuccess(DataSnapshot snapshot) {
-                        Log.d("fitness", "fitness buddy found");
-                        Log.d("fitness", "fitness buddy: " + interval.fitnessBuddy.getUsername());
-                    }
 
-                    @Override
-                    public void onStart() {
-                        Log.d("fitness", "searching for fitness buddy");
-                    }
+                if (interval.fitnessBuddy != null) {
+                    Toast.makeText(mainView, "You already have a fitness buddy!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    interval.wantsFitnessBuddy = true;
+                    firebaseManager.updateUserSchedule(normalUser, interval.dailySchedule.day, interval.startingHour, "wantsFitnessBuddy", true);
 
-                    @Override
-                    public void onFailure() {
+                    listener.findFitnessBuddy(interval, new OnGetDataListener() {
+                        @Override
+                        public void onSuccess(DataSnapshot snapshot) {
+                            Log.d("fitness", "fitness buddy found");
+                            Log.d("fitness", "fitness buddy: " + interval.fitnessBuddy.getUsername());
+                            Toast.makeText(mainView, "We find a fitness buddy for you!!!", Toast.LENGTH_SHORT).show();
+                        }
 
-                    }
-                });
+                        @Override
+                        public void onStart() {
+                            Log.d("fitness", "searching for fitness buddy");
+                        }
+
+                        @Override
+                        public void onFailure() {
+                            Log.d("fitness", "fitness buddy couldnt found");
+                            Toast.makeText(mainView, "No fitness buddy found...", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
         });
         return builder.create();
