@@ -22,8 +22,8 @@ public class fitness_buddy_main extends AppCompatActivity implements RecyclerVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.choose_time_interval_menu);
-        recyclerView = (RecyclerView) findViewById(R.id.timeIntervalContainer);
+        setContentView(R.layout.fitness_buddies);
+        recyclerView = (RecyclerView) findViewById(R.id.fitnessBuddyContainer);
         timeIntervals = new ArrayList<>();
 
         setTimeIntervals();

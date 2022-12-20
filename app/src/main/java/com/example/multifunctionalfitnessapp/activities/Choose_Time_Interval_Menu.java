@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.multifunctionalfitnessapp.NormalUser;
 import com.example.multifunctionalfitnessapp.R;
 import com.example.multifunctionalfitnessapp.RecyclerViewInterface;
 import com.example.multifunctionalfitnessapp.TimeInterval;
@@ -25,9 +24,9 @@ public class Choose_Time_Interval_Menu extends AppCompatActivity implements Recy
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.choose_time_interval_menu);
+        setContentView(R.layout.fitness_buddies);
 
-        recyclerView = (RecyclerView) findViewById(R.id.timeIntervalContainer);
+        recyclerView = (RecyclerView) findViewById(R.id.fitnessBuddyContainer);
 
         TimeIntervalContainerAdapter adapter = new TimeIntervalContainerAdapter(this, exampleTimeIntervals, this );
         recyclerView.setAdapter(adapter);

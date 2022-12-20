@@ -37,10 +37,10 @@ public class Fitness_Buddy_Found_Activity extends AppCompatActivity {
         // normally, we will reach day and hour from the database
         String date = "12.12";
         String hour = "17-18";
-        ((TextView) findViewById(R.id.textView2)).setText(fullName);
+        /*((TextView) findViewById(R.id.textView2)).setText(fullName);
         ((TextView) findViewById(R.id.textView3)).setText(phoneNumber);
         ((TextView) findViewById(R.id.textView4)).setText(date);
-        ((TextView) findViewById(R.id.textView5)).setText(hour);
+        ((TextView) findViewById(R.id.textView5)).setText(hour);*/
     }
 
 }

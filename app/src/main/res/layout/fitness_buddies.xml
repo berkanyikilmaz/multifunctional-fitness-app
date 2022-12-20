@@ -6,24 +6,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/timeIntervalContainer"
+        android:id="@+id/fitnessBuddyContainer"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_below="@id/timeIntervalTitle"
-        android:layout_marginTop="120dp"
+        android:layout_height="match_parent"
+        android:layout_below="@id/fitnessBuddyTitle"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="64dp"
         />
 
     <TextView
-        android:id="@+id/timeIntervalTitle"
+        android:id="@+id/fitnessBuddyTitle"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="Choose Your Time Interval"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="34dp"
         android:layout_marginTop="48dp"
-    />
+        android:gravity="center"
+        android:text="Your Fitness Buddies"
+        android:textSize="34dp"
+        android:textStyle="bold" />
 
 </RelativeLayout>
