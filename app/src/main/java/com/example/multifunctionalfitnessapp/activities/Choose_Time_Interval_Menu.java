@@ -1,5 +1,6 @@
 package com.example.multifunctionalfitnessapp.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,7 +43,8 @@ public class Choose_Time_Interval_Menu extends AppCompatActivity implements Recy
 
     @Override
     public void onItemLongClick(int position) {
-        //üstüne uzun tıklayın nolacak
+        startActivity(new Intent(this,Fitness_Buddy_Found_Activity.class));
+
     }
 
 
