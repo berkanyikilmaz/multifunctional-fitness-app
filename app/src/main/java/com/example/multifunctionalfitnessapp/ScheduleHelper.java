@@ -2,6 +2,7 @@ package com.example.multifunctionalfitnessapp;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.ColorSpace;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -68,22 +69,22 @@ public class ScheduleHelper {
             }
             else if (((PersonTimeInterval)(userDailySchedule.fullDailySchedule[n-1])).isAvailable &&
                     !((FacilityTimeInterval)(facilityDailySchedule.fullDailySchedule[n-1])).isFull()) {
-                name.setBackgroundColor(Color.DKGRAY);
+                name.setBackgroundColor(Color.YELLOW);
                 name.setText("");
             }
             else if (!((PersonTimeInterval)(userDailySchedule.fullDailySchedule[n-1])).isAvailable &&
                     !((FacilityTimeInterval)(facilityDailySchedule.fullDailySchedule[n-1])).isFull()) {
-                name.setBackgroundColor(Color.YELLOW);
-                name.setText("");
+                name.setBackgroundColor(Color.WHITE);
+                name.setText("UNAVAILABLE");
             }
             else if (((PersonTimeInterval)(userDailySchedule.fullDailySchedule[n-1])).isAvailable &&
                     ((FacilityTimeInterval)(facilityDailySchedule.fullDailySchedule[n-1])).isFull()) {
-                name.setBackgroundColor(Color.RED);
-                name.setText("quota is full");
+                name.setBackgroundColor(Color.WHITE);
+                name.setText("QUOTA IS FULL");
             }
             else {
 
-                name.setBackgroundColor(Color.RED);
+                name.setBackgroundColor(Color.WHITE);
                 name.setText("UNAVAILABLE");
             }
         }
@@ -197,7 +198,7 @@ public class ScheduleHelper {
             PersonTimeInterval interval = (PersonTimeInterval) dailySchedule.fullDailySchedule[i];
 
             if (interval.isAppointed) {
-                name.setBackgroundColor(Color.BLUE);
+                name.setBackgroundColor(Color.rgb(92, 142, 249 ));
                 name.setText("Appointed at " + interval.appointedFacility.getName());
             }
             else if (!interval.isAvailable) {

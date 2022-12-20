@@ -122,7 +122,7 @@ public class Make_Appointment_Activity extends AppCompatActivity {
 
                     ColorDrawable nameColor = (ColorDrawable) name.getBackground();
                     int color = nameColor.getColor();
-                    if (color == Color.DKGRAY) {
+                    if (color == Color.YELLOW) {
                         FacilityTimeInterval interval = ((FacilityTimeInterval)(commonSchedule.fullSchedule[selectedDay].fullDailySchedule[rowIndex]));
                         interval.isSelected = true;
                         name.setBackgroundColor(Color.GREEN);
@@ -132,7 +132,7 @@ public class Make_Appointment_Activity extends AppCompatActivity {
                     else if (color == Color.GREEN) {
                         FacilityTimeInterval interval = ((FacilityTimeInterval)(commonSchedule.fullSchedule[selectedDay].fullDailySchedule[rowIndex]));
                         interval.isSelected = false;
-                        name.setBackgroundColor(Color.DKGRAY);
+                        name.setBackgroundColor(Color.YELLOW);
                         name.setText("");
                         Log.d("facN", allFacilities.get(selectedFacility).getName());
                     }

@@ -99,7 +99,7 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
         findFitnessBuddy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(User_Main_Menu_Activity.this, Fitness_Buddies_Activity.class));
+                startActivity(new Intent(User_Main_Menu_Activity.this, Fitness_Buddy_Found_Activity.class));
             }
         });
     }
@@ -165,7 +165,7 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
                         interval.isAvailable = true;
                         firebaseManager.updateUserSchedule(normalUser,selectedDay,rowIndex,"isAvailable", true);
                     }
-                    else if(color == (Color.BLUE)) {
+                    else if(color == (Color.rgb(92, 142, 249 ))) {
                         facilityToEdit = interval.appointedFacility;
                         openRemoveDialog(name);
                     }
