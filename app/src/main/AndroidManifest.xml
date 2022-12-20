@@ -96,7 +96,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activities.Choose_Time_Interval_Menu"
+            android:name=".activities.Fitness_Buddies_Activity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"

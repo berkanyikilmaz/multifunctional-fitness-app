@@ -77,7 +77,7 @@ public class RemoveDialog extends AppCompatDialogFragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                if (interval.fitnessBuddy != null) {
+                if (interval.fitnessBuddy.getUsername() != null) {
                     Toast.makeText(mainView, "You already have a fitness buddy!", Toast.LENGTH_SHORT).show();
                 }
                 else {

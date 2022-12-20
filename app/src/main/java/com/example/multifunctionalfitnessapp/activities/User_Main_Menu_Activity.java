@@ -29,6 +29,7 @@ import com.example.multifunctionalfitnessapp.UserData;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class User_Main_Menu_Activity extends AppCompatActivity implements RemoveDialog.RemoveDialogListener {
@@ -99,7 +100,8 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
         findFitnessBuddy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(User_Main_Menu_Activity.this, Fitness_Buddy_Found_Activity.class));
+                //userData.fitnessBuddyTimeIntervals = setTimeIntervalsWithFitnessBuddies();
+                startActivity(new Intent(User_Main_Menu_Activity.this, Fitness_Buddies_Activity.class));
             }
         });
     }
@@ -197,6 +199,7 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
     }
 
     public void openRemoveDialog(TextView name){
+        Log.d("date", intervalToEdit.dailySchedule.day + " " + intervalToEdit.getStartingHour());
         RemoveDialog dialog = new RemoveDialog(name, intervalToEdit, User_Main_Menu_Activity.this);
         dialog.show(getSupportFragmentManager(), "dialog");
     }

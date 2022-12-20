@@ -10,6 +10,11 @@ public class PersonTimeInterval extends TimeInterval {
 
     public PersonTimeInterval() {
         super();
+        isAvailable = true;
+        isAppointed = false;
+        appointedFacility = null;
+        fitnessBuddy = null;
+        wantsFitnessBuddy = false;
     }
 
     public PersonTimeInterval(int startingHour) {

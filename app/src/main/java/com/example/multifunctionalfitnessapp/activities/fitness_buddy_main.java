@@ -18,7 +18,6 @@ public class fitness_buddy_main extends AppCompatActivity implements RecyclerVie
     public ArrayList<TimeInterval> timeIntervals;
     public RecyclerView recyclerView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,45 +37,7 @@ public class fitness_buddy_main extends AppCompatActivity implements RecyclerVie
         recyclerView.setAdapter(adap);
     }
 
-    public void setTimeIntervals(){
-        timeIntervals.add(new TimeInterval(1));
-        timeIntervals.add(new TimeInterval(2));
-        timeIntervals.add(new TimeInterval(3));
-        timeIntervals.add(new TimeInterval(4));
-        timeIntervals.add(new TimeInterval(1));
-        timeIntervals.add(new TimeInterval(2));
-        timeIntervals.add(new TimeInterval(3));
-        timeIntervals.add(new TimeInterval(4));
-        timeIntervals.add(new TimeInterval(1));
-        timeIntervals.add(new TimeInterval(2));
-        timeIntervals.add(new TimeInterval(3));
-        timeIntervals.add(new TimeInterval(4));
-        timeIntervals.add(new TimeInterval(1));
-        timeIntervals.add(new TimeInterval(2));
-        timeIntervals.add(new TimeInterval(3));
-        timeIntervals.add(new TimeInterval(4));
-        timeIntervals.add(new TimeInterval(1));
-        timeIntervals.add(new TimeInterval(2));
-        timeIntervals.add(new TimeInterval(3));
-        timeIntervals.add(new TimeInterval(4));
-        timeIntervals.add(new TimeInterval(1));
-        timeIntervals.add(new TimeInterval(2));
-        timeIntervals.add(new TimeInterval(3));
-        timeIntervals.add(new TimeInterval(4));
-        timeIntervals.add(new TimeInterval(1));
-        timeIntervals.add(new TimeInterval(2));
-        timeIntervals.add(new TimeInterval(3));
-        timeIntervals.add(new TimeInterval(4));timeIntervals.add(new TimeInterval(1));
-        timeIntervals.add(new TimeInterval(2));
-        timeIntervals.add(new TimeInterval(3));
-        timeIntervals.add(new TimeInterval(4));
-        timeIntervals.add(new TimeInterval(1));
-        timeIntervals.add(new TimeInterval(2));
-        timeIntervals.add(new TimeInterval(3));
-        timeIntervals.add(new TimeInterval(4));
-
-
-
+    public void setTimeIntervals() {
     }
 
     @Override

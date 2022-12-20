@@ -20,12 +20,15 @@ public class UserData {
 
     public Facility facility;
 
+    public ArrayList<PersonTimeInterval> fitnessBuddyTimeIntervals;
+
     public UserData() {
         username = null;
         name = null;
         normalUser = new NormalUser();
         facilityOwner = new FacilityOwner();
         facility = new Facility();
+        fitnessBuddyTimeIntervals = new ArrayList<>();
     }
 
     public static UserData getInstance() {
