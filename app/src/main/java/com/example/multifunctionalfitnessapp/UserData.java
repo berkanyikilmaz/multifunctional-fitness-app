@@ -145,7 +145,7 @@ public class UserData {
                 interval.startingHour = Integer.parseInt(intervalSnapshot.getKey());
 
                 interval.appointedUsers = new ArrayList<>();
-                for (DataSnapshot appointedUserSnapshot : snapshot.child("appointedUsers").getChildren()) {
+                for (DataSnapshot appointedUserSnapshot : intervalSnapshot.child("appointedUsers").getChildren()) {
                     NormalUser newUser = new NormalUser();
                     newUser.setUsername(appointedUserSnapshot.getKey());
 

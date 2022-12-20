@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.multifunctionalfitnessapp.Constants;
+import com.example.multifunctionalfitnessapp.Facility;
 import com.example.multifunctionalfitnessapp.FacilityTimeInterval;
 import com.example.multifunctionalfitnessapp.FirebaseManager;
 import com.example.multifunctionalfitnessapp.OnGetDataListener;
@@ -41,6 +42,7 @@ public class Edit_Facility_Activity extends AppCompatActivity {
 
     TableLayout dailySchedule;
     View editFacilityView;
+    Facility facility;
     Schedule facilitySchedule;
     int selectedDay = 0;
 
@@ -49,7 +51,8 @@ public class Edit_Facility_Activity extends AppCompatActivity {
         setContentView(R.layout.edit_facility);
 
         userData = UserData.getInstance();
-        facilitySchedule=userData.facility.getSchedule();
+        facility = userData.facility;
+        facilitySchedule = facility.getSchedule();
 
         registerFacilityNameAndQuota();
         registerDailyScheduleLayout();
@@ -60,24 +63,22 @@ public class Edit_Facility_Activity extends AppCompatActivity {
 
     public void registerContinueButton(){
         continueButton = (Button) findViewById(R.id.editFacilityContinueButton);
-        DatabaseReference userRef = firebaseManager.databaseRef.child("users").child(userData.username);
-        DatabaseReference facilitiesRef = firebaseManager.databaseRef.child("facilities");
+        //DatabaseReference userRef = firebaseManager.databaseRef.child("users").child(userData.username);
+        //DatabaseReference facilitiesRef = firebaseManager.databaseRef.child("facilities");
 
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String facilityNameText = facilityName.getText().toString();
+                /*String facilityNameText = facilityName.getText().toString();
 
                 userRef.child("facilities").child(facilityNameText).setValue("");
                 DatabaseReference facilityRef = facilitiesRef.child(facilityNameText);
 
                 for (int i = 0; i < facilitySchedule.fullSchedule.length; i++) {
                     for (int j = 0; j < (facilitySchedule.fullSchedule[i]).fullDailySchedule.length; j++) {
-
-                        facilityRef.child("schedule").child(i+"").child(j+"").setValue((facilitySchedule.fullSchedule[i]).fullDailySchedule[j]);
+                        facilityRef.child("schedule").child(i+"").child(j+"").child("");
                     }
-                }
-
+                }*/
                 startActivity( new Intent( Edit_Facility_Activity.this, Facility_Owner_Main_Menu_Activity.class ) );
             }
         });
@@ -95,13 +96,15 @@ public class Edit_Facility_Activity extends AppCompatActivity {
                         FacilityTimeInterval interval = (FacilityTimeInterval) facilitySchedule.fullSchedule[i].fullDailySchedule[j];
 
                         if (interval.isSelected) {
+                            //TODO CHECK IF IT IS ALLOWED TO CHANGE THE QUOTA
                             interval.quota = newQuota;
                             interval.isSelected = false;
+                            firebaseManager.updateFacilityQuota(facility,interval,interval.quota);
                         }
                     }
                 }
 
-                ScheduleHelper.updateCreateFacilityScheduleValues(dailySchedule, facilitySchedule.fullSchedule[selectedDay]);
+                ScheduleHelper.updateEditFacilityScheduleValues(dailySchedule, facilitySchedule.fullSchedule[selectedDay]);
             }
         });
 }
@@ -115,7 +118,7 @@ public class Edit_Facility_Activity extends AppCompatActivity {
         dailySchedule = editFacilityView.findViewById(R.id.dailyScheduleTableLayout);
 
         registerDaysDropdown();
-        ScheduleHelper.updateCreateFacilityScheduleValues(dailySchedule, facilitySchedule.fullSchedule[selectedDay]);
+        ScheduleHelper.updateEditFacilityScheduleValues(dailySchedule, facilitySchedule.fullSchedule[selectedDay]);
 
         for (int n = 1; n < dailySchedule.getChildCount(); n++) {
             TableRow row = (TableRow)dailySchedule.getChildAt(n);
@@ -127,10 +130,11 @@ public class Edit_Facility_Activity extends AppCompatActivity {
                     int rowIndex = ScheduleHelper.getRowIndex(row, view.getContext());
 
                     FacilityTimeInterval interval = (FacilityTimeInterval) facilitySchedule.fullSchedule[selectedDay].fullDailySchedule[rowIndex];
+
                     interval.isSelected = !interval.isSelected;
                     Log.d(rowIndex + "", interval.isSelected + "");
 
-                    ScheduleHelper.updateCreateFacilityScheduleValues(dailySchedule, facilitySchedule.fullSchedule[selectedDay]);
+                    ScheduleHelper.updateEditFacilityScheduleValues(dailySchedule, facilitySchedule.fullSchedule[selectedDay]);
                 }
             });
         }
@@ -146,7 +150,7 @@ public class Edit_Facility_Activity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d("days", adapterView.getItemAtPosition(i).toString() + " at position " + i + " is selected.");
                 selectedDay = i;
-                ScheduleHelper.updateCreateFacilityScheduleValues(dailySchedule, facilitySchedule.fullSchedule[selectedDay]);
+                ScheduleHelper.updateEditFacilityScheduleValues(dailySchedule, facilitySchedule.fullSchedule[selectedDay]);
             }
         });
     }

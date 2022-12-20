@@ -172,5 +172,10 @@ public class FirebaseManager {
         //facilityIntervalRef.child("noOfAppointedUser").setValue(((FacilityTimeInterval)(facility.schedule.fullSchedule[day].fullDailySchedule[hour])).noOfAppointedUser);
     }
 
+    public void updateFacilityQuota(Facility facility, TimeInterval interval, int quota) {
+        Map<String, Object> update = new HashMap<>();
+        update.put("quota", quota);
+        firebaseManager.databaseRef.child("facilities").child(facility.getName()).child("schedule").child(interval.dailySchedule.day+"").child(interval.startingHour+"").updateChildren(update);
+    }
 
 }
