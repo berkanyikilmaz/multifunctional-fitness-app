@@ -1,13 +1,11 @@
 package com.example.multifunctionalfitnessapp.activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,7 +18,6 @@ import android.widget.TextView;
 
 import com.example.multifunctionalfitnessapp.Constants;
 import com.example.multifunctionalfitnessapp.Facility;
-import com.example.multifunctionalfitnessapp.FacilityTimeInterval;
 import com.example.multifunctionalfitnessapp.PersonTimeInterval;
 import com.example.multifunctionalfitnessapp.RemoveDialog;
 import com.example.multifunctionalfitnessapp.FirebaseManager;
@@ -28,12 +25,9 @@ import com.example.multifunctionalfitnessapp.NormalUser;
 import com.example.multifunctionalfitnessapp.OnGetDataListener;
 import com.example.multifunctionalfitnessapp.R;
 import com.example.multifunctionalfitnessapp.ScheduleHelper;
-import com.example.multifunctionalfitnessapp.User;
 import com.example.multifunctionalfitnessapp.UserData;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.Locale;
 
@@ -105,7 +99,7 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
         findFitnessBuddy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(User_Main_Menu_Activity.this, Choose_Time_Interval_Menu.class));
+                startActivity(new Intent(User_Main_Menu_Activity.this, Fitness_Buddies_Activity.class));
             }
         });
     }
@@ -214,6 +208,10 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
 
         Log.d("name",intervalToEdit.appointedFacility.getName());
 
+        intervalToEdit.isAppointed = false;
+        intervalToEdit.isAvailable = true;
+        intervalToEdit.appointedFacility = null;
+
         DatabaseReference userIntervalRef = firebaseManager.databaseRef.child("users").child(normalUser.getUsername()).child("schedule").child(editedDay+"").child(editedHour+"");
         userIntervalRef.child("isAppointed").setValue(false);
         userIntervalRef.child("isAvailable").setValue(true);
@@ -221,6 +219,8 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
 
         DatabaseReference facilityIntervalRef = firebaseManager.databaseRef.child("facilities").child(facilityToEdit.getName()).child("schedule").child(editedDay+"").child(editedHour+"");
         facilityIntervalRef.child("appointedUsers").child(normalUser.getUsername()).setValue(null);
+
+        ScheduleHelper.updateUserMainMenuScheduleValuesFromUser(dailySchedule, selectedDay, normalUser);
     }
 
     public void findFitnessBuddy(PersonTimeInterval interval, final OnGetDataListener listener) {
