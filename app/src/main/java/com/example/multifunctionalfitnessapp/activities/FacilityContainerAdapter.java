@@ -101,7 +101,7 @@ public class FacilityContainerAdapter extends RecyclerView.Adapter<FacilityConta
         timeIntervalIndex = Integer.parseInt(currentDate.substring(11,13));
 
 
-        holder.timePeriod.setText(currentDate);
+        holder.timePeriod.setText(dayToday + "\n "+timeIntervalIndex +"-"+(timeIntervalIndex+1));
         holder.quota.setText("Quota: " + ((FacilityTimeInterval)facilityOwner.getFacilities().get(position).getSchedule().fullSchedule[dayIndex].fullDailySchedule[timeIntervalIndex]).quota);
         holder.appointments.setText("Appointments: " + ((FacilityTimeInterval)facilityOwner.getFacilities().get(position).getSchedule().fullSchedule[dayIndex].fullDailySchedule[timeIntervalIndex]).appointedUsers.size()+" ");
         //for last two we should get the current time periods quota and appointments
