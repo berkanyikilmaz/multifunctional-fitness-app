@@ -37,7 +37,7 @@
     <Button
         android:id="@+id/createButton"
         android:layout_width="120dp"
-        android:layout_height="80dp"
+        android:layout_height="100dp"
         android:layout_below="@id/createFacilityScheduleLayout"
         android:layout_alignParentRight="true"
         android:text="Create Facility"
@@ -47,7 +47,7 @@
     <TextView
         android:id="@+id/textQuota"
         android:layout_width="100dp"
-        android:layout_height="80dp"
+        android:layout_height="100dp"
         android:layout_below="@id/createFacilityScheduleLayout"
         android:layout_alignParentLeft="true"
         android:text="Quota: "
@@ -58,17 +58,17 @@
     <EditText
         android:id="@+id/editQuota"
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:layout_toRightOf="@+id/textQuota"
         android:layout_below="@id/createFacilityScheduleLayout"
-        android:hint=""
+        android:hint="New Quota"
         />
     <Button
         android:id="@+id/confirmButton"
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_below="@id/editQuota"
         android:layout_toRightOf ="@+id/textQuota"
         android:text="Confirm"
