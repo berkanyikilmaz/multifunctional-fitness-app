@@ -140,7 +140,6 @@ public class UserData {
 
                 interval.isSelected = intervalSnapshot.child("isSelected").getValue(boolean.class);
                 interval.quota = intervalSnapshot.child("quota").getValue(int.class);
-                interval.noOfAppointedUser = intervalSnapshot.child("noOfAppointedUser").getValue(int.class);
 
                 interval.appointedUsers = new ArrayList<>();
                 for (DataSnapshot appointedUserSnapshot : snapshot.child("appointedUsers").getChildren()) {

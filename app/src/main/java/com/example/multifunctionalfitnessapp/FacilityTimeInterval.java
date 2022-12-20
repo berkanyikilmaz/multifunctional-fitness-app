@@ -22,9 +22,9 @@ public class FacilityTimeInterval extends TimeInterval {
         return quota;
     }
 
-    /*public int getNoOfAppointedUser() {
-        return noOfAppointedUser;
-    }*/
+    public int getNoOfAppointedUser() {
+        return appointedUsers.size();
+    }
 
     /*public ArrayList<NormalUser> getAppointedUsers() {
         return appointedUsers;
@@ -43,11 +43,11 @@ public class FacilityTimeInterval extends TimeInterval {
     }*/
 
     public boolean isFull() {
-        return quota == noOfAppointedUser;
+        return quota == getNoOfAppointedUser();
     }
 
     boolean decreaseQuota(int newQuota) {
-        if ( newQuota >= noOfAppointedUser ){
+        if ( newQuota >= getNoOfAppointedUser() ){
             this.quota = newQuota;
             return true;
         }

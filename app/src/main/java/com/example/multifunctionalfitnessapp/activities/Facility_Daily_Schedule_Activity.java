@@ -27,7 +27,7 @@ public class Facility_Daily_Schedule_Activity extends AppCompatActivity {
             // getting the FacilityTimeInterval object for the specific hour
             FacilityTimeInterval interval = (FacilityTimeInterval) dailySchedule.getInterval(i);
 
-            String occupancyRate = interval.noOfAppointedUser + "/" + interval.quota;
+            String occupancyRate = interval.getNoOfAppointedUser() + "/" + interval.quota;
             if (i == 0) {
                 ((TextView) findViewById(R.id.Hour1)).setText(occupancyRate);
             }

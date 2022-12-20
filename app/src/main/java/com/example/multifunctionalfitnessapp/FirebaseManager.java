@@ -160,4 +160,17 @@ public class FirebaseManager {
         update.put(node, value);
         firebaseManager.databaseRef.child("users").child(user.getUsername()).child("schedule").child(day+"").child(hour+"").updateChildren(update);
     }
+
+    public void appointmentDatabaseUpdate(NormalUser normalUser, Facility facility, boolean appointmentMade, int day, int hour) {
+        DatabaseReference userIntervalRef = firebaseManager.databaseRef.child("users").child(normalUser.getUsername()).child("schedule").child(day+"").child(hour+"");
+        userIntervalRef.child("isAppointed").setValue(appointmentMade);
+        userIntervalRef.child("isAvailable").setValue(!appointmentMade);
+        userIntervalRef.child("appointedFacility").setValue(facility.getName());
+
+        DatabaseReference facilityIntervalRef = firebaseManager.databaseRef.child("facilities").child(facility.getName()).child("schedule").child(day+"").child(hour+"");
+        facilityIntervalRef.child("appointedUsers").child(normalUser.getUsername()).setValue("");
+        //facilityIntervalRef.child("noOfAppointedUser").setValue(((FacilityTimeInterval)(facility.schedule.fullSchedule[day].fullDailySchedule[hour])).noOfAppointedUser);
+    }
+
+
 }

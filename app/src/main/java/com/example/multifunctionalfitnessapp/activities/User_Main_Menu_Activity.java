@@ -18,6 +18,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.multifunctionalfitnessapp.Constants;
+import com.example.multifunctionalfitnessapp.Facility;
+import com.example.multifunctionalfitnessapp.FacilityTimeInterval;
 import com.example.multifunctionalfitnessapp.PersonTimeInterval;
 import com.example.multifunctionalfitnessapp.RemoveDialog;
 import com.example.multifunctionalfitnessapp.FirebaseManager;
@@ -49,6 +51,11 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
 
     UserData userData;
     NormalUser normalUser;
+
+    Facility facilityToEdit;
+    PersonTimeInterval intervalToEdit;
+    int editedDay;
+    int editedHour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,21 +172,22 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
                     int rowIndex = ScheduleHelper.getRowIndex(row, view.getContext());
 
                     PersonTimeInterval interval = (PersonTimeInterval) normalUser.schedule.fullSchedule[selectedDay].fullDailySchedule[rowIndex];
+                    intervalToEdit = interval;
+                    editedDay = selectedDay;
+                    editedHour = rowIndex;
 
                     ColorDrawable nameColor = (ColorDrawable) name.getBackground();
                     int color = nameColor.getColor();
                     if ((color == (Color.RED))){
                         name.setBackgroundColor(Color.WHITE);
                         name.setText("");
-                        //we should remove unavailable hour from users schedule
 
                         interval.isAvailable = true;
                         firebaseManager.updateUserSchedule(normalUser,selectedDay,rowIndex,"isAvailable", true);
                     }
-                    else if(color == (Color.BLUE)){
+                    else if(color == (Color.BLUE)) {
+                        facilityToEdit = interval.appointedFacility;
                         openRemoveDialog(name);
-
-                        //TODO implement facility removal
                     }
                     else{
                         name.setBackgroundColor(Color.RED);
@@ -215,7 +223,17 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
 
 
     public void applyRemoval(TextView name) {
-        name.setBackgroundColor(Color.GREEN);
-        name.setText("NO APPOINTMENT");
+        name.setBackgroundColor(Color.WHITE);
+        name.setText("");
+
+        Log.d("name",intervalToEdit.appointedFacility.getName());
+
+        DatabaseReference userIntervalRef = firebaseManager.databaseRef.child("users").child(normalUser.getUsername()).child("schedule").child(editedDay+"").child(editedHour+"");
+        userIntervalRef.child("isAppointed").setValue(false);
+        userIntervalRef.child("isAvailable").setValue(true);
+        userIntervalRef.child("appointedFacility").setValue(null);
+
+        DatabaseReference facilityIntervalRef = firebaseManager.databaseRef.child("facilities").child(facilityToEdit.getName()).child("schedule").child(editedDay+"").child(editedHour+"");
+        facilityIntervalRef.child("appointedUsers").child(normalUser.getUsername()).setValue(null);
     }
 }

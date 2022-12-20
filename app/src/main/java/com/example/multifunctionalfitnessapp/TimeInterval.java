@@ -4,7 +4,7 @@ public class TimeInterval {
     
     int startingHour;
     final int INTERVAL = 60; // in terms of minutes
-    DailySchedule dailySchedule;
+    public DailySchedule dailySchedule;
 
     public TimeInterval() {}
 

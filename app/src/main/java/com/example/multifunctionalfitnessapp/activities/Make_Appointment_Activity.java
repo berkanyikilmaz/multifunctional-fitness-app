@@ -198,16 +198,9 @@ public class Make_Appointment_Activity extends AppCompatActivity {
                             Log.d("facN", allFacilities.get(selectedFacility).getName());
 
                             facilityInterval.appointedUsers.add(normalUser);
-                            facilityInterval.noOfAppointedUser = facilityInterval.appointedUsers.size();
+                            //facilityInterval.noOfAppointedUser = facilityInterval.appointedUsers.size();
 
-                            DatabaseReference userIntervalRef = firebaseManager.databaseRef.child("users").child(normalUser.getUsername()).child("schedule").child(day+"").child(hour+"");
-                            userIntervalRef.child("isAppointed").setValue(true);
-                            userIntervalRef.child("isAvailable").setValue(false);
-                            userIntervalRef.child("appointedFacility").setValue(allFacilities.get(selectedFacility).getName());
-
-                            DatabaseReference facilityIntervalRef = firebaseManager.databaseRef.child("facilities").child(allFacilities.get(selectedFacility).getName()).child("schedule").child(day+"").child(hour+"");
-                            facilityIntervalRef.child("appointedUsers").child(normalUser.getUsername()).setValue("");
-                            facilityIntervalRef.child("noOfAppointedUser").setValue(facilityInterval.noOfAppointedUser);
+                            firebaseManager.appointmentDatabaseUpdate(normalUser, allFacilities.get(selectedFacility), true, day, hour);
                         }
                     }
                 }

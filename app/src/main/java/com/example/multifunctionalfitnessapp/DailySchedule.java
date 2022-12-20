@@ -7,7 +7,7 @@ import java.time.DayOfWeek;
 public class DailySchedule extends Schedule {
 
     // these are the date of
-    int day;
+    public int day;
     int month;
     public TimeInterval[] fullDailySchedule;
 
