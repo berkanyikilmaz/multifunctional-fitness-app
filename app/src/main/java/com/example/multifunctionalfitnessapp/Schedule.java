@@ -57,7 +57,7 @@ public class Schedule {
         Schedule newSchedule = new Schedule();
 
         for (int i = 0; i < 7; i++) {
-            newSchedule.fullSchedule[i] = DailySchedule.createNormalUserDailySchedule();
+            newSchedule.fullSchedule[i] = DailySchedule.createNormalUserDailySchedule(i);
         }
 
         return newSchedule;
@@ -67,7 +67,7 @@ public class Schedule {
         Schedule newSchedule = new Schedule();
 
         for (int i = 0; i < 7; i++) {
-            newSchedule.fullSchedule[i] = DailySchedule.createFacilityDailySchedule();
+            newSchedule.fullSchedule[i] = DailySchedule.createFacilityDailySchedule(i);
         }
 
         return newSchedule;

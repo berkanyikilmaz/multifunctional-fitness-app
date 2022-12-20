@@ -27,8 +27,9 @@ public class DailySchedule extends Schedule {
         return super.getTimeInterval(interval);
     }
 
-    public static DailySchedule createNormalUserDailySchedule() {
+    public static DailySchedule createNormalUserDailySchedule(int day) {
         DailySchedule newSchedule = new DailySchedule();
+        newSchedule.day = day;
 
         for (int i = 0; i < newSchedule.fullDailySchedule.length; i++) {
             newSchedule.fullDailySchedule[i] = new PersonTimeInterval(i);
@@ -37,8 +38,9 @@ public class DailySchedule extends Schedule {
         return newSchedule;
     }
 
-    public static DailySchedule createFacilityDailySchedule() {
+    public static DailySchedule createFacilityDailySchedule(int day) {
         DailySchedule newSchedule = new DailySchedule();
+        newSchedule.day = day;
 
         for (int i = 0; i < newSchedule.fullDailySchedule.length; i++) {
             newSchedule.fullDailySchedule[i] = new FacilityTimeInterval(i);

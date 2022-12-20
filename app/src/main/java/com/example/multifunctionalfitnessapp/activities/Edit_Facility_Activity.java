@@ -132,7 +132,7 @@ public class Edit_Facility_Activity extends AppCompatActivity {
                     FacilityTimeInterval interval = (FacilityTimeInterval) facilitySchedule.fullSchedule[selectedDay].fullDailySchedule[rowIndex];
 
                     interval.isSelected = !interval.isSelected;
-                    Log.d(rowIndex + "", interval.isSelected + "");
+                    Log.d(rowIndex + "", interval.dailySchedule.day + "");
 
                     ScheduleHelper.updateEditFacilityScheduleValues(dailySchedule, facilitySchedule.fullSchedule[selectedDay]);
                 }

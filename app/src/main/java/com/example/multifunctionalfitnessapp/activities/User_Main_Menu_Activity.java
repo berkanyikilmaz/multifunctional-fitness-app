@@ -100,23 +100,6 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
         welcomeNameTextView.setText("Welcome " + normalUser.getName().toUpperCase(Locale.ROOT) + "!");
     }
 
-    public void getNormalUser(final OnGetDataListener listener) {
-        listener.onStart();
-        DatabaseReference ref = firebaseManager.databaseRef.child("users").child(userData.username);
-
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                listener.onSuccess(snapshot);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                listener.onFailure();
-            }
-        });
-    }
-
     public void registerFindFitnessBuddyButton() {
         findFitnessBuddy = findViewById(R.id.findFitnessBuddyButton);
         findFitnessBuddy.setOnClickListener(new View.OnClickListener() {
