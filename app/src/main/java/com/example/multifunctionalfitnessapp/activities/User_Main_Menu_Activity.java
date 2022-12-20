@@ -112,7 +112,7 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
         findFitnessBuddy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(User_Main_Menu_Activity.this, Fitness_Buddy_Found_Activity.class));
+                startActivity(new Intent(User_Main_Menu_Activity.this, Choose_Time_Interval_Menu.class));
             }
         });
     }

@@ -26,7 +26,7 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder
 
         public MyViewHolder(final View view,RecyclerViewInterface recyclerViewInterface){
             super(view);
-            intervalText = view.findViewById(R.id.textView12);
+            intervalText = view.findViewById(R.id.timeIntervalInformation);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -46,7 +46,7 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder
     @NonNull
     @Override
     public AdapterClass.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_items_for_fitness_buddy,parent,false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.time_interval_panel,parent,false);
         return new MyViewHolder(itemView,recyclerViewInterface);
     }
 
