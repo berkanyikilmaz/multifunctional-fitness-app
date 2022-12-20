@@ -16,9 +16,14 @@ public class RemoveDialog extends AppCompatDialogFragment {
 
     private RemoveDialogListener listener;
     private TextView name;
+    private PersonTimeInterval interval;
 
-    public RemoveDialog(TextView name){
+    private TextView timePeriodText;
+    private TextView facilityText;
+
+    public RemoveDialog(TextView name, PersonTimeInterval interval){
         this.name = name;
+        this.interval = interval;
     }
 
     @Override
@@ -26,6 +31,13 @@ public class RemoveDialog extends AppCompatDialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.remove_appointenment_pop_up, null);
+
+        timePeriodText = view.findViewById(R.id.timePeriod);
+        facilityText = view.findViewById(R.id.appointmentMessage);
+
+        timePeriodText.setText(Constants.DAYS[interval.dailySchedule.day] + " " + interval.startingHour + " - " + (interval.startingHour + 1) );
+        facilityText.setText("Appointment in " + interval.appointedFacility.getName());
+
         builder.setView(view).setTitle("Remove Your Appointment").setNegativeButton("Remove", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {

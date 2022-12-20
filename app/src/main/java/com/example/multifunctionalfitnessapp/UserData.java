@@ -69,6 +69,7 @@ public class UserData {
                 PersonTimeInterval interval = new PersonTimeInterval();
                 interval.isAvailable = intervalSnapshot.child("isAvailable").getValue(boolean.class);
                 interval.isAppointed = intervalSnapshot.child("isAppointed").getValue(boolean.class);
+                interval.startingHour = Integer.parseInt(intervalSnapshot.getKey());
 
                 if (interval.isAppointed) { //JUST FOR NAME REFERENCE
                     DataSnapshot facilitySnapshot = snapshot.child("facilities").child(intervalSnapshot.child("appointedFacility").getValue(String.class));
@@ -83,6 +84,7 @@ public class UserData {
                 fitnessBuddy.setUsername(intervalSnapshot.child("fitnessBuddy").getValue(String.class));
                 interval.fitnessBuddy = fitnessBuddy;
 
+                interval.dailySchedule = userSchedule.fullSchedule[day];
                 userSchedule.fullSchedule[day].fullDailySchedule[hour] = interval;
             }
         }
@@ -140,6 +142,7 @@ public class UserData {
 
                 interval.isSelected = intervalSnapshot.child("isSelected").getValue(boolean.class);
                 interval.quota = intervalSnapshot.child("quota").getValue(int.class);
+                interval.startingHour = Integer.parseInt(intervalSnapshot.getKey());
 
                 interval.appointedUsers = new ArrayList<>();
                 for (DataSnapshot appointedUserSnapshot : snapshot.child("appointedUsers").getChildren()) {
@@ -149,6 +152,7 @@ public class UserData {
                     interval.appointedUsers.add(newUser);
                 }
 
+                interval.dailySchedule = facilitySchedule.fullSchedule[day];
                 facilitySchedule.fullSchedule[day].fullDailySchedule[hour] = interval;
             }
         }
@@ -165,6 +169,9 @@ public class UserData {
         for (int day = 0; day < 7; day++) {
             for (int hour = 0; hour < 24; hour++) {
                 FacilityTimeInterval interval = snapshot.child("schedule").child(day+"").child(hour+"").getValue(FacilityTimeInterval.class);
+                //interval.startingHour = Integer.parseInt(interval.getKey());
+
+                interval.dailySchedule = facilitySchedule.fullSchedule[day];
                 facilitySchedule.fullSchedule[day].fullDailySchedule[hour] = interval;
             }
         }

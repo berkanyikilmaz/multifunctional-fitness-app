@@ -217,7 +217,7 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
     }
 
     public void openRemoveDialog(TextView name){
-        RemoveDialog dialog = new RemoveDialog(name);
+        RemoveDialog dialog = new RemoveDialog(name, intervalToEdit);
         dialog.show(getSupportFragmentManager(), "dialog");
     }
 
