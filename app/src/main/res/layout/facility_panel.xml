@@ -35,7 +35,7 @@
 
     <TextView
         android:id="@+id/quotaText"
-        android:layout_width="120dp"
+        android:layout_width="140dp"
         android:layout_height="25dp"
         android:text="Quota: "
         android:textAlignment="center"
@@ -48,7 +48,7 @@
 
     <TextView
         android:id="@+id/appointmentsText"
-        android:layout_width="120dp"
+        android:layout_width="140dp"
         android:layout_height="25dp"
         android:layout_centerHorizontal="true"
         android:text="Appointments: "
