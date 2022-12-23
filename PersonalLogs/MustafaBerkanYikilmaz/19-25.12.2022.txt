@@ -1,0 +1,8 @@
+Mustafa Berkan Yıkılmaz - 19-25/12/2022 - Personal Log
+
+Finished Tasks:
+- Database update on user attribute change
+- Improvements on make an appointment feature
+- Improvements on data retrieval from database
+- Database update on remove appointment
+- Database implementation of fitness buddy feature

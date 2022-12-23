@@ -1,0 +1,8 @@
+19/12/2022 - Meeting Log
+
+Finished Tasks:
+- Implementation of user profile
+- Implementation of make an appointment feature and menu
+- App Icon
+- Get current date and implement it in facility panel
+- Implementation of edit facility menu

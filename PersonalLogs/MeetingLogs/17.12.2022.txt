@@ -1,0 +1,6 @@
+17/12/2022 - Meeting Log
+
+Finished Tasks:
+- Implementation of Facility Owner and Normal User main menus
+- Updates on user profile and make an appointment menus
+- Database connection for user and facility data

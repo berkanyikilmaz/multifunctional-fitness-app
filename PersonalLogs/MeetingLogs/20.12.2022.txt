@@ -1,0 +1,6 @@
+20/12/2022 - Meeting Log
+
+Finished Tasks:
+- Implementation of fitness buddy feature along with the menu
+- Implementation of remove facility and fitness buddy functionality
+- UI improvements such as changes in text font and size

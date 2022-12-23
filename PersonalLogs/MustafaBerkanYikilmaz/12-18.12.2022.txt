@@ -1,0 +1,7 @@
+Mustafa Berkan Yıkılmaz - 12-18/12/2022 - Personal Log
+
+Finished Tasks:
+- Days dropdown implementation for daily schedule
+- Decide on data store structure
+- Database update on schedule creation and retrieve data
+- Database connection for main menus

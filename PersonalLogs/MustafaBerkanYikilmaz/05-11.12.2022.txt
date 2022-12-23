@@ -1,0 +1,5 @@
+Mustafa Berkan Yıkılmaz - 05-11/12/2022 - Personal Log
+
+Finished Tasks:
+- Implementation of Log in and Sign up activities
+- Database connection of log in and sign up
