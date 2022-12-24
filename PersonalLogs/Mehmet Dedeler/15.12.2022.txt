@@ -1,0 +1,6 @@
+Mehmet Dedeler - 15-19/12/2022 - Personal Log
+
+Finished Tasks:
+- Implementation of selecting day from weekly schedule xml file
+- its test activity
+- which is used also in selecting facility

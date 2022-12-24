@@ -1,0 +1,6 @@
+Mehmet Dedeler - 19/12/2022 - Personal Log
+
+Finished Tasks:
+- Implementation of time intervals receyclerview menu for find fitness buddy
+- its adapter class
+- its list item values
