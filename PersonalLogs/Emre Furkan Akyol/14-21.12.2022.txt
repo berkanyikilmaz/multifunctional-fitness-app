@@ -1,0 +1,9 @@
+Emre Furkan Akyol - 14-21.12.2022 Personal Log
+
+
+Finished Tasks:
+-Find fitness budy methods added
+-User Profile Activity Updated
+-Make Appointment activity updated
+-Pop-up for User Main Menu added
+-Using date class's functionality, methods about edit facility menu and facility adapter updated

@@ -1,0 +1,6 @@
+Emre Furkan Akyol - 19-26.11.2022 Personal Log
+
+
+Finished Tasks:
+-Added basic classes and their implementations
+-User Profile Menu created and its activity class created

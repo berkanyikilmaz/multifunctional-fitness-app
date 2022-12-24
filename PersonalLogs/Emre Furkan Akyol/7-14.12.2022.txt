@@ -1,0 +1,8 @@
+Emre Furkan Akyol - 7-14.12.2022 Personal Log
+
+
+Finished Tasks:
+-Schedule and Daily Schedule Layout xml file added
+-Scroll Pane and Tıme intervals for schedule layout added
+-Table row listener for Daily Schedule added
+-For Daily Schedule Class, listener methods added and activity class updated
