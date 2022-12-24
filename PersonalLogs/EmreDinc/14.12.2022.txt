@@ -1,0 +1,6 @@
+Emre Dinç - 14/12/2022 - Personal Log
+
+Finished Tasks
+
+- Changed updateHours method for FacilityDailySchedule class
+- Changed updateHours method for User class

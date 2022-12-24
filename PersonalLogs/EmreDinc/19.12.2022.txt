@@ -1,0 +1,5 @@
+Emre Dinç - 17/12/2022 - Personal Log
+
+Finished Tasks
+
+- Added a method to ScheduleHelper class and MakeAppointmentActivity

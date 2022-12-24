@@ -1,0 +1,6 @@
+Emre Dinç - 13/12/2022 - Personal Log
+
+Finished Tasks
+
+- Updated UserProfileActivity class
+- MakeAppointment class is created 
