@@ -1,0 +1,7 @@
+Mustafa Özkan İr - 19/12/2022 - Personal Log
+
+Finished Tasks:
+- New version of profile is added.
+- Profile is made specific for user.
+- Setting Hello message in main menu specific to user name.
+
