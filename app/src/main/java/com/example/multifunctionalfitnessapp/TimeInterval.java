@@ -2,9 +2,9 @@ package com.example.multifunctionalfitnessapp;
 
 public class TimeInterval {
     
-    int startingHour;
+    private int startingHour;
     final int INTERVAL = 60; // in terms of minutes
-    public DailySchedule dailySchedule;
+    private DailySchedule dailySchedule;
 
     public TimeInterval() {}
 
@@ -12,18 +12,19 @@ public class TimeInterval {
         this.startingHour = startingHour;
     }
 
-    boolean addAppointment(NormalUser user) {
-
-        return false;
-    }
-    public int getINTERVAL(){
-        return this.INTERVAL;
-    }
-
     public int getStartingHour(){
         return startingHour;
     }
 
-    boolean removeAppointment(NormalUser user) { return false; }
+    public void setStartingHour(int startingHour) {
+        this.startingHour = startingHour;
+    }
 
+    public DailySchedule getDailySchedule() {
+        return dailySchedule;
+    }
+
+    public void setDailySchedule(DailySchedule dailySchedule) {
+        this.dailySchedule = dailySchedule;
+    }
 }

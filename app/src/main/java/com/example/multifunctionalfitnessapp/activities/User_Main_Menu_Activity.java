@@ -100,7 +100,6 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
         findFitnessBuddy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //userData.fitnessBuddyTimeIntervals = setTimeIntervalsWithFitnessBuddies();
                 startActivity(new Intent(User_Main_Menu_Activity.this, Fitness_Buddies_Activity.class));
             }
         });
@@ -164,18 +163,21 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
                         name.setBackgroundColor(Color.WHITE);
                         name.setText("");
 
-                        interval.isAvailable = true;
+                        //interval.isAvailable = true;
+                        interval.setAvailable(true);
                         firebaseManager.updateUserSchedule(normalUser,selectedDay,rowIndex,"isAvailable", true);
                     }
                     else if(color == (Color.rgb(92, 142, 249 ))) {
-                        facilityToEdit = interval.appointedFacility;
+                        //facilityToEdit = interval.appointedFacility;
+                        facilityToEdit = interval.getAppointedFacility();
                         openRemoveDialog(name);
                     }
                     else{
                         name.setBackgroundColor(Color.RED);
                         name.setText("UNAVAILABLE");
 
-                        interval.isAvailable = false;
+                        //interval.isAvailable = false;
+                        interval.setAvailable(false);
                         firebaseManager.updateUserSchedule(normalUser,selectedDay,rowIndex,"isAvailable", false);
                     }
                 }
@@ -199,7 +201,7 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
     }
 
     public void openRemoveDialog(TextView name){
-        Log.d("date", intervalToEdit.dailySchedule.day + " " + intervalToEdit.getStartingHour());
+        Log.d("date", intervalToEdit.getDailySchedule().day + " " + intervalToEdit.getStartingHour());
         RemoveDialog dialog = new RemoveDialog(name, intervalToEdit, User_Main_Menu_Activity.this);
         dialog.show(getSupportFragmentManager(), "dialog");
     }
@@ -209,12 +211,9 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
         name.setBackgroundColor(Color.WHITE);
         name.setText("");
 
-        Log.d("name",intervalToEdit.appointedFacility.getName());
+        Log.d("name",intervalToEdit.getAppointedFacility().getName());
 
-        intervalToEdit.isAppointed = false;
-        intervalToEdit.isAvailable = true;
-        intervalToEdit.appointedFacility = null;
-
+        intervalToEdit.removeAppointment();
         DatabaseReference userIntervalRef = firebaseManager.databaseRef.child("users").child(normalUser.getUsername()).child("schedule").child(editedDay+"").child(editedHour+"");
         userIntervalRef.child("isAppointed").setValue(false);
         userIntervalRef.child("isAvailable").setValue(true);
@@ -235,28 +234,24 @@ public class User_Main_Menu_Activity extends AppCompatActivity implements Remove
                 DataSnapshot facilitiesSnapshot = snapshot.child("facilities");
                 DataSnapshot usersSnapshot = snapshot.child("users");
 
-                DataSnapshot facilitySnapshot = facilitiesSnapshot.child(interval.appointedFacility.getName());
-                DataSnapshot intervalSnapshot = facilitySnapshot.child("schedule").child(interval.dailySchedule.day+"").child(interval.getStartingHour() + "");
+                DataSnapshot facilitySnapshot = facilitiesSnapshot.child(interval.getAppointedFacility().getName());
+                DataSnapshot intervalSnapshot = facilitySnapshot.child("schedule").child(interval.getDailySchedule().day+"").child(interval.getStartingHour() + "");
 
                 for (DataSnapshot appointedUserSnapshot : intervalSnapshot.child("appointedUsers").getChildren()) {
                     String username = appointedUserSnapshot.getKey();
-                    DataSnapshot userIntervalSnapshot = usersSnapshot.child(username).child("schedule").child(interval.dailySchedule.day+"").child(interval.getStartingHour() + "");
+                    DataSnapshot userIntervalSnapshot = usersSnapshot.child(username).child("schedule").child(interval.getDailySchedule().day+"").child(interval.getStartingHour() + "");
 
                     boolean wantsFitnessBuddy = userIntervalSnapshot.child("wantsFitnessBuddy").getValue(boolean.class);
-                    if (wantsFitnessBuddy && intervalToEdit.wantsFitnessBuddy && !username.equals(normalUser.getUsername())) {
-                        intervalToEdit.wantsFitnessBuddy = false;
+                    if (wantsFitnessBuddy && intervalToEdit.isWantsFitnessBuddy() && !username.equals(normalUser.getUsername())) {
+                        intervalToEdit.setWantsFitnessBuddy(false);
 
                         NormalUser fitnessBuddy = new NormalUser();
                         fitnessBuddy.setUsername(username);
-                        interval.fitnessBuddy = fitnessBuddy;
 
-                        DatabaseReference normalUserIntervalRef = firebaseManager.databaseRef.child("users").child(normalUser.getUsername()).child("schedule").child(interval.dailySchedule.day+"").child(interval.getStartingHour()+"");
-                        DatabaseReference fitnessBuddyIntervalRef = firebaseManager.databaseRef.child("users").child(username).child("schedule").child(interval.dailySchedule.day+"").child(interval.getStartingHour()+"");
+                        interval.setFitnessBuddy(fitnessBuddy);
 
-                        normalUserIntervalRef.child("wantsFitnessBuddy").setValue(false);
-                        normalUserIntervalRef.child("fitnessBuddy").setValue(fitnessBuddy.getUsername());
-                        fitnessBuddyIntervalRef.child("wantsFitnessBuddy").setValue(false);
-                        fitnessBuddyIntervalRef.child("fitnessBuddy").setValue(normalUser.getUsername());
+                        firebaseManager.addFitnessBuddyDatabaseUpdate(normalUser, fitnessBuddy, interval);
+
                         listener.onSuccess(null);
                         return;
                     }

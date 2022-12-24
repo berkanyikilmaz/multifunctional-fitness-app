@@ -67,7 +67,7 @@ public class FitnessBuddyContainerAdapter extends RecyclerView.Adapter<FitnessBu
         PersonTimeInterval interval = userData.fitnessBuddyTimeIntervals.get(position);
 
         Log.d("hey", "holder");
-        firebaseManager.getUserSnapshot(interval.fitnessBuddy.getUsername(), new OnGetDataListener() {
+        firebaseManager.getUserSnapshot(interval.getFitnessBuddy().getUsername(), new OnGetDataListener() {
             @Override
             public void onSuccess(DataSnapshot snapshot) {
                 String fitnessBuddyPhoneNo = snapshot.child("phoneNumber").getValue(String.class);
@@ -75,10 +75,11 @@ public class FitnessBuddyContainerAdapter extends RecyclerView.Adapter<FitnessBu
                 String fitnessBuddySurname = snapshot.child("surname").getValue(String.class);
 
                 holder.NameText.setText(fitnessBuddyName + " " + fitnessBuddySurname);
-                holder.DateText.setText(Constants.DAYS[interval.dailySchedule.day]);
+                holder.DateText.setText(Constants.DAYS[interval.getDailySchedule().day]);
                 holder.PhoneNumberText.setText(fitnessBuddyPhoneNo);
                 holder.HourText.setText(interval.getStartingHour() + " - " + (interval.getStartingHour() + 1));
-                holder.FacilityText.setText(interval.appointedFacility.getName());
+                //holder.FacilityText.setText(interval.appointedFacility.getName());
+                holder.FacilityText.setText(interval.getAppointedFacility().getName());
             }
 
             @Override

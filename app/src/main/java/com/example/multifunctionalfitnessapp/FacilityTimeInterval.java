@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public class FacilityTimeInterval extends TimeInterval {
 
     // these are for facility appointments
-    public int quota;
-    public int noOfAppointedUser;
-    public ArrayList<NormalUser> appointedUsers;
-    public boolean isSelected = false; // for facility schedule creation
+    private int quota;
+    private int noOfAppointedUser;
+    private ArrayList<NormalUser> appointedUsers;
+    private boolean isSelected = false; // for facility schedule creation
 
     public FacilityTimeInterval() { super(); }
 
@@ -22,36 +22,40 @@ public class FacilityTimeInterval extends TimeInterval {
         return quota;
     }
 
-    public int getNoOfAppointedUser() {
-        return appointedUsers.size();
-    }
-
-    /*public ArrayList<NormalUser> getAppointedUsers() {
-        return appointedUsers;
-    }*/
-
-    public void setQuota(int quota) {
-        this.quota = quota;
-    }
-
-    /*public void setNoOfAppointedUser(int noOfAppointedUser) {
-        this.noOfAppointedUser = noOfAppointedUser;
-    }*/
-
-    /*public void setAppointedUsers(ArrayList<NormalUser> appointedUsers) {
-        this.appointedUsers = appointedUsers;
-    }*/
-
-    public boolean isFull() {
-        return quota == getNoOfAppointedUser();
-    }
-
-    boolean decreaseQuota(int newQuota) {
-        if ( newQuota >= getNoOfAppointedUser() ){
-            this.quota = newQuota;
+    public boolean setQuota(int quota) {
+        if ( quota >= getNoOfAppointedUser() ){
+            this.quota = quota;
             return true;
         }
         return false;
+    }
+
+    public int getNoOfAppointedUser() {
+        return noOfAppointedUser;
+    }
+
+    public void setNoOfAppointedUser(int noOfAppointedUser) {
+        this.noOfAppointedUser = noOfAppointedUser;
+    }
+
+    public ArrayList<NormalUser> getAppointedUsers() {
+        return appointedUsers;
+    }
+
+    public void setAppointedUsers(ArrayList<NormalUser> appointedUsers) {
+        this.appointedUsers = appointedUsers;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
+    public boolean isFull() {
+        return quota == getNoOfAppointedUser();
     }
 
     /*ArrayList<NormalUser> isMatching(NormalUser user) {
@@ -62,15 +66,12 @@ public class FacilityTimeInterval extends TimeInterval {
         return  fitnessBuddies;
     }*/
 
-    @Override
-    boolean addAppointment(NormalUser user) {
-        super.addAppointment(user);
+    public boolean addAppointment(NormalUser user) {
+        appointedUsers.add(user);
         return false;
     }
 
-    @Override
-    boolean removeAppointment(NormalUser user) {
-        super.removeAppointment(user);
+    public boolean removeAppointment(NormalUser user) {
         return false;
     }
 }

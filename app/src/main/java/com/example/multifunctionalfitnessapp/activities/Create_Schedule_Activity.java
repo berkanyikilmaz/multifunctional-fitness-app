@@ -67,8 +67,8 @@ public class Create_Schedule_Activity extends AppCompatActivity {
                     int rowIndex = ScheduleHelper.getRowIndex(row, view.getContext());
 
                     PersonTimeInterval interval = (PersonTimeInterval) userSchedule.fullSchedule[selectedDay].fullDailySchedule[rowIndex];
-                    interval.isAvailable = !interval.isAvailable;
-                    Log.d(rowIndex + "", interval.isAvailable + "");
+                    interval.setAvailable(!interval.isAvailable());
+                    Log.d(rowIndex + "", interval.isAvailable() + "");
 
                     ScheduleHelper.updateCreateScheduleValues(dailySchedule, userSchedule.fullSchedule[selectedDay]);
                 }
@@ -93,18 +93,11 @@ public class Create_Schedule_Activity extends AppCompatActivity {
 
     public void registerContinueButton() {
         Button continueButton = (Button)findViewById(R.id.continueButton);
-        DatabaseReference userRef = firebaseManager.databaseRef.child("users").child(userData.username);
 
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (int i = 0; i < userSchedule.fullSchedule.length; i++) {
-                    for (int j = 0; j < (userSchedule.fullSchedule[i]).fullDailySchedule.length; j++) {
-
-                        userRef.child("schedule").child(i+"").child(j+"").setValue((userSchedule.fullSchedule[i]).fullDailySchedule[j]);
-                    }
-                }
-
+                firebaseManager.sendUserScheduleDataToDatabase(userData.username, userSchedule);
                 startActivity( new Intent( Create_Schedule_Activity.this, User_Main_Menu_Activity.class ) );
             }
         });

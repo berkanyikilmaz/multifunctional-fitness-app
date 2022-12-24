@@ -42,6 +42,41 @@ public class FirebaseManager {
         databaseRef.child("users").child(user.getUsername()).setValue(user);
     }
 
+    public void sendFacilityDataToDatabase(String facilityName, String username, Schedule schedule) {
+        DatabaseReference userRef = firebaseManager.databaseRef.child("users").child(username);
+        DatabaseReference facilitiesRef = firebaseManager.databaseRef.child("facilities");
+        String facilityNameText = facilityName;
+
+        userRef.child("facilities").child(facilityNameText).setValue("");
+        DatabaseReference facilityRef = facilitiesRef.child(facilityNameText);
+
+        for (int i = 0; i < schedule.fullSchedule.length; i++) {
+            for (int j = 0; j < (schedule.fullSchedule[i]).fullDailySchedule.length; j++) {
+
+                DatabaseReference intervalRef = facilityRef.child("schedule").child(i+"").child(j+"");
+                FacilityTimeInterval interval = (FacilityTimeInterval)schedule.fullSchedule[i].fullDailySchedule[j];
+                intervalRef.child("quota").setValue(interval.getQuota());
+                intervalRef.child("startingHour").setValue(interval.getStartingHour());
+            }
+        }
+    }
+
+    public void sendUserScheduleDataToDatabase(String username, Schedule userSchedule) {
+        DatabaseReference userRef = firebaseManager.databaseRef.child("users").child(username);
+
+        for (int i = 0; i < userSchedule.fullSchedule.length; i++) {
+            for (int j = 0; j < (userSchedule.fullSchedule[i]).fullDailySchedule.length; j++) {
+                DatabaseReference intervalRef = userRef.child("schedule").child(i+"").child(j+"");
+                PersonTimeInterval interval = (PersonTimeInterval)userSchedule.fullSchedule[i].fullDailySchedule[j];
+
+                intervalRef.child("isAvailable").setValue(interval.isAvailable());
+                intervalRef.child("isAppointed").setValue(interval.isAppointed());
+                intervalRef.child("startingHour").setValue(interval.getStartingHour());
+                intervalRef.child("wantsFitnessBuddy").setValue(interval.isWantsFitnessBuddy());
+            }
+        }
+    }
+
     public void getUserSnapshot(String username, final OnGetDataListener listener) {
         listener.onStart();
 
@@ -169,13 +204,22 @@ public class FirebaseManager {
 
         DatabaseReference facilityIntervalRef = firebaseManager.databaseRef.child("facilities").child(facility.getName()).child("schedule").child(day+"").child(hour+"");
         facilityIntervalRef.child("appointedUsers").child(normalUser.getUsername()).setValue("");
-        //facilityIntervalRef.child("noOfAppointedUser").setValue(((FacilityTimeInterval)(facility.schedule.fullSchedule[day].fullDailySchedule[hour])).noOfAppointedUser);
     }
 
     public void updateFacilityQuota(Facility facility, TimeInterval interval, int quota) {
         Map<String, Object> update = new HashMap<>();
         update.put("quota", quota);
-        firebaseManager.databaseRef.child("facilities").child(facility.getName()).child("schedule").child(interval.dailySchedule.day+"").child(interval.startingHour+"").updateChildren(update);
+        firebaseManager.databaseRef.child("facilities").child(facility.getName()).child("schedule").child(interval.getDailySchedule().day+"").child(interval.getStartingHour()+"").updateChildren(update);
+    }
+
+    public void addFitnessBuddyDatabaseUpdate(NormalUser user, NormalUser fitnessBuddy, TimeInterval interval) {
+        DatabaseReference normalUserIntervalRef = firebaseManager.databaseRef.child("users").child(user.getUsername()).child("schedule").child(interval.getDailySchedule().day+"").child(interval.getStartingHour()+"");
+        DatabaseReference fitnessBuddyIntervalRef = firebaseManager.databaseRef.child("users").child(fitnessBuddy.getUsername()).child("schedule").child(interval.getDailySchedule().day+"").child(interval.getStartingHour()+"");
+
+        normalUserIntervalRef.child("wantsFitnessBuddy").setValue(false);
+        normalUserIntervalRef.child("fitnessBuddy").setValue(fitnessBuddy.getUsername());
+        fitnessBuddyIntervalRef.child("wantsFitnessBuddy").setValue(false);
+        fitnessBuddyIntervalRef.child("fitnessBuddy").setValue(user.getUsername());
     }
 
 }

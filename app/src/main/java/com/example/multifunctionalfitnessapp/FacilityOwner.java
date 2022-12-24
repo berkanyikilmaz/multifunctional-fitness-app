@@ -18,7 +18,7 @@ public class FacilityOwner extends User {
         userType = "Facility Owner";
     }
 
-    boolean deleteFacility(int index) {
+    public boolean deleteFacility(int index) {
         if (this.facilities.remove(index) != null) return true;
         return false;
     }

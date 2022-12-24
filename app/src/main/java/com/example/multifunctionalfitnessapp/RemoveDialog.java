@@ -53,8 +53,9 @@ public class RemoveDialog extends AppCompatDialogFragment {
         timePeriodText = view.findViewById(R.id.timePeriod);
         facilityText = view.findViewById(R.id.appointmentMessage);
 
-        timePeriodText.setText(Constants.DAYS[interval.dailySchedule.day] + "\n" + interval.startingHour + " - " + (interval.startingHour + 1) );
-        facilityText.setText("Appointment in " + interval.appointedFacility.getName());
+        timePeriodText.setText(Constants.DAYS[interval.getDailySchedule().day] + "\n" + interval.getStartingHour() + " - " + (interval.getStartingHour() + 1) );
+        //facilityText.setText("Appointment in " + interval.appointedFacility.getName());
+        facilityText.setText("Appointment in " + interval.getAppointedFacility().getName());
 
         TextView title = new TextView(view.getContext());
         title.setGravity(Gravity.CENTER);
@@ -77,18 +78,20 @@ public class RemoveDialog extends AppCompatDialogFragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                if (interval.fitnessBuddy.getUsername() != null) {
+                if (interval.getFitnessBuddy().getUsername() != null) {
                     Toast.makeText(mainView, "You already have a fitness buddy!", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    interval.wantsFitnessBuddy = true;
-                    firebaseManager.updateUserSchedule(normalUser, interval.dailySchedule.day, interval.startingHour, "wantsFitnessBuddy", true);
+                    //interval.wantsFitnessBuddy = true;
+                    interval.setWantsFitnessBuddy(true);
+                    firebaseManager.updateUserSchedule(normalUser, interval.getDailySchedule().day, interval.getStartingHour(), "wantsFitnessBuddy", true);
 
                     listener.findFitnessBuddy(interval, new OnGetDataListener() {
                         @Override
                         public void onSuccess(DataSnapshot snapshot) {
                             Log.d("fitness", "fitness buddy found");
-                            Log.d("fitness", "fitness buddy: " + interval.fitnessBuddy.getUsername());
+                            //Log.d("fitness", "fitness buddy: " + interval.fitnessBuddy.getUsername());
+                            Log.d("fitness", "fitness buddy: " + interval.getFitnessBuddy().getUsername());
                             Toast.makeText(mainView, "We find a fitness buddy for you!!!", Toast.LENGTH_SHORT).show();
                         }
 

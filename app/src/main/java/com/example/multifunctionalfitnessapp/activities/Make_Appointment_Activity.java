@@ -124,14 +124,16 @@ public class Make_Appointment_Activity extends AppCompatActivity {
                     int color = nameColor.getColor();
                     if (color == Color.YELLOW) {
                         FacilityTimeInterval interval = ((FacilityTimeInterval)(commonSchedule.fullSchedule[selectedDay].fullDailySchedule[rowIndex]));
-                        interval.isSelected = true;
+                        //interval.isSelected = true;
+                        interval.setSelected(true);
                         name.setBackgroundColor(Color.GREEN);
                         name.setText("SELECTED");
                         Log.d("facN", allFacilities.get(selectedFacility).getName());
                     }
                     else if (color == Color.GREEN) {
                         FacilityTimeInterval interval = ((FacilityTimeInterval)(commonSchedule.fullSchedule[selectedDay].fullDailySchedule[rowIndex]));
-                        interval.isSelected = false;
+                        //interval.isSelected = false;
+                        interval.setSelected(false);
                         name.setBackgroundColor(Color.YELLOW);
                         name.setText("");
                         Log.d("facN", allFacilities.get(selectedFacility).getName());
@@ -188,17 +190,11 @@ public class Make_Appointment_Activity extends AppCompatActivity {
                         FacilityTimeInterval facilityInterval = (FacilityTimeInterval)allFacilities.get(selectedFacility).getSchedule().fullSchedule[day].fullDailySchedule[hour];
                         FacilityTimeInterval commonInterval = (FacilityTimeInterval)commonSchedule.fullSchedule[day].fullDailySchedule[hour];
 
-                        if (commonInterval.isSelected == true) {
-                            commonInterval.isSelected = false;
+                        if (commonInterval.isSelected() == true) {
+                            commonInterval.setSelected(false);
 
-                            userInterval.isAppointed = true;
-                            userInterval.isAvailable = false;
-                            userInterval.appointedFacility = facility;
-
-                            Log.d("facN", allFacilities.get(selectedFacility).getName());
-
-                            facilityInterval.appointedUsers.add(normalUser);
-                            //facilityInterval.noOfAppointedUser = facilityInterval.appointedUsers.size();
+                            userInterval.addAppointment(facility);
+                            facilityInterval.addAppointment(normalUser);
 
                             firebaseManager.appointmentDatabaseUpdate(normalUser, allFacilities.get(selectedFacility), true, day, hour);
                         }

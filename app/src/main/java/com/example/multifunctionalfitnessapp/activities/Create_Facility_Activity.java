@@ -16,10 +16,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.multifunctionalfitnessapp.Constants;
-import com.example.multifunctionalfitnessapp.Facility;
 import com.example.multifunctionalfitnessapp.FacilityTimeInterval;
 import com.example.multifunctionalfitnessapp.FirebaseManager;
-import com.example.multifunctionalfitnessapp.PersonTimeInterval;
 import com.example.multifunctionalfitnessapp.R;
 import com.example.multifunctionalfitnessapp.Schedule;
 import com.example.multifunctionalfitnessapp.ScheduleHelper;
@@ -74,9 +72,9 @@ public class Create_Facility_Activity extends AppCompatActivity {
                     for (int j = 0; j < (facilitySchedule.fullSchedule[i]).fullDailySchedule.length; j++) {
                         FacilityTimeInterval interval = (FacilityTimeInterval) facilitySchedule.fullSchedule[i].fullDailySchedule[j];
 
-                        if (interval.isSelected) {
-                            interval.quota = newQuota;
-                            interval.isSelected = false;
+                        if (interval.isSelected()) {
+                            interval.setQuota(newQuota);
+                            interval.setSelected(false);
                         }
                     }
                 }
@@ -88,24 +86,11 @@ public class Create_Facility_Activity extends AppCompatActivity {
 
     public void registerContinueButton() {
         createFacilityButton = findViewById(R.id.createButton);
-        DatabaseReference userRef = firebaseManager.databaseRef.child("users").child(userData.username);
-        DatabaseReference facilitiesRef = firebaseManager.databaseRef.child("facilities");
 
         createFacilityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String facilityNameText = facilityName.getText().toString();
-
-                userRef.child("facilities").child(facilityNameText).setValue("");
-                DatabaseReference facilityRef = facilitiesRef.child(facilityNameText);
-
-                for (int i = 0; i < facilitySchedule.fullSchedule.length; i++) {
-                    for (int j = 0; j < (facilitySchedule.fullSchedule[i]).fullDailySchedule.length; j++) {
-
-                        facilityRef.child("schedule").child(i+"").child(j+"").setValue((facilitySchedule.fullSchedule[i]).fullDailySchedule[j]);
-                    }
-                }
-
+                firebaseManager.sendFacilityDataToDatabase(facilityName.getText().toString(), userData.username, facilitySchedule);
                 startActivity( new Intent( Create_Facility_Activity.this, Facility_Owner_Main_Menu_Activity.class ) );
             }
         });
@@ -128,8 +113,8 @@ public class Create_Facility_Activity extends AppCompatActivity {
                     int rowIndex = ScheduleHelper.getRowIndex(row, view.getContext());
 
                     FacilityTimeInterval interval = (FacilityTimeInterval) facilitySchedule.fullSchedule[selectedDay].fullDailySchedule[rowIndex];
-                    interval.isSelected = !interval.isSelected;
-                    Log.d(rowIndex + "", interval.isSelected + "");
+                    interval.setSelected(!interval.isSelected());
+                    Log.d(rowIndex + "", interval.isSelected() + "");
 
                     ScheduleHelper.updateCreateFacilityScheduleValues(dailySchedule, facilitySchedule.fullSchedule[selectedDay]);
                 }

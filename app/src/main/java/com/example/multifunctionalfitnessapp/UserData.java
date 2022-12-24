@@ -70,25 +70,25 @@ public class UserData {
                 DataSnapshot intervalSnapshot = userSnapshot.child("schedule").child(day+"").child(hour+"");
 
                 PersonTimeInterval interval = new PersonTimeInterval();
-                interval.isAvailable = intervalSnapshot.child("isAvailable").getValue(boolean.class);
-                interval.isAppointed = intervalSnapshot.child("isAppointed").getValue(boolean.class);
-                interval.startingHour = Integer.parseInt(intervalSnapshot.getKey());
-                interval.wantsFitnessBuddy = intervalSnapshot.child("wantsFitnessBuddy").getValue(boolean.class);
+                interval.setAvailable(intervalSnapshot.child("isAvailable").getValue(boolean.class));
+                interval.setAppointed(intervalSnapshot.child("isAppointed").getValue(boolean.class));
+                interval.setStartingHour(Integer.parseInt(intervalSnapshot.getKey()));
+                interval.setWantsFitnessBuddy(intervalSnapshot.child("wantsFitnessBuddy").getValue(boolean.class));
 
-                if (interval.isAppointed) { //JUST FOR NAME REFERENCE
+                if (interval.isAppointed()) { //JUST FOR NAME REFERENCE
                     DataSnapshot facilitySnapshot = snapshot.child("facilities").child(intervalSnapshot.child("appointedFacility").getValue(String.class));
 
                     Facility newFacility = new Facility();
                     newFacility.setName(facilitySnapshot.getKey());
 
-                    interval.appointedFacility = newFacility;
+                    interval.setAppointedFacility(newFacility);
                 }
 
                 NormalUser fitnessBuddy = new NormalUser();
                 fitnessBuddy.setUsername(intervalSnapshot.child("fitnessBuddy").getValue(String.class));
-                interval.fitnessBuddy = fitnessBuddy;
+                interval.setFitnessBuddy(fitnessBuddy);
 
-                interval.dailySchedule = userSchedule.fullSchedule[day];
+                interval.setDailySchedule(userSchedule.fullSchedule[day]);
                 userSchedule.fullSchedule[day].fullDailySchedule[hour] = interval;
             }
         }
@@ -144,19 +144,18 @@ public class UserData {
                 DataSnapshot intervalSnapshot = snapshot.child("schedule").child(day+"").child(hour+"");
                 FacilityTimeInterval interval = new FacilityTimeInterval();
 
-                interval.isSelected = intervalSnapshot.child("isSelected").getValue(boolean.class);
-                interval.quota = intervalSnapshot.child("quota").getValue(int.class);
-                interval.startingHour = Integer.parseInt(intervalSnapshot.getKey());
+                interval.setQuota(intervalSnapshot.child("quota").getValue(int.class));
+                interval.setStartingHour(Integer.parseInt(intervalSnapshot.getKey()));
 
-                interval.appointedUsers = new ArrayList<>();
+                interval.setAppointedUsers(new ArrayList<>());
                 for (DataSnapshot appointedUserSnapshot : intervalSnapshot.child("appointedUsers").getChildren()) {
                     NormalUser newUser = new NormalUser();
                     newUser.setUsername(appointedUserSnapshot.getKey());
 
-                    interval.appointedUsers.add(newUser);
+                    interval.getAppointedUsers().add(newUser);
                 }
 
-                interval.dailySchedule = facilitySchedule.fullSchedule[day];
+                interval.setDailySchedule(facilitySchedule.fullSchedule[day]);
                 facilitySchedule.fullSchedule[day].fullDailySchedule[hour] = interval;
             }
         }
@@ -173,9 +172,8 @@ public class UserData {
         for (int day = 0; day < 7; day++) {
             for (int hour = 0; hour < 24; hour++) {
                 FacilityTimeInterval interval = snapshot.child("schedule").child(day+"").child(hour+"").getValue(FacilityTimeInterval.class);
-                //interval.startingHour = Integer.parseInt(interval.getKey());
 
-                interval.dailySchedule = facilitySchedule.fullSchedule[day];
+                interval.setDailySchedule(facilitySchedule.fullSchedule[day]);
                 facilitySchedule.fullSchedule[day].fullDailySchedule[hour] = interval;
             }
         }

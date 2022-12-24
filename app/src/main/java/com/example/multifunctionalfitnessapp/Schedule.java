@@ -17,15 +17,15 @@ public class Schedule {
     }
 
     TimeInterval getTimeInterval(TimeInterval interval) {
-        int startingHour = interval.startingHour;
-        int day = interval.dailySchedule.day;
-        int month = interval.dailySchedule.month;
+        int startingHour = interval.getStartingHour();
+        int day = interval.getDailySchedule().day;
+        int month = interval.getDailySchedule().month;
         return fullSchedule[day].fullDailySchedule[startingHour];
     }
 
     public void removeAppointment(TimeInterval period) {
-    int removingHour = period.startingHour;
-    fullSchedule[period.dailySchedule.day].fullDailySchedule[removingHour] = null;
+    int removingHour = period.getStartingHour();
+    fullSchedule[period.getDailySchedule().day].fullDailySchedule[removingHour] = null;
     }
 
     ArrayList<Schedule> findAvailablePeriods(Schedule facilitySchedule, Schedule userSchedule) {
@@ -37,7 +37,7 @@ public class Schedule {
                 if( ((FacilityTimeInterval)facilitySchedule.fullSchedule[day].fullDailySchedule[hours]).isFull() ){
 
                 }
-                  else  if(!((PersonTimeInterval)(userSchedule.fullSchedule[day].fullDailySchedule[hours])).isAppointed){
+                  else  if(!((PersonTimeInterval)(userSchedule.fullSchedule[day].fullDailySchedule[hours])).isAppointed()){
 
                 }
                   else{

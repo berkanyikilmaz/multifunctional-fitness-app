@@ -27,7 +27,7 @@ public class NormalUser extends User {
         for (int j = 0; j < 24; j++) {
             for (int k = 0; k < 7; k++) {
                 TimeInterval interval = schedule.fullSchedule[k].fullDailySchedule[j];
-                if (((PersonTimeInterval) interval).isAppointed)
+                if (((PersonTimeInterval) interval).isAppointed())
                     appointedHours.add((PersonTimeInterval) interval);
             }
         }
@@ -36,7 +36,7 @@ public class NormalUser extends User {
         ArrayList<NormalUser> appointedUsersInInterval = new ArrayList<>();
        for(int k = 0; k<appointedHours.size();k++){
            if(appointedHours.get(k).equals(selectedInterval)){
-              appointedUsersInInterval= ((FacilityTimeInterval)f1.schedule.getTimeInterval(selectedInterval)).appointedUsers;
+              appointedUsersInInterval= ((FacilityTimeInterval)f1.schedule.getTimeInterval(selectedInterval)).getAppointedUsers();
            }
 
 

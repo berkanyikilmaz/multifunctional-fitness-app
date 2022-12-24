@@ -55,7 +55,7 @@ public class Daily_Schedule_Activity extends AppCompatActivity {
             TableRow row = (TableRow) layout.getChildAt(n);
             TextView name = (TextView) row.getChildAt(2);
             PersonTimeInterval interval = (PersonTimeInterval) dailySchedule.getInterval(n - 1);
-            if (interval.isAppointed) {
+            if (interval.isAppointed()) {
                 name.setText("Appointment at:" + facilityName);
                 name.setBackgroundColor(Color.BLUE);
             }

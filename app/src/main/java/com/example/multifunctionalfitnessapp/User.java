@@ -30,8 +30,6 @@ public abstract class User {
         this.userType = null;
     }
 
-    void displayProfile() {}
-
     public String getName() {
         return name;
     }

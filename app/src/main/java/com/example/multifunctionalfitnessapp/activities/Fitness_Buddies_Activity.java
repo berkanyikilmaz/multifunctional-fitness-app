@@ -55,7 +55,7 @@ public class Fitness_Buddies_Activity extends AppCompatActivity implements Recyc
             for (int hour = 0; hour < 24; hour++) {
                 PersonTimeInterval interval = (PersonTimeInterval) normalUser.schedule.fullSchedule[day].fullDailySchedule[hour];
 
-                if (interval.fitnessBuddy != null && interval.fitnessBuddy.getUsername() != null && !interval.fitnessBuddy.getUsername().equals("")) {
+                if (interval.getFitnessBuddy() != null && interval.getFitnessBuddy().getUsername() != null && !interval.getFitnessBuddy().getUsername().equals("")) {
                     tempIntervalArray.add(interval);
                 }
             }
@@ -78,10 +78,11 @@ public class Fitness_Buddies_Activity extends AppCompatActivity implements Recyc
         PersonTimeInterval interval = userData.fitnessBuddyTimeIntervals.get(position);
 
         DatabaseReference usersRef = firebaseManager.databaseRef.child("users");
-        usersRef.child(normalUser.getUsername()).child("schedule").child(interval.dailySchedule.day+"").child(interval.getStartingHour()+"").child("fitnessBuddy").setValue(null);
-        usersRef.child(interval.fitnessBuddy.getUsername()).child("schedule").child(interval.dailySchedule.day+"").child(interval.getStartingHour()+"").child("fitnessBuddy").setValue(null);
+        usersRef.child(normalUser.getUsername()).child("schedule").child(interval.getDailySchedule().day+"").child(interval.getStartingHour()+"").child("fitnessBuddy").setValue(null);
+        usersRef.child(interval.getFitnessBuddy().getUsername()).child("schedule").child(interval.getDailySchedule().day+"").child(interval.getStartingHour()+"").child("fitnessBuddy").setValue(null);
 
-        interval.fitnessBuddy = null;
+        //interval.fitnessBuddy = null;
+        interval.setFitnessBuddy(null);
 
         Toast.makeText(this, "Fitness Buddy removed", Toast.LENGTH_SHORT).show();
 

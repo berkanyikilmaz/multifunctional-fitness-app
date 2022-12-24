@@ -58,27 +58,14 @@ public class Edit_Facility_Activity extends AppCompatActivity {
         registerDailyScheduleLayout();
         registerConfirmButton();
         registerContinueButton();
-
     }
 
     public void registerContinueButton(){
         continueButton = (Button) findViewById(R.id.editFacilityContinueButton);
-        //DatabaseReference userRef = firebaseManager.databaseRef.child("users").child(userData.username);
-        //DatabaseReference facilitiesRef = firebaseManager.databaseRef.child("facilities");
 
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*String facilityNameText = facilityName.getText().toString();
-
-                userRef.child("facilities").child(facilityNameText).setValue("");
-                DatabaseReference facilityRef = facilitiesRef.child(facilityNameText);
-
-                for (int i = 0; i < facilitySchedule.fullSchedule.length; i++) {
-                    for (int j = 0; j < (facilitySchedule.fullSchedule[i]).fullDailySchedule.length; j++) {
-                        facilityRef.child("schedule").child(i+"").child(j+"").child("");
-                    }
-                }*/
                 startActivity( new Intent( Edit_Facility_Activity.this, Facility_Owner_Main_Menu_Activity.class ) );
             }
         });
@@ -95,12 +82,9 @@ public class Edit_Facility_Activity extends AppCompatActivity {
                     for (int j = 0; j < (facilitySchedule.fullSchedule[i]).fullDailySchedule.length; j++) {
                         FacilityTimeInterval interval = (FacilityTimeInterval) facilitySchedule.fullSchedule[i].fullDailySchedule[j];
 
-                        if (interval.isSelected) {
-                            if (interval.getNoOfAppointedUser() <= newQuota) {
-                                interval.quota = newQuota;
-                                interval.isSelected = false;
-                                firebaseManager.updateFacilityQuota(facility,interval,interval.quota);
-                            }
+                        if (interval.isSelected() && interval.setQuota(newQuota)) {
+                            interval.setSelected(false);
+                            firebaseManager.updateFacilityQuota(facility,interval,interval.getQuota());
                         }
                     }
                 }
@@ -129,11 +113,10 @@ public class Edit_Facility_Activity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     int rowIndex = ScheduleHelper.getRowIndex(row, view.getContext());
-
                     FacilityTimeInterval interval = (FacilityTimeInterval) facilitySchedule.fullSchedule[selectedDay].fullDailySchedule[rowIndex];
 
-                    interval.isSelected = !interval.isSelected;
-                    Log.d(rowIndex + "", interval.dailySchedule.day + "");
+                    interval.setSelected(!interval.isSelected());
+                    Log.d(rowIndex + "", interval.getDailySchedule().day + "");
 
                     ScheduleHelper.updateEditFacilityScheduleValues(dailySchedule, facilitySchedule.fullSchedule[selectedDay]);
                 }

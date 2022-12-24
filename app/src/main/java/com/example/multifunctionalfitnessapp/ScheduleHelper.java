@@ -63,21 +63,21 @@ public class ScheduleHelper {
             TableRow row = (TableRow)scheduleTable.getChildAt(n);
             TextView name = (TextView)row.getChildAt(1);
 
-            if (((FacilityTimeInterval)(commonSchedule.fullDailySchedule[n-1])).isSelected) {
+            if (((FacilityTimeInterval)(commonSchedule.fullDailySchedule[n-1])).isSelected()) {
                 name.setBackgroundColor(Color.GREEN);
                 name.setText("SELECTED");
             }
-            else if (((PersonTimeInterval)(userDailySchedule.fullDailySchedule[n-1])).isAvailable &&
+            else if (((PersonTimeInterval)(userDailySchedule.fullDailySchedule[n-1])).isAvailable() &&
                     !((FacilityTimeInterval)(facilityDailySchedule.fullDailySchedule[n-1])).isFull()) {
                 name.setBackgroundColor(Color.YELLOW);
                 name.setText("");
             }
-            else if (!((PersonTimeInterval)(userDailySchedule.fullDailySchedule[n-1])).isAvailable &&
+            else if (!((PersonTimeInterval)(userDailySchedule.fullDailySchedule[n-1])).isAvailable() &&
                     !((FacilityTimeInterval)(facilityDailySchedule.fullDailySchedule[n-1])).isFull()) {
                 name.setBackgroundColor(Color.WHITE);
                 name.setText("UNAVAILABLE");
             }
-            else if (((PersonTimeInterval)(userDailySchedule.fullDailySchedule[n-1])).isAvailable &&
+            else if (((PersonTimeInterval)(userDailySchedule.fullDailySchedule[n-1])).isAvailable() &&
                     ((FacilityTimeInterval)(facilityDailySchedule.fullDailySchedule[n-1])).isFull()) {
                 name.setBackgroundColor(Color.WHITE);
                 name.setText("QUOTA IS FULL");
@@ -96,7 +96,7 @@ public class ScheduleHelper {
             TableRow row = (TableRow)scheduleTable.getChildAt(n);
             TextView name = (TextView)row.getChildAt(1);
 
-            if (((PersonTimeInterval)(dailySchedule.fullDailySchedule[n-1])).isAvailable) {
+            if (((PersonTimeInterval)(dailySchedule.fullDailySchedule[n-1])).isAvailable()) {
                 name.setBackgroundColor(Color.WHITE);
                 name.setText("");
             }
@@ -114,17 +114,17 @@ public class ScheduleHelper {
 
             FacilityTimeInterval interval = ((FacilityTimeInterval)(dailySchedule.fullDailySchedule[n-1]));
 
-            if (interval.isSelected) {
+            if (interval.isSelected()) {
                 name.setBackgroundColor(Color.GREEN);
                 name.setText("SELECTED");
             }
-            else if (interval.quota == 0) {
+            else if (interval.getQuota() == 0) {
                 name.setBackgroundColor(Color.WHITE);
                 name.setText("Quota: 0");
             }
             else {
                 name.setBackgroundColor(Color.YELLOW);
-                name.setText("Quota: " + interval.quota);
+                name.setText("Quota: " + interval.getQuota());
             }
         }
     }
@@ -136,17 +136,17 @@ public class ScheduleHelper {
 
             FacilityTimeInterval interval = ((FacilityTimeInterval)(dailySchedule.fullDailySchedule[n-1]));
 
-            if (interval.isSelected) {
+            if (interval.isSelected()) {
                 name.setBackgroundColor(Color.GREEN);
                 name.setText("SELECTED");
             }
-            else if (interval.quota == 0) {
+            else if (interval.getQuota() == 0) {
                 name.setBackgroundColor(Color.WHITE);
                 name.setText("Quota: 0");
             }
             else {
                 name.setBackgroundColor(Color.YELLOW);
-                name.setText("Quota: " + interval.quota + "/ Users: " + interval.getNoOfAppointedUser());
+                name.setText("Quota: " + interval.getQuota() + "/ Users: " + interval.getNoOfAppointedUser());
             }
         }
     }
@@ -167,11 +167,12 @@ public class ScheduleHelper {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     PersonTimeInterval interval = snapshot.getValue(PersonTimeInterval.class);
 
-                    if (interval.isAppointed) {
+                    if (interval.isAppointed()) {
                         name.setBackgroundColor(Color.BLUE);
-                        name.setText("Appointed at " + interval.appointedFacility.getName());
+                        //name.setText("Appointed at " + interval.appointedFacility.getName());
+                        name.setText("Appointed at " + interval.getAppointedFacility().getName());
                     }
-                    else if (!interval.isAvailable) {
+                    else if (!interval.isAvailable()) {
                         name.setBackgroundColor(Color.RED);
                         name.setText("UNAVAILABLE");
                     }
@@ -197,11 +198,12 @@ public class ScheduleHelper {
             DailySchedule dailySchedule = normalUser.schedule.fullSchedule[dailyScheduleIndex];
             PersonTimeInterval interval = (PersonTimeInterval) dailySchedule.fullDailySchedule[i];
 
-            if (interval.isAppointed) {
+            if (interval.isAppointed()) {
                 name.setBackgroundColor(Color.rgb(92, 142, 249 ));
-                name.setText("Appointed at " + interval.appointedFacility.getName());
+                //name.setText("Appointed at " + interval.appointedFacility.getName());
+                name.setText("Appointed at " + interval.getAppointedFacility().getName());
             }
-            else if (!interval.isAvailable) {
+            else if (!interval.isAvailable()) {
                 name.setBackgroundColor(Color.RED);
                 name.setText("UNAVAILABLE");
             }

@@ -125,7 +125,8 @@ public class Facility_Owner_Main_Menu_Activity extends AppCompatActivity impleme
         firebaseManager.deleteFacility(facilityOwner.getUsername(), facilityToRemove.getName(), new OnGetDataListener() {
             @Override
             public void onSuccess(DataSnapshot snapshot) {
-                facilityOwner.getFacilities().remove(position);
+                //facilityOwner.getFacilities().remove(position);
+                facilityOwner.deleteFacility(position);
                 facilityContainerAdapter.notifyItemRemoved(position);
             }
 
