@@ -1,0 +1,6 @@
+Mustafa Özkan İr - 16/12/2022 - Personal Log
+
+Finished Tasks:
+- Pop-up Layouts are added
+- Creating Facility and Facilty Owner Main Menu Activity Class is added.
+

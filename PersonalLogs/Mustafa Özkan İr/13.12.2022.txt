@@ -1,0 +1,6 @@
+Mustafa Özkan İr - 13/12/2022 - Personal Log
+
+Finished Tasks:
+- Creating Schedule user interface is added.
+- Normal User Main Menu user interface is added.
+- Making Appointment user interface is added.

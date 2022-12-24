@@ -1,0 +1,6 @@
+Mustafa Özkan İr - 17/12/2022 - Personal Log
+
+Finished Tasks:
+- New Facility Owner Main Menu using Recycler View
+- New Classes for implementing recycler view
+
