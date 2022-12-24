@@ -151,7 +151,6 @@ public class UserData {
                 for (DataSnapshot appointedUserSnapshot : intervalSnapshot.child("appointedUsers").getChildren()) {
                     NormalUser newUser = new NormalUser();
                     newUser.setUsername(appointedUserSnapshot.getKey());
-
                     interval.getAppointedUsers().add(newUser);
                 }
 

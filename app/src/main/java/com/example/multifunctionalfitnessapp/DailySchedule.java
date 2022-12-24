@@ -8,7 +8,6 @@ public class DailySchedule extends Schedule {
 
     // these are the date of
     public int day;
-    int month;
     public TimeInterval[] fullDailySchedule;
 
     public DailySchedule() {

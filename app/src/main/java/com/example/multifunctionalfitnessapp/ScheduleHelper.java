@@ -83,7 +83,6 @@ public class ScheduleHelper {
                 name.setText("QUOTA IS FULL");
             }
             else {
-
                 name.setBackgroundColor(Color.WHITE);
                 name.setText("UNAVAILABLE");
             }

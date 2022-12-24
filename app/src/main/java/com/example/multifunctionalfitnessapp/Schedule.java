@@ -19,13 +19,12 @@ public class Schedule {
     TimeInterval getTimeInterval(TimeInterval interval) {
         int startingHour = interval.getStartingHour();
         int day = interval.getDailySchedule().day;
-        int month = interval.getDailySchedule().month;
         return fullSchedule[day].fullDailySchedule[startingHour];
     }
 
     public void removeAppointment(TimeInterval period) {
-    int removingHour = period.getStartingHour();
-    fullSchedule[period.getDailySchedule().day].fullDailySchedule[removingHour] = null;
+        int removingHour = period.getStartingHour();
+        fullSchedule[period.getDailySchedule().day].fullDailySchedule[removingHour] = null;
     }
 
     ArrayList<Schedule> findAvailablePeriods(Schedule facilitySchedule, Schedule userSchedule) {
@@ -34,18 +33,17 @@ public class Schedule {
             for(int hours =0; hours<24;hours++){
                 TimeInterval available;
 
-                if( ((FacilityTimeInterval)facilitySchedule.fullSchedule[day].fullDailySchedule[hours]).isFull() ){
+                if( ((FacilityTimeInterval)facilitySchedule.fullSchedule[day].fullDailySchedule[hours]).isFull() ) {
 
                 }
-                  else  if(!((PersonTimeInterval)(userSchedule.fullSchedule[day].fullDailySchedule[hours])).isAppointed()){
+                else  if(!((PersonTimeInterval)(userSchedule.fullSchedule[day].fullDailySchedule[hours])).isAppointed()){
 
                 }
-                  else{
+                else {
                       Schedule eachDay = new Schedule();
                       eachDay.fullSchedule[day].fullDailySchedule[hours] = userSchedule.fullSchedule[day].fullDailySchedule[hours];
                       availablePeriods.add(eachDay);
                 }
-
                     }
 
         }

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class NormalUser extends User {
 
     public Schedule schedule;
-    public ArrayList<PersonTimeInterval> appointedHours = new ArrayList<>();
 
     public NormalUser() {
         super();
@@ -22,25 +21,4 @@ public class NormalUser extends User {
         return schedule;
     }
 
-    public void addAppointedHours() {
-
-        for (int j = 0; j < 24; j++) {
-            for (int k = 0; k < 7; k++) {
-                TimeInterval interval = schedule.fullSchedule[k].fullDailySchedule[j];
-                if (((PersonTimeInterval) interval).isAppointed())
-                    appointedHours.add((PersonTimeInterval) interval);
-            }
-        }
-}
-    public ArrayList<NormalUser> findFitnessBuddy(TimeInterval selectedInterval,Facility f1) {
-        ArrayList<NormalUser> appointedUsersInInterval = new ArrayList<>();
-       for(int k = 0; k<appointedHours.size();k++){
-           if(appointedHours.get(k).equals(selectedInterval)){
-              appointedUsersInInterval= ((FacilityTimeInterval)f1.schedule.getTimeInterval(selectedInterval)).getAppointedUsers();
-           }
-
-
-        }
-        return appointedUsersInInterval;
-    }
 }

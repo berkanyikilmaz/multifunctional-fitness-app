@@ -6,11 +6,13 @@ public class FacilityTimeInterval extends TimeInterval {
 
     // these are for facility appointments
     private int quota;
-    private int noOfAppointedUser;
     private ArrayList<NormalUser> appointedUsers;
     private boolean isSelected = false; // for facility schedule creation
 
-    public FacilityTimeInterval() { super(); }
+    public FacilityTimeInterval() {
+        super();
+        appointedUsers = new ArrayList<NormalUser>();
+    }
 
     public FacilityTimeInterval(int startingHour) {
         super(startingHour);
@@ -31,11 +33,7 @@ public class FacilityTimeInterval extends TimeInterval {
     }
 
     public int getNoOfAppointedUser() {
-        return noOfAppointedUser;
-    }
-
-    public void setNoOfAppointedUser(int noOfAppointedUser) {
-        this.noOfAppointedUser = noOfAppointedUser;
+        return appointedUsers.size();
     }
 
     public ArrayList<NormalUser> getAppointedUsers() {

@@ -17,7 +17,7 @@ public class Facility {
     }
 
     boolean removeAppointment(NormalUser user, TimeInterval interval) {
-        //this.schedule.getTimeInterval(interval).removeAppointment(user);
+        ((FacilityTimeInterval)schedule.getTimeInterval(interval)).removeAppointment(user);
         return false;
     }
 
