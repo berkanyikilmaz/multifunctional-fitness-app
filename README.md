@@ -8,7 +8,7 @@ different time periods.
 Members:\
 Mustafa Berkan Yıkılmaz\
 Emre Dinç\
-Emre Furkan Aksoy\
+Emre Furkan Akyol\
 Mehmet Dedeler\
 Mustafa Özkan İr
 
